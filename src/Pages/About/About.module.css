@@ -1,0 +1,13 @@
+.aboutContainer{
+    text-align: justify;
+}
+.aboutContainer > h1{
+    text-align: center;
+}
+.shopingMart  h1 {
+    text-align: center;
+}
+
+.shopingMart  h2 {
+    text-align: center;
+}

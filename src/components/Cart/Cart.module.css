@@ -12,3 +12,7 @@
   width: 200px;
   margin-right: 2rem;
 }
+.delete{
+  font-size: large;
+  cursor: pointer;
+}

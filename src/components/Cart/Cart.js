@@ -1,5 +1,5 @@
 import React from "react";
-import style from './Cart.module.css'
+import style from "./Cart.module.css";
 const Cart = ({ cartItems }) => {
   return (
     <div>
@@ -10,6 +10,9 @@ const Cart = ({ cartItems }) => {
           <span>{cart.description}</span>
           <span>{cart.title}</span>
           <span>{cart.price}</span>
+          <span className={style. delete}>
+            <i class="fa fa-trash-o"></i>
+          </span>
         </div>
       ))}
     </div>

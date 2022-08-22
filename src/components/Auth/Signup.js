@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
 const Signup = () => {
+  const navigate = useNavigate();
   const {
     value: name,
     nameIsInValid: invalidName,
@@ -40,7 +41,7 @@ const Signup = () => {
   } = UserInput((value) => value.trim() !== "");
 
   const submitHandler = (e) => {
-    e.preventDefaule();
+    e.preventDefault();
     if (!validEmail && !validName && !validNumber && !validPassword) {
       return;
     }
@@ -48,13 +49,14 @@ const Signup = () => {
     resetEmailHandler();
     resetNumberHandler();
     resetPasswordrHandler();
+    navigate("/", { replace: true });
   };
   return (
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
       <form action="" onSubmit={submitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="name">Your Name</label> 
+          <label htmlFor="name">Your Name</label>
           <input
             type="text"
             id="name"
@@ -62,11 +64,12 @@ const Signup = () => {
             value={name}
             onChange={onNameChangeHandler}
             onBlur={nameBlurHandler}
+            required
           />
           {invalidName && <p className={style.error}>! Enter your name</p>}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="mobile">Mobile Number</label> 
+          <label htmlFor="mobile">Mobile Number</label>
           <input
             type="number"
             id="mobile"
@@ -74,13 +77,14 @@ const Signup = () => {
             value={number}
             onChange={onNumberChangeHandler}
             onBlur={numberBlurHandler}
+            required
           />
           {invalidNumber && (
             <p className={style.error}>! Enter your mobile number</p>
           )}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="email">Email </label> 
+          <label htmlFor="email">Email </label>
           <input
             type="text"
             id="email"
@@ -88,11 +92,12 @@ const Signup = () => {
             value={email}
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
+            required
           />
           {invalidEmail && <p className={style.error}>! Enter your email </p>}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="password">Password</label> 
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -100,6 +105,7 @@ const Signup = () => {
             value={password}
             onChange={onPasswordChangeHandler}
             onBlur={passwordBlurHandler}
+            required
           />
           {invalidPassword && (
             <p className={style.error}>! Enter your password</p>
@@ -109,14 +115,13 @@ const Signup = () => {
           <button type="submit">Continue</button>
         </div>
       </form>
-      
+
       <footer>
         <p>
           Already have an account ?<NavLink to="/login">Sigin In</NavLink>{" "}
           <br />
           <NavLink to="/">Back To Home</NavLink>
         </p>
-        
       </footer>
     </div>
   );

@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate()
   const {
     value: email,
     nameIsInValid: invalidEmail,
@@ -11,20 +13,24 @@ const Login = () => {
     nameIsValid: validEmail,
     reset: resetHandler,
   } = UserInput((value) => value.includes("@"));
+ 
   const onSubmitHandler = (e) => {
-    e.preventDefaule();
+    e.preventDefault();
     if (!validEmail) {
       return;
     }
-    resetHandler();
+    
+  
+    navigate("/", {replace: true} )
+    resetHandler()
   };
-  //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
+  const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
   return (
     <div className={style.loginContainer}>
       <h2>Sign-In</h2>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="email">Email </label> <br />
+          <label htmlFor="email">Email </label> 
           <input
             type="text"
             id="email"
@@ -32,10 +38,11 @@ const Login = () => {
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Email Ex. sandeep@cbnits.com"
+            required
           />
           {invalidEmail && (
             <p className={style.error}>
-              Enter your email or mobile phone number
+              Enter your email or phone  number
             </p>
           )}
         </div>
