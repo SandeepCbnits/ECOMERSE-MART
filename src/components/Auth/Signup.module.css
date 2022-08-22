@@ -1,0 +1,35 @@
+.signupContainer {
+    margin: 1rem auto;
+    text-align: center;
+    width: 25rem;
+    max-width: 90%;
+    background-color: white;
+    height: 100vh;
+    padding: 1rem;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    
+  }
+  .loginContainer h1 {
+    margin-bottom: 0.1vh;
+  }
+  .inputFiled label {
+
+  }
+  .inputFiled input {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin: 10px auto;
+  }
+  .error {
+    color: rgb(240, 44, 44);
+  }
+  .actionButton {
+    width: 100%;
+  }
+  .actionButton button {
+    padding: 0.6rem 6rem;
+    cursor: pointer;
+  }
+  

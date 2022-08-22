@@ -1,0 +1,19 @@
+
+.title {
+  text-align: center;
+}
+.chare_cart {
+  width: 20rem;
+  text-align: center;
+  background-color: whitesmoke;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.chare_cart:hover {
+  background-color: rgb(244, 229, 229);
+}
+.chare_cart img {
+  height: 200px;
+  width: 200px;
+}
