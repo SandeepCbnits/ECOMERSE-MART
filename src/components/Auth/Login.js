@@ -14,13 +14,23 @@ const Login = () => {
     reset: resetHandler,
   } = UserInput((value) => value.includes("@"));
  
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async(e) => {
     e.preventDefault();
     if (!validEmail) {
       return;
     }
-    
-  
+    let fetchData = await fetch("http://localhost:3000/user/login", {
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email:email,
+        
+      })
+    })
+  let responseData= await fetchData.json();
+  console.log(responseData)
     navigate("/", {replace: true} )
     resetHandler()
   };

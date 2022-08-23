@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
@@ -14,7 +14,7 @@ const Signup = () => {
   } = UserInput((value) => value.trim() !== "");
 
   const {
-    value: number,
+    value: phone,
     nameIsInValid: invalidNumber,
     onValueInputHandler: onNumberChangeHandler,
     onErrorHandler: numberBlurHandler,
@@ -40,17 +40,43 @@ const Signup = () => {
     reset: resetPasswordrHandler,
   } = UserInput((value) => value.trim() !== "");
 
-  const submitHandler = (e) => {
+
+
+
+  const submitHandler =async (e) => {
     e.preventDefault();
     if (!validEmail && !validName && !validNumber && !validPassword) {
       return;
     }
+
+let signup= await fetch("http://localhost:3000/user/signup",{
+  method:"POST",
+  headers:{
+    'Content-Type': 'application/json'
+  },
+  
+  body:JSON.stringify( {
+    email:email,
+    confirmPasword:password,
+    phone:phone,
+    name:name,
+    password:password
+  })
+  
+})
+console.log(email, phone)
+let responseData = await signup.json();
+console.log(responseData.data)
+
+
+
     resetNameHandler();
     resetEmailHandler();
     resetNumberHandler();
     resetPasswordrHandler();
-    navigate("/", { replace: true });
+    navigate("/login", { replace: true });
   };
+  
   return (
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
@@ -69,16 +95,17 @@ const Signup = () => {
           {invalidName && <p className={style.error}>! Enter your name</p>}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="mobile">Mobile Number</label>
+          <label htmlFor="phone">Mobile Number</label>
           <input
-            type="number"
-            id="mobile"
+            type="tel"
+            id="phone"
             placeholder="Mobile Number Ex. 084004209..."
-            value={number}
+            value={phone}
             onChange={onNumberChangeHandler}
             onBlur={numberBlurHandler}
             required
           />
+
           {invalidNumber && (
             <p className={style.error}>! Enter your mobile number</p>
           )}
