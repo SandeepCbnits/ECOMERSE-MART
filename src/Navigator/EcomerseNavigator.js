@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "../components/Auth/Login";
 import Signup from "../components/Auth/Signup";
@@ -11,12 +11,12 @@ import Contact from "../Pages/Contact/Contact";
 import HomePage from "../Pages/HomePage";
 import WishList from "../Pages/WishList/WishList";
 
-const EcomerseNavigator = ({addToCartHandler, cartItems, items}) => {
+const EcomerseNavigator = ({addToCartHandler, cartItems, products,isLogoutHandler, setProducts}) => {
+ 
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<HomePage addToCartHandler={addToCartHandler} items={items} />} />
+    
+      <Route path="/" element={<HomePage addToCartHandler={addToCartHandler} products={products} setProducts={setProducts}/>} />
       <Route path="/home-kitchen" element={<HomeAndKitchen />} />
       <Route path="/chare" element={<DetailPage />} />
       <Route path="/category" element={<Category />} />
@@ -25,6 +25,9 @@ const EcomerseNavigator = ({addToCartHandler, cartItems, items}) => {
       
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart  cartItems={cartItems} />} />
+
+        <Route path="/login" element={<Login isLogoutHandler={isLogoutHandler}/>} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import style from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 
-const Header = ({cartItems}) => {
+const Header = ({ cartItems, isLogedIn }) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const isOpenHandler = () => {
@@ -20,13 +21,28 @@ const Header = ({cartItems}) => {
             <i class="fa fa-search"></i>
           </span>
         </div>
-        <div className={style.header__login}>
-          <div className={style.header___login}>
-            <NavLink to="/login">Login</NavLink>
-          </div>
-          <NavLink to="/cart" className={style.header__cart} >
+        {/* Condition for login logoout and profile setup */}
+        <div className={style.header__signup}>
+          {!isLogedIn && (
+            <div className={style.header___login}>
+              <NavLink to="/login">Login</NavLink>
+            </div>
+          )}
+          {(isLogedIn && (
+            <div className={style.header__logout}>
+              <button >
+                Logout
+              </button>
+            </div>
+          )) && (
+            <div className={style.header__logout}>
+              <button>Profile</button>
+            </div>
+          )}
+
+          <NavLink to="/cart" className={style.header__cart}>
             <i class="fa fa-shopping-cart">
-            {cartItems.length === 0 ? "" : cartItems.length }
+              {cartItems.length === 0 ? "" : cartItems.length}
             </i>
           </NavLink>
         </div>

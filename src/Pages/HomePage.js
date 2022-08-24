@@ -1,40 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Product from "../components/Home/Product";
 import style from "./HomePage.module.css";
-const HomePage = ({addToCartHandler, items}) => {
+const HomePage = ({ addToCartHandler, products, setProducts }) => {
+  let fetchProductData = async () => {
+    let product = await fetch("http://localhost:9090/products");
 
- 
-// useEffect(() => {
-//   let getDataAsync= async()=>{
-//     let  fetchData = await fetch("http://localhost:3000/")
-//     let responceData = await fetchData.json();
-   
-//     setData(responceData.message)
-//   }
+    let responserData = await product.json();
+    setProducts(responserData); //
+    console.log(responserData);
+  };
 
-// getDataAsync()
-// }, [])
+  useEffect(() => {
+    fetchProductData();
+  }, []);
 
   return (
     <div>
       <h3 className={style.title}>Created store for you </h3>
       <div className={style.container}>
-        {items.map((item)=>{
+        {products.map((product) => {
           return (
             <Product
-            key={item.id}
-            id={item.id}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-            price={item.price}
-            rating={item.rating}
-            addToCartHandler={()=>addToCartHandler(item)}
+              title={product.name}
+              price={product.price}
+              key={product.id}
+              image={product.imageName}
+              description={product.description}
+              addToCartHandler={addToCartHandler(product)}
+            />
+          );
+        })}
+        {/* {products.map((item)=>{
+          return (
+            <Product
+            title={item.name}
+            // key={item.id}
+            // id={item.id}
+            // image={item.image}
+            // title={item.title}
+            // description={item.description}
+            // price={item.price}
+            // rating={item.rating}
+            // addToCartHandler={()=>addToCartHandler(item)}
           />
           )
-        })}
-       
+        })}  */}
       </div>
     </div>
   );

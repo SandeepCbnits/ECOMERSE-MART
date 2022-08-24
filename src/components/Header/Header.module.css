@@ -24,15 +24,18 @@
     font-size: larger;
     color: white;
 } */
-.header__login {
+.header__signup {
  display: flex;
 
   
 }
-.header__login a {
+.header__signup a {
   text-decoration: none;  
   color: white;
   margin-right: 1rem;
+}
+.header__logout button {
+  cursor: pointer;
 }
 .search_icon {
   background-color: #fcbb6a;

@@ -11,7 +11,7 @@ const Product = ({
 }) => {
   return (
     <div className={style.product}>
-      <img src={image} alt="" />
+      <img src={image} alt={title} />
       <div>
         <p className={style.descreption}>{description}</p>
         <p className={style.title}>{title}</p>
@@ -24,16 +24,22 @@ const Product = ({
         </div>
         <p>{price}</p>
       </div>
-      <div className={style.product_actions}>
-        <button className={style.buy}>BUY NOW</button>
-        <button
-          className={style.add_cart}
-          onClick={() => {
-            addToCartHandler(id);
-          }}
-        >
-          Add To Cart
-        </button>
+
+      <div>
+        <div>
+          <button>AddToWishList</button>
+        </div>
+        <div className={style.product_actions}>
+          <button className={style.buy}>BUY NOW</button>
+          <button
+            className={style.add_cart}
+            onClick={() => {
+              addToCartHandler(id);
+            }}
+          >
+            Add To Cart
+          </button>
+        </div>
       </div>
     </div>
   );
