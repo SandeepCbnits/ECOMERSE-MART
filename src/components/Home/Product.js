@@ -8,6 +8,7 @@ const Product = ({
   description,
   rating,
   id,
+  addToWishList
 }) => {
   return (
     <div className={style.product}>
@@ -26,18 +27,18 @@ const Product = ({
       </div>
 
       <div>
-        <div>
-          <button>AddToWishList</button>
+        <div className={style.wishList} title="add To Wish Lists">
+        <i class="fa fa-heart"></i>
         </div>
         <div className={style.product_actions}>
-          <button className={style.buy}>BUY NOW</button>
-          <button
+          <button className={style.buy}>BUY </button>
+          <button title="AddToCart"
             className={style.add_cart}
-            onClick={() => {
-              addToCartHandler(id);
-            }}
+            onClick={
+              addToCartHandler
+            }
           >
-            Add To Cart
+            +
           </button>
         </div>
       </div>

@@ -21,6 +21,11 @@
 .product_rating {
   display: flex;
 }
+.wishList{
+  font-size: large;
+  color: red;
+  cursor: pointer;
+}
 .product_actions {
   display: flex;
   justify-content: space-between;

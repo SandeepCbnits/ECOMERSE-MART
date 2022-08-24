@@ -1,9 +1,15 @@
 import React from "react";
 
-const WishList = () => {
+const WishList = ({cartItems}) => {
   return (
     <div>
-      <h1>Data not found</h1>
+      {cartItems.map((cart)=>{
+        return(
+          <div>
+            <img src={cart.imageName} alt={cart.name} />
+          </div>
+        )
+      })}
     </div>
   );
 };

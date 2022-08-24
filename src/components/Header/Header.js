@@ -3,7 +3,7 @@ import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 
-const Header = ({ cartItems, isLogedIn }) => {
+const Header = ({ cartItems, onChangeHadler, isLogedIn }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,29 +16,17 @@ const Header = ({ cartItems, isLogedIn }) => {
       <div className={style.header}>
         <div className={style.header_cart}>
           <span className={style.logo}>Shoping Mart</span>
-          <input type="text" />
+          <input type="text" onChange={(e) => onChangeHadler(e.target.value)} />
           <span className={style.search_icon}>
             <i class="fa fa-search"></i>
           </span>
         </div>
         {/* Condition for login logoout and profile setup */}
         <div className={style.header__signup}>
-          {!isLogedIn && (
-            <div className={style.header___login}>
-              <NavLink to="/login">Login</NavLink>
-            </div>
-          )}
-          {(isLogedIn && (
-            <div className={style.header__logout}>
-              <button >
-                Logout
-              </button>
-            </div>
-          )) && (
-            <div className={style.header__logout}>
-              <button>Profile</button>
-            </div>
-          )}
+          <div className={style.header___login}>
+            <NavLink to="/login">{isLogedIn ? "Logout" : "Login"} </NavLink>
+            <NavLink to="/login">{isLogedIn ? "Profile" : ""} </NavLink>
+          </div>
 
           <NavLink to="/cart" className={style.header__cart}>
             <i class="fa fa-shopping-cart">

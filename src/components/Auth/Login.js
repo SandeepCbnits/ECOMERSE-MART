@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-const Login = ({isLogoutHandler}) => {
+const Login = ({setIsLogedIn}) => {
+ 
   const navigate = useNavigate()
   const {
     value: email,
@@ -89,7 +90,7 @@ const Login = ({isLogoutHandler}) => {
         </div>
 
         <div className={style.actionButton}>
-          <button type="submit"  onClick={()=>isLogoutHandler()}>Login</button>
+          <button type="submit" onClick={()=>setIsLogedIn()}>Login</button>
         </div>
       </form>
       <footer>

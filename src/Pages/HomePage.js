@@ -2,19 +2,37 @@ import React, { useEffect } from "react";
 
 import Product from "../components/Home/Product";
 import style from "./HomePage.module.css";
-const HomePage = ({ addToCartHandler, products, setProducts }) => {
+const HomePage = ({
+  products,
+  setProducts,
+  addToCartHandler,
+  addToWishList,
+}) => {
   let fetchProductData = async () => {
     let product = await fetch("http://localhost:9090/products");
 
     let responserData = await product.json();
-    setProducts(responserData); //
-    console.log(responserData);
+
+    setProducts(responserData);
   };
 
+  // const onChangeHadler = async (product) => {
+  //   let search = await fetch("http://localhost:9090/products/getByProductId", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       id: product.pid,
+  //     }),
+  //   });
+  //   let responce = await search.json();
+  //   console.log(responce);
+
+  // };
   useEffect(() => {
     fetchProductData();
   }, []);
-
   return (
     <div>
       <h3 className={style.title}>Created store for you </h3>
@@ -27,7 +45,9 @@ const HomePage = ({ addToCartHandler, products, setProducts }) => {
               key={product.id}
               image={product.imageName}
               description={product.description}
-              addToCartHandler={addToCartHandler(product)}
+              addToCartHandler={() => addToCartHandler(product)}
+              addToWishList={() => addToWishList(product)}
+              
             />
           );
         })}

@@ -6,11 +6,11 @@ const Cart = ({ cartItems }) => {
       <h3>Cart List</h3>
       {cartItems.map((cart) => (
         <div className={style.container}>
-          <img src={cart.image} alt={cart.title} />
+          <img src={cart.imageName} alt={cart.name} />
           <span>{cart.description}</span>
-          <span>{cart.title}</span>
+          <span>{cart.name}</span>
           <span>{cart.price}</span>
-          <span className={style. delete}>
+          <span className={style.delete}>
             <i class="fa fa-trash-o"></i>
           </span>
         </div>

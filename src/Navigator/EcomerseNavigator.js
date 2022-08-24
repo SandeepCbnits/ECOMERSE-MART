@@ -11,22 +11,22 @@ import Contact from "../Pages/Contact/Contact";
 import HomePage from "../Pages/HomePage";
 import WishList from "../Pages/WishList/WishList";
 
-const EcomerseNavigator = ({addToCartHandler, cartItems, products,isLogoutHandler, setProducts}) => {
+const EcomerseNavigator = ({addToCartHandler, cartItems, products,isLogoutHandler, setProducts, addToWishList, setSearchValue, setIsLogedIn}) => {
  
   return (
     <Routes>
     
-      <Route path="/" element={<HomePage addToCartHandler={addToCartHandler} products={products} setProducts={setProducts}/>} />
+      <Route path="/" element={<HomePage addToCartHandler={addToCartHandler} products={products} setProducts={setProducts} setSearchValue={setSearchValue}/>} />
       <Route path="/home-kitchen" element={<HomeAndKitchen />} />
       <Route path="/chare" element={<DetailPage />} />
       <Route path="/category" element={<Category />} />
-      <Route path="/wishlist" element={<WishList />} />
+      <Route path="/wishlist" element={<WishList  cartItems={cartItems} addToWishList={addToWishList}/>} />
       <Route path="/about" element={<About />} />
       
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart  cartItems={cartItems} />} />
 
-        <Route path="/login" element={<Login isLogoutHandler={isLogoutHandler}/>} />
+        <Route path="/login" element={<Login isLogoutHandler={isLogoutHandler} setIsLogedIn={setIsLogedIn}/>} />
       <Route path="/signup" element={<Signup />} />
     </Routes>
   );
