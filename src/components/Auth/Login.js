@@ -79,7 +79,9 @@ const Login = ({setIsLogedIn}) => {
             value={phoneNumber}
             onChange={onPhoneChangeHandler}
             onBlur={phoneBlurHandler}
-            placeholder="phone Ex. 08400409... "           
+            placeholder="phone Ex. 08400409... " 
+            minLength={10}
+            maxLength={11}          
             required
           />
           {invalidphoneNumber && (

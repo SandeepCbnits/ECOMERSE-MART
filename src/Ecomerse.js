@@ -2,12 +2,11 @@ import React, { Fragment, useState, useEffect } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
 
-const Ecomerse = ({ title}) => {
+const Ecomerse = ({ title }) => {
   const [products, setProducts] = useState([]);
   const [isLogedIn, setIsLogedIn] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [wistListItems, setWishListItems] = useState([]);
-  const [searchValue, setSearchValue]=useState()
+  const [wishLists, setWishLists] = useState([]);
 
   const addToCartHandler = async (product) => {
     // if all ready have item
@@ -22,45 +21,40 @@ const Ecomerse = ({ title}) => {
                 quentety: findExistingItem.quentety + 1,
                 title: title,
               }
-              : item
-          )
-        );
-      } else {
-        setCartItems([...cartItems, { ...product, quentety: 1 }]);
-      }
+            : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quentety: 1 }]);
+    }
   };
 
-  const addToWishList=(product)=>{
-    let findExistingItem = wistListItems.find((item) => item.id === product.id);
-
-    if (findExistingItem) {
-      setWishListItems(
-       wistListItems.map((item) =>
-          item.id === product.id
-            ? {
-                ...findExistingItem,
-                quentety: findExistingItem.quentety + 1,
-                title: title,
-              }
-              : item
-          )
-        );
-      } else {
-        setWishListItems([...cartItems, { ...product, quentety: 1 }]);
-      }
-  }
   const isLogoutHandler = () => {
     setIsLogedIn(true);
   };
- const onChangeHadler=async(item)=>{
-  let product = await fetch(`http://localhost:9090/products/getByProductId/${item}`);
 
- console.log(product)
- }
- 
+  const addToWishListHandler = (product) => {
+    let findExisting = wishLists.find((item) => item.id === product.id);
+
+    if (findExisting) {
+      setWishLists(
+        wishLists.map((item) =>
+          item.id === product.id
+            ? {
+                ...findExisting,
+                quentety: findExisting.quentety + 1,
+                title: title,
+              }
+            : item
+        )
+      );
+    } else {
+      setWishLists([...wishLists, { ...product, quentety: 1 }]);
+    }
+  };
   return (
     <Fragment>
-      <Header cartItems={cartItems} isLogedIn={isLogedIn} searchValue={searchValue} onChangeHadler={onChangeHadler} />
+      <Header cartItems={cartItems} isLogedIn={isLogedIn} products={products}/>
       <main>
         <EcomerseNavigator
           cartItems={cartItems}
@@ -70,10 +64,8 @@ const Ecomerse = ({ title}) => {
           isLogedIn={isLogedIn}
           setIsLogedIn={isLogoutHandler}
           setProducts={setProducts}
-          addToWishList={addToWishList}
-          searchValue={searchValue} 
-          setSearchValue={setSearchValue}
-          onChangeHadler={onChangeHadler}
+          addToWishListHandler={addToWishListHandler}
+          wishLists={wishLists}
         />
       </main>
     </Fragment>

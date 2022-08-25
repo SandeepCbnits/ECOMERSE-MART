@@ -6,13 +6,13 @@ const HomePage = ({
   products,
   setProducts,
   addToCartHandler,
-  addToWishList,
+  addToWishListHandler,
 }) => {
   let fetchProductData = async () => {
-    let product = await fetch("http://localhost:9090/products");
+    let product = await fetch("http://localhost:9090/products/");
 
     let responserData = await product.json();
-
+    console.log(responserData);
     setProducts(responserData);
   };
 
@@ -46,7 +46,7 @@ const HomePage = ({
               image={product.imageName}
               description={product.description}
               addToCartHandler={() => addToCartHandler(product)}
-              addToWishList={() => addToWishList(product)}
+              addToWishListHandler={() => addToWishListHandler(product)}
               
             />
           );

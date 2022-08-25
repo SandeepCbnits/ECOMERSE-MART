@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
@@ -40,35 +40,29 @@ const Signup = () => {
     reset: resetPasswordrHandler,
   } = UserInput((value) => value.trim() !== "");
 
-
-
-
-  const submitHandler =async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (!validEmail && !validName && !validNumber && !validPassword) {
       return;
     }
 
-let signup= await fetch("http://localhost:3000/user/signup",{
-  method:"POST",
-  headers:{
-    'Content-Type': 'application/json'
-  },
-  
-  body:JSON.stringify( {
-    email:email,
-    confirmPasword:password,
-    phone:phone,
-    name:name,
-    password:password
-  })
-  
-})
-console.log(email, phone)
-let responseData = await signup.json();
-console.log(responseData.data)
+    let signup = await fetch("http://localhost:3000/user/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-
+      body: JSON.stringify({
+        email: email,
+        confirmPassword: password,
+        phone: phone,
+        name: name,
+        password: password,
+      }),
+    });
+    console.log(email, phone);
+    let responseData = await signup.json();
+    console.log(responseData.data);
 
     resetNameHandler();
     resetEmailHandler();
@@ -76,7 +70,7 @@ console.log(responseData.data)
     resetPasswordrHandler();
     navigate("/login", { replace: true });
   };
-  
+
   return (
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
@@ -104,6 +98,8 @@ console.log(responseData.data)
             onChange={onNumberChangeHandler}
             onBlur={numberBlurHandler}
             required
+            minLength={10}
+            maxLength={11}
           />
 
           {invalidNumber && (
@@ -132,6 +128,8 @@ console.log(responseData.data)
             value={password}
             onChange={onPasswordChangeHandler}
             onBlur={passwordBlurHandler}
+            minLength={7}
+            maxLength={14}
             required
           />
           {invalidPassword && (

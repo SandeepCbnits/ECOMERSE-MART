@@ -25,6 +25,12 @@
   font-size: large;
   color: red;
   cursor: pointer;
+  text-align: end;
+
+}
+.wishList i{
+  margin-right: 10px;
+  margin-bottom: 3rem;
 }
 .product_actions {
   display: flex;

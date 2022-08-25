@@ -3,20 +3,41 @@ import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 
-const Header = ({ cartItems, onChangeHadler, isLogedIn }) => {
+const Header = ({ cartItems, isLogedIn,products }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [searchValue, setSearchValue] = useState();
   const isOpenHandler = () => {
     setIsOpen(!isOpen);
   };
 
+  const onChangeHadler = async (e) => {
+    let key = e.target.value;
+    setSearchValue(e.target.value);
+    if (key !== "") {
+      let result = await fetch(
+        `http://localhost:9090/products/getByProductId?pid=${key}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: products.id,
+        }
+      );
+      let response = await result.json();
+      console.log(response);
+      setSearchValue(response)
+    } else {
+      setSearchValue(products);
+    }
+  };
   return (
     <div>
       <div className={style.header}>
         <div className={style.header_cart}>
           <span className={style.logo}>Shoping Mart</span>
-          <input type="text" onChange={(e) => onChangeHadler(e.target.value)} />
+          <input type="number"  onChange={onChangeHadler} />
           <span className={style.search_icon}>
             <i class="fa fa-search"></i>
           </span>
@@ -25,7 +46,7 @@ const Header = ({ cartItems, onChangeHadler, isLogedIn }) => {
         <div className={style.header__signup}>
           <div className={style.header___login}>
             <NavLink to="/login">{isLogedIn ? "Logout" : "Login"} </NavLink>
-            <NavLink to="/login">{isLogedIn ? "Profile" : ""} </NavLink>
+            <NavLink to="/profile">{isLogedIn ? "Profile" : ""} </NavLink>
           </div>
 
           <NavLink to="/cart" className={style.header__cart}>

@@ -1,15 +1,19 @@
 import React from "react";
-
-const WishList = ({cartItems}) => {
+import style from "./WishList.module.css";
+const WishList = ({ wishLists }) => {
   return (
     <div>
-      {cartItems.map((cart)=>{
-        return(
-          <div>
-            <img src={cart.imageName} alt={cart.name} />
-          </div>
-        )
-      })}
+      <h3>Cart List</h3>
+      {wishLists.map((cart) => (
+        <div className={style.container}>
+          <img src={cart.imageName} alt={cart.name} />          
+          <span>{cart.name}</span>
+          <span>{cart.price}</span>
+          <span className={style.delete}>
+            <i class="fa fa-trash-o"></i>
+          </span>
+        </div>
+      ))}
     </div>
   );
 };
