@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-Slice";
 const Login = ({setIsLogedIn}) => {
- 
+  const dispatch=useDispatch()
   const navigate = useNavigate()
   const {
     value: email,
@@ -29,7 +31,7 @@ const Login = ({setIsLogedIn}) => {
     if (!validEmail && !validPhoneNumber) {
       return;
     }
-    let fetchData = await fetch("http://localhost:3000/user/login", {
+    let fetchData = await fetch("http://localhost:5000/user/login", {
       method:"POST",
       headers:{
         'Content-Type': 'application/json'
@@ -49,6 +51,9 @@ const Login = ({setIsLogedIn}) => {
   navigate("/", {replace: true} )
  
   };
+  const logoutHandler=()=>{
+    dispatch(uiActions.isLogoutHandler())
+  }
   //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
   return (
     <div className={style.loginContainer}>
@@ -72,7 +77,7 @@ const Login = ({setIsLogedIn}) => {
           )}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="phoneNumber">Password </label> 
+          <label htmlFor="phoneNumber">Phone Number</label> 
           <input
             type="tel"
             id="phoneNumber"
@@ -92,7 +97,7 @@ const Login = ({setIsLogedIn}) => {
         </div>
 
         <div className={style.actionButton}>
-          <button type="submit" onClick={()=>setIsLogedIn()}>Login</button>
+          <button type="submit" onClick={logoutHandler}>Login</button>
         </div>
       </form>
       <footer>

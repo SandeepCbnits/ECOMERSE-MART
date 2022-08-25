@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
+import { useSelector } from "react-redux";
 
-const Header = ({ cartItems, isLogedIn,products }) => {
+const Header = ({ cartItems,products }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState();
+  const isLogedIn =useSelector(state=>state.ui.isLogedIn)
+
+ 
   const isOpenHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -45,8 +49,9 @@ const Header = ({ cartItems, isLogedIn,products }) => {
         {/* Condition for login logoout and profile setup */}
         <div className={style.header__signup}>
           <div className={style.header___login}>
-            <NavLink to="/login">{isLogedIn ? "Logout" : "Login"} </NavLink>
-            <NavLink to="/profile">{isLogedIn ? "Profile" : ""} </NavLink>
+          {!isLogedIn &&  <NavLink to="/" >Login</NavLink>}
+           {isLogedIn && <NavLink to="/profile">Profile </NavLink>}
+          {isLogedIn &&  <NavLink to="/login">Logout</NavLink>}
           </div>
 
           <NavLink to="/cart" className={style.header__cart}>
@@ -68,7 +73,7 @@ const Header = ({ cartItems, isLogedIn,products }) => {
               <SideBar openClass="open" onCloseHandler={isOpenHandler} />
             )}
           </div>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/home">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/category">Category</NavLink>
           <NavLink to="/wishlist">WishList</NavLink>

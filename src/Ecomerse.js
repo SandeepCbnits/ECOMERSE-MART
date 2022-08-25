@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
+import { useSelector } from "react-redux";
 
 const Ecomerse = ({ title }) => {
   const [products, setProducts] = useState([]);
-  const [isLogedIn, setIsLogedIn] = useState(false);
+  // const [isLogedIn, setIsLogedIn] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [wishLists, setWishLists] = useState([]);
 
@@ -29,9 +30,9 @@ const Ecomerse = ({ title }) => {
     }
   };
 
-  const isLogoutHandler = () => {
-    setIsLogedIn(true);
-  };
+  // const isLogoutHandler = () => {
+  //   setIsLogedIn(true);
+  // };
 
   const addToWishListHandler = (product) => {
     let findExisting = wishLists.find((item) => item.id === product.id);
@@ -54,15 +55,17 @@ const Ecomerse = ({ title }) => {
   };
   return (
     <Fragment>
-      <Header cartItems={cartItems} isLogedIn={isLogedIn} products={products}/>
+     
+      <Header cartItems={cartItems}  products={products}/>
+      
       <main>
         <EcomerseNavigator
           cartItems={cartItems}
           addToCartHandler={addToCartHandler}
           title={title}
           products={products}
-          isLogedIn={isLogedIn}
-          setIsLogedIn={isLogoutHandler}
+          // isLogedIn={isLogedIn}
+          // setIsLogedIn={isLogoutHandler}
           setProducts={setProducts}
           addToWishListHandler={addToWishListHandler}
           wishLists={wishLists}
