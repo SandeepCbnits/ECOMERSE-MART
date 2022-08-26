@@ -1,17 +1,19 @@
 .loginContainer {
-  margin: 4rem auto;
+  margin: 3rem auto;
   text-align: center;
   width: 25rem;
   max-width: 90%;
   background-color: white;
-  height: 70vh;
+  height: 80vh;
   padding: 1rem;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.4);
   z-index: 10;
+  overflow: hidden;
   
 }
-.loginContainer h3 {
-  margin-bottom: 1vh;
+ .title {
+
+ 
 }
 .inputFiled label {
   display: block;
@@ -41,3 +43,4 @@
   padding: 0.6rem 6rem;
   cursor: pointer;
 }
+

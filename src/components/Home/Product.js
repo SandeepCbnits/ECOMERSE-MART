@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import CheckOut from "../CheckOut/CheckOut";
 import style from "./Product.module.css";
 const Product = ({
   addToCartHandler,
@@ -8,8 +10,10 @@ const Product = ({
   description,
   rating,
   id,
-  addToWishListHandler
+  addToWishListHandler,
+  checkOutHandler
 }) => {
+  let navigate = useNavigate();
   return (
     <div className={style.product}>
       <img src={image} alt={title} />
@@ -31,8 +35,8 @@ const Product = ({
         <i class="fa fa-heart" onClick={addToWishListHandler}></i>
         </div>
         <div className={style.product_actions}>
-          <button className={style.buy}>BUY </button>
-          <button title="AddToCart"
+          <button className={style.buy} onClick={()=>navigate("/checkout", {replace:true }) }>BUY </button>
+          <button title="Add To Cart"
             className={style.add_cart}
             onClick={
               addToCartHandler

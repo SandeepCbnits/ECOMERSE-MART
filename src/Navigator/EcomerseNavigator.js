@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes , Navigate} from "react-router-dom";
+import ForgotPassword from "../components/Auth/ForgotPassword";
 import Login from "../components/Auth/Login";
+import ResetMessage from "../components/Auth/ResetMessage";
+import ResetPassword from "../components/Auth/ResetPassword";
 import Signup from "../components/Auth/Signup";
 import Cart from "../components/Cart/Cart";
+import CheckOut from "../components/CheckOut/CheckOut";
 import DetailPage from "../components/DetailPage/DetailPage";
 import HomeAndKitchen from "../components/Home/HomeAndKitchen/HomeAndKitchen";
 import Profile from "../components/Profile/Profile";
@@ -52,8 +56,10 @@ const EcomerseNavigator = ({
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<CheckOut/>} />
         </>
       )}
+     
       <Route
         path="/"
         element={
@@ -63,12 +69,16 @@ const EcomerseNavigator = ({
           />
         }
       />
+
+       <Route path="/reset" element={<ResetMessage/>} />
+      <Route path="/passwordReset" element={<ResetPassword/>} />
+      <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/signup" element={<Signup />} />
-     
       <Route
         path="*"
         element={<Navigate to="/" replace />}
     />
+    
     </Routes>
   );
 };

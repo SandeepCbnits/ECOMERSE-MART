@@ -5,9 +5,9 @@ import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-Slice";
-const Login = ({setIsLogedIn}) => {
-  const dispatch=useDispatch()
-  const navigate = useNavigate()
+const Login = ({ setIsLogedIn }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     value: email,
     nameIsInValid: invalidEmail,
@@ -16,7 +16,7 @@ const Login = ({setIsLogedIn}) => {
     nameIsValid: validEmail,
     reset: resetHandler,
   } = UserInput((value) => value.includes("@"));
- 
+
   const {
     value: phoneNumber,
     nameIsInValid: invalidphoneNumber,
@@ -25,86 +25,85 @@ const Login = ({setIsLogedIn}) => {
     nameIsValid: validPhoneNumber,
     reset: resetPhoneNumberHandler,
   } = UserInput((value) => value.trim() === "");
- 
-  const onSubmitHandler = async(e) => {
+
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (!validEmail && !validPhoneNumber) {
       return;
     }
     let fetchData = await fetch("http://localhost:5000/user/login", {
-      method:"POST",
-      headers:{
-        'Content-Type': 'application/json'
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email:email,
-        phoneNumber:phoneNumber
-        
-      })
-    })
-  let responseData= await fetchData.json();
-  console.log(responseData)
-  resetHandler()
- 
-  resetPhoneNumberHandler()
-  
-  navigate("/", {replace: true} )
- 
+        email: email,
+        phoneNumber: phoneNumber,
+      }),
+    });
+    let responseData = await fetchData.json();
+    console.log(responseData);
+    resetHandler();
+
+    resetPhoneNumberHandler();
+
+    navigate("/home", { replace: true });
   };
-  const logoutHandler=()=>{
-    dispatch(uiActions.isLogoutHandler())
-  }
+  const logoutHandler = () => {
+    dispatch(uiActions.isLogoutHandler());
+  };
   //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
   return (
     <div className={style.loginContainer}>
-      <h2>Sign-In</h2>
+      <h3 className={style.title}>Sign-In</h3>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="email">Email </label> 
+          <label htmlFor="email">Email </label>
           <input
             type="email"
             id="email"
-            value={email}            
+            value={email}
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Email Ex. sandeep@cbnits.com"
             required
           />
           {invalidEmail && (
-            <p className={style.error}>
-              Enter your email address
-            </p>
+            <p className={style.error}>Enter your email address</p>
           )}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="phoneNumber">Phone Number</label> 
+          <label htmlFor="phoneNumber">Phone Number</label>
           <input
             type="tel"
             id="phoneNumber"
             value={phoneNumber}
             onChange={onPhoneChangeHandler}
             onBlur={phoneBlurHandler}
-            placeholder="phone Ex. 08400409... " 
+            placeholder="phone Ex. 08400409... "
             minLength={10}
-            maxLength={11}          
+            maxLength={11}
             required
           />
           {invalidphoneNumber && (
-            <p className={style.error}>
-              Enter your Password 
-            </p>
+            <p className={style.error}>Enter your Password</p>
           )}
         </div>
 
         <div className={style.actionButton}>
-          <button type="submit" onClick={logoutHandler}>Login</button>
+          <button type="submit" onClick={logoutHandler}>
+            Login
+          </button>
         </div>
       </form>
       <footer>
         <p>
-          New Customer ?<NavLink to="/signup"> Start Hear </NavLink>
+          New Customer ?<NavLink to="/signup"> Start Hear </NavLink> 
+          <p>
+            Forgot Password ? <NavLink to="/forgotPassword">Reset</NavLink>
+          </p>
         </p>
-        <NavLink to="/">Back To Home</NavLink>
+        {/* <NavLink to="/">Back To Home</NavLink> */}
       </footer>
     </div>
   );

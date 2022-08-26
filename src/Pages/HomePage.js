@@ -7,6 +7,7 @@ const HomePage = ({
   setProducts,
   addToCartHandler,
   addToWishListHandler,
+ 
 }) => {
   let fetchProductData = async () => {
     let product = await fetch("http://localhost:9090/products/");
@@ -38,7 +39,7 @@ const HomePage = ({
       <h3 className={style.title}>Created store for you </h3>
       <div className={style.container}>
         {products.map((product) => {
-          return (
+          return (            
             <Product
               title={product.name}
               price={product.price}
@@ -46,9 +47,10 @@ const HomePage = ({
               image={product.imageName}
               description={product.description}
               addToCartHandler={() => addToCartHandler(product)}
-              addToWishListHandler={() => addToWishListHandler(product)}
-              
+              addToWishListHandler={() => addToWishListHandler(product)}  
+                       
             />
+          
           );
         })}
         {/* {products.map((item)=>{
