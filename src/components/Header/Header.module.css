@@ -15,8 +15,8 @@
   
 }
 .header input {
-  padding: 0.6rem 2rem;
-  border-radius: 5px;
+  padding: 0.64rem 2rem;
+  border-radius: 5px 0 0 5px;
   border: none;
   
 }
@@ -40,7 +40,9 @@
 .search_icon {
   background-color: #fcbb6a;
   padding: 0.4rem 0.8rem;
-  border-radius: 5px;
+  border-radius:1px 5px 5px 1px ;
+  cursor: pointer;
+  
 }
 .search_icon i {
   color: #0F1111;
