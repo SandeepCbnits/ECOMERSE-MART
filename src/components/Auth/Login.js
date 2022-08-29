@@ -17,35 +17,24 @@ const Login = ({ setIsLogedIn }) => {
     reset: resetHandler,
   } = UserInput((value) => value.includes("@"));
 
-  const {
-    value: phoneNumber,
-    nameIsInValid: invalidphoneNumber,
-    onValueInputHandler: onPhoneChangeHandler,
-    onErrorHandler: phoneBlurHandler,
-    nameIsValid: validPhoneNumber,
-    reset: resetPhoneNumberHandler,
-  } = UserInput((value) => value.trim() === "");
 
+  const {
+    value: password,
+    nameIsInValid: invalidPassword,
+    onValueInputHandler: onPasswordChangeHandler,
+    onErrorHandler: passwordBlurHandler,
+    nameIsValid: validPassword,
+    reset: resetPasswordrHandler,
+  } = UserInput((value) => value.trim() !== "");
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validPhoneNumber) {
+    if (!validEmail && !validPassword) {
       return;
     }
-    let fetchData = await fetch("http://localhost:5000/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        phoneNumber: phoneNumber,
-      }),
-    });
-    let responseData = await fetchData.json();
-    console.log(responseData);
+   
     resetHandler();
 
-    resetPhoneNumberHandler();
+   resetPasswordrHandler()
 
     navigate("/home", { replace: true });
   };
@@ -73,20 +62,20 @@ const Login = ({ setIsLogedIn }) => {
           )}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="phoneNumber">Phone Number</label>
+          <label htmlFor="password">Password</label>
           <input
-            type="tel"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={onPhoneChangeHandler}
-            onBlur={phoneBlurHandler}
-            placeholder="phone Ex. 08400409... "
-            minLength={10}
-            maxLength={11}
+            type="password"
+            id="password"
+            placeholder="At list 6 charector Ex 123456"
+            value={password}
+            onChange={onPasswordChangeHandler}
+            onBlur={passwordBlurHandler}
+            minLength={7}
+            maxLength={14}
             required
           />
-          {invalidphoneNumber && (
-            <p className={style.error}>Enter your Password</p>
+          {invalidPassword && (
+            <p className={style.error}>! Enter your password</p>
           )}
         </div>
 

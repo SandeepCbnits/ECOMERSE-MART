@@ -6,7 +6,7 @@ const WishList = ({ wishLists }) => {
       <h3>Cart List</h3>
       {wishLists.map((cart) => (
         <div className={style.container}>
-          <img src={cart.imageName} alt={cart.name} />          
+          <img src={cart.image} alt={cart.name} />          
           <span>{cart.name}</span>
           <span>{cart.price}</span>
           <span className={style.delete}>

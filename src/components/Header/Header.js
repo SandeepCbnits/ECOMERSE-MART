@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
+import { uiActions } from "../../store/ui-Slice";
 
 const Header = ({ cartItems, products }) => {
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState();
+  const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false);  
   const isLogedIn = useSelector((state) => state.ui.isLogedIn);
 
   const isOpenHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  const onChangeHadler =  (e) => {
-    let key = e.target.value;
-    setSearchValue(e.target.value);
-    if (key !== "") {
-      setSearchValue(products);
-    } 
-  };
+  // const onChangeHadler =  (e) => {
+  //   let key = e.target.value;
+  //   setSearchValue(e.target.value);
+  //   if (key !== "") {
+  //     setSearchValue(products);
+  //   } 
+  // };
+  const onLoginHandler=()=>{
+dispatch(uiActions.isLogoutHandler())
+  }
+  useEffect(()=>{
+    onLoginHandler()
+  },[])
   return (
     <div>
       <div className={style.header}>
@@ -36,7 +42,7 @@ const Header = ({ cartItems, products }) => {
           <div className={style.header___login}>
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
             {isLogedIn && <NavLink to="/profile">Profile </NavLink>}
-            {isLogedIn && <NavLink to="/login">Logout</NavLink>}
+            {isLogedIn && <NavLink to="/login" onClick={onLoginHandler}>Logout</NavLink>}
           </div>
 
           <NavLink to="/cart" className={style.header__cart}>
@@ -50,9 +56,9 @@ const Header = ({ cartItems, products }) => {
         <div className={style.header__nav}>
           <div className={style.side_menu}>
             <aside className={isOpen ? "to-right" : ""}>
-              <NavLink to="/" onClick={isOpenHandler}>
+              {/* <NavLink to="/" onClick={isOpenHandler}>
                 <i class="fa fa-bars"></i>
-              </NavLink>
+              </NavLink> */}
             </aside>
             {isOpen && (
               <SideBar openClass="open" onCloseHandler={isOpenHandler} />

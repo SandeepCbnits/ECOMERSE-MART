@@ -1,23 +1,34 @@
 import React from "react";
 import style from "./Checkout.module.css";
-const CheckOut = () => {
+const CheckOut = ({ orderLists, count }) => {
+  const totalPrice = orderLists.reduce(
+    (price, item) => price + item.quentity * item.price,
+    0
+  );
   return (
-    <div className={style.container}>
-      <div className={style.address}>
-        <h3> Delivery Address</h3>
-        <div>
-          <span>name : Sandeep Yadav</span> <br />
-          <span>Address: CBNITS OFFICE</span>
+    <div>
+      <h3>Your Shoping Cart !</h3>
+      <div className={style.container}>
+
+    <div>
+
+  
+      {orderLists.map((list) => (
+        <div className={style.leftSideitems}>
+          <span>{list.description}</span> <br />
+          <img src={list.image} alt="" /> <br />
+          <span>{list.price}</span>
         </div>
+      ))}
+        </div>
+      <div className={style.rightSideitems}>
+      <span>
+        Sub Total {count} {totalPrice}
+      </span>{" "}
+      <br />
+      <button>Payout</button>
+
       </div>
-      <div className={style.totalPrice}>
-        <h3>PRODUCT DETAILS</h3>
-        <div>
-          <span>Price:RS. 40 </span> <br />
-          <span>Delivery Charge: 10</span> <br />
-          <span>Total Price:Rs. 50 </span>
-        </div>
-        <button>Payout</button>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Product from "../components/Home/Product";
 import style from "./HomePage.module.css";
@@ -7,8 +8,11 @@ const HomePage = ({
   setProducts,
   addToCartHandler,
   addToWishListHandler,
+  items,
+  orderListHandler
  
 }) => {
+  let navigate = useNavigate();
   let fetchProductData = async () => {
     let product = await fetch("http://localhost:9090/products/");
 
@@ -35,21 +39,24 @@ const HomePage = ({
     fetchProductData();
   }, []);
   return (
-    <div>
-      <h3 className={style.title}>Created store for you </h3>
+    <div >
+      {/* <div  >
+
+      <img className={style.image} src="https://m.media-amazon.com/images/I/61tk4B-Bx+L._SX3000_.jpg" alt="" />
+      </div> */}
       <div className={style.container}>
-        {products.map((product) => {
+        {items.map((product) => {
           return (            
             <Product
               title={product.name}
               price={product.price}
               key={product.id}
-              image={product.imageName}
+              image={product.image}
+              rating={product.rating}
               description={product.description}
               addToCartHandler={() => addToCartHandler(product)}
               addToWishListHandler={() => addToWishListHandler(product)}  
-                       
-            />
+              orderListHandler={()=>orderListHandler(product)}        />
           
           );
         })}

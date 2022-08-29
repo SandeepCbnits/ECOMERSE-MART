@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./Profile.module.css";
-const Profile = () => {
+const Profile = ({Profile}) => {
   return (
     <div className={style.container}>
-      <h3>Manage your Profiles</h3>
+      <h3>Manage your Profiles {Profile}</h3>
       <img src="https://st.depositphotos.com/1898481/5087/i/450/depositphotos_50878063-stock-photo-people.jpg" alt="avator" />
       <div >
         <h3 contentEditable="true"> Sandeep Yadav </h3>

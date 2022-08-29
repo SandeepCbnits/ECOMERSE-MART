@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
-const Signup = () => {
+const Signup = ({setProfile}) => {
   const navigate = useNavigate();
+  
   const {
     value: name,
     nameIsInValid: invalidName,
@@ -46,24 +47,7 @@ const Signup = () => {
       return;
     }
 
-    let signup = await fetch("http://localhost:5000/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        email: email,
-        confirmPassword: password,
-        phone: phone,
-        name: name,
-        password: password,
-      }),
-    });
-    console.log(email, phone);
-    let responseData = await signup.json();
-    console.log(responseData.data);
-
+setProfile({email})
     resetNameHandler();
     resetEmailHandler();
     resetNumberHandler();

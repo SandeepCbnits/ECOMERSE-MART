@@ -1,23 +1,25 @@
-.container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.container {
+  display: flex;
+  justify-content: space-around;
+  
 }
-.address{
-    text-align: center;
-    width: 60%;
-    box-shadow: 0 1px 1px 1px rgba(0,0,0,0.3);
-    height: 50vh;
+.leftSideitems {
+
+  margin: auto ;
+  text-align: center;
 }
-.totalPrice{
-    margin-top: 10px;
-    box-shadow: 0 1px 1px 1px rgba(0,0,0,0.3);
-    width: 30%;
-    text-align: center;
-    height: 50vh;
-    
-    
+.leftRideitems {
 }
-.totalPrice button{
-    margin-top: 6rem;
+.leftSideitems img {
+  height: 200px;
+  width: 200px;
+}
+.items {
+}
+.checkoutLeft {
+  background-color: whitesmoke;
+  margin-left: 10px;
+}
+.checkoutRight {
+  padding: 5rem 5rem;
 }
