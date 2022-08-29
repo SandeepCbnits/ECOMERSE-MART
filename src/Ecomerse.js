@@ -72,6 +72,9 @@ const [orderLists, setOrderLists]=useState([])
       );
     }
   };
+
+
+  // Order Your data 
  const orderListHandler=(order)=>{
 setOrderLists([...orderLists, {...order, quentity:1}])
  }
@@ -98,6 +101,7 @@ setOrderLists([...orderLists, {...order, quentity:1}])
           removeToCartHandler ={removeToCartHandler }
           orderLists={orderLists}
           orderListHandler={orderListHandler}
+          
         />
       </main>
     </Fragment>

@@ -6,21 +6,21 @@ const Signup = ({setProfile}) => {
   const navigate = useNavigate();
   
   const {
-    value: name,
-    nameIsInValid: invalidName,
-    onValueInputHandler: onNameChangeHandler,
-    onErrorHandler: nameBlurHandler,
-    nameIsValid: validName,
-    reset: resetNameHandler,
+    value: fname,
+    nameIsInValid: invalidFName,
+    onValueInputHandler: onFNameChangeHandler,
+    onErrorHandler: fnameBlurHandler,
+    nameIsValid: validFName,
+    reset: resetFNameHandler,
   } = UserInput((value) => value.trim() !== "");
 
   const {
-    value: phone,
-    nameIsInValid: invalidNumber,
-    onValueInputHandler: onNumberChangeHandler,
-    onErrorHandler: numberBlurHandler,
-    nameIsValid: validNumber,
-    reset: resetNumberHandler,
+    value: lname,
+    nameIsInValid: invalidLNumber,
+    onValueInputHandler: onLNumberChangeHandler,
+    onErrorHandler: lnumberBlurHandler,
+    nameIsValid: validLNumber,
+    reset: resetLNumberHandler,
   } = UserInput((value) => value.trim() !== "");
 
   const {
@@ -43,14 +43,31 @@ const Signup = ({setProfile}) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validName && !validNumber && !validPassword) {
+    if (!validEmail && !validFName && !validLNumber && !validPassword) {
       return;
     }
 
-setProfile({email})
-    resetNameHandler();
+    let signup = await fetch("http://localhost:9999/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        email: email,        
+        lname: lname,
+        name: fname,
+        password: password,
+      }),
+    });
+    console.log(email, lname);
+    
+    let responseData = await signup.json();
+    console.log(responseData);
+
+    resetFNameHandler();
     resetEmailHandler();
-    resetNumberHandler();
+    resetLNumberHandler();
     resetPasswordrHandler();
     navigate("/login", { replace: true });
   };
@@ -65,28 +82,27 @@ setProfile({email})
             type="text"
             id="name"
             placeholder="First and Last Name EX. Sandeep Yadav"
-            value={name}
-            onChange={onNameChangeHandler}
-            onBlur={nameBlurHandler}
+            value={fname}
+            onChange={onFNameChangeHandler}
+            onBlur={fnameBlurHandler}
             required
           />
-          {invalidName && <p className={style.error}>! Enter your name</p>}
+          {invalidFName && <p className={style.error}>! Enter your name</p>}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="phone">Mobile Number</label>
+          <label htmlFor="lname">Mobile Number</label>
           <input
-            type="tel"
-            id="phone"
+            type="text"
+            id="lname"
             placeholder="Mobile Number Ex. 084004209..."
-            value={phone}
-            onChange={onNumberChangeHandler}
-            onBlur={numberBlurHandler}
+            value={lname}
+            onChange={onLNumberChangeHandler}
+            onBlur={lnumberBlurHandler}
             required
-            minLength={10}
-            maxLength={11}
+           
           />
 
-          {invalidNumber && (
+          {invalidLNumber && (
             <p className={style.error}>! Enter your mobile number</p>
           )}
         </div>

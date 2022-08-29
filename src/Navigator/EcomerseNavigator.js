@@ -33,7 +33,8 @@ const EcomerseNavigator = ({
   items,
   removeToCartHandler,
   orderListHandler,
-  orderLists
+  orderLists,
+  dataToProfile
 }) => {
   const isLogin = useSelector((state) => state.ui.isLogedIn);
   return (
@@ -51,6 +52,7 @@ const EcomerseNavigator = ({
                 items={items}
                 orderListHandler={orderListHandler}
                 count={count}
+                dataToProfile={dataToProfile} 
               />
             }
           />
@@ -74,7 +76,7 @@ const EcomerseNavigator = ({
               />
             }
           />
-          <Route path="/profile" element={<Profile profile={profile} />} />
+          <Route path="/profile" element={<Profile    />} />
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
         </>
       )}
@@ -92,7 +94,7 @@ const EcomerseNavigator = ({
       <Route path="/reset" element={<ResetMessage />} />
       <Route path="/passwordReset" element={<ResetPassword />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
-      <Route path="/signup" element={<Signup setProfile={setProfile} />} />
+      <Route path="/signup" element={<Signup dataToProfile={dataToProfile} />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

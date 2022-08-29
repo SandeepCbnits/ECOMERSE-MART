@@ -32,6 +32,22 @@ const Login = ({ setIsLogedIn }) => {
       return;
     }
    
+    let login = await fetch("http://localhost:9999/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        email: email,       
+        password: password,
+      }),
+    });
+    console.log(email, password);
+    
+    let responseData = await login.json();
+    console.log(responseData);
+
     resetHandler();
 
    resetPasswordrHandler()
