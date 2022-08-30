@@ -2,26 +2,19 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
-const Signup = ({setProfile}) => {
+const Signup = () => {
   const navigate = useNavigate();
+
   
   const {
-    value: fname,
-    nameIsInValid: invalidFName,
-    onValueInputHandler: onFNameChangeHandler,
-    onErrorHandler: fnameBlurHandler,
-    nameIsValid: validFName,
-    reset: resetFNameHandler,
+    value: name,
+    nameIsInValid: invalidName,
+    onValueInputHandler: onNameChangeHandler,
+    onErrorHandler: nameBlurHandler,
+    nameIsValid: validName,
+    reset: resetNameHandler,
   } = UserInput((value) => value.trim() !== "");
 
-  const {
-    value: lname,
-    nameIsInValid: invalidLNumber,
-    onValueInputHandler: onLNumberChangeHandler,
-    onErrorHandler: lnumberBlurHandler,
-    nameIsValid: validLNumber,
-    reset: resetLNumberHandler,
-  } = UserInput((value) => value.trim() !== "");
 
   const {
     value: email,
@@ -43,31 +36,28 @@ const Signup = ({setProfile}) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validFName && !validLNumber && !validPassword) {
+    if (!validEmail && !validName && !validPassword) {
       return;
     }
-
-    let signup = await fetch("http://localhost:9999/users", {
+    let signup = await fetch("http://localhost:9999/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
-        email: email,        
-        lname: lname,
-        name: fname,
-        password: password,
+        email,
+        name,
+        password,
       }),
     });
-    console.log(email, lname);
-    
+    console.log(email);
+  
     let responseData = await signup.json();
     console.log(responseData);
 
-    resetFNameHandler();
+    resetNameHandler();
     resetEmailHandler();
-    resetLNumberHandler();
+    
     resetPasswordrHandler();
     navigate("/login", { replace: true });
   };
@@ -82,30 +72,14 @@ const Signup = ({setProfile}) => {
             type="text"
             id="name"
             placeholder="First and Last Name EX. Sandeep Yadav"
-            value={fname}
-            onChange={onFNameChangeHandler}
-            onBlur={fnameBlurHandler}
+            value={name}
+            onChange={onNameChangeHandler}
+            onBlur={nameBlurHandler}
             required
           />
-          {invalidFName && <p className={style.error}>! Enter your name</p>}
+          {invalidName && <p className={style.error}>! Enter your name</p>}
         </div>
-        <div className={style.inputFiled}>
-          <label htmlFor="lname">Mobile Number</label>
-          <input
-            type="text"
-            id="lname"
-            placeholder="Mobile Number Ex. 084004209..."
-            value={lname}
-            onChange={onLNumberChangeHandler}
-            onBlur={lnumberBlurHandler}
-            required
-           
-          />
-
-          {invalidLNumber && (
-            <p className={style.error}>! Enter your mobile number</p>
-          )}
-        </div>
+      
         <div className={style.inputFiled}>
           <label htmlFor="email">Email </label>
           <input

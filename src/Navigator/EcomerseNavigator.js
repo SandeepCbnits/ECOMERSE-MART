@@ -13,6 +13,7 @@ import HomeAndKitchen from "../components/Home/HomeAndKitchen/HomeAndKitchen";
 import Profile from "../components/Profile/Profile";
 import About from "../Pages/About/About";
 import Category from "../Pages/Category/Category";
+import CategoryList from "../Pages/Category/CategoryList";
 import Contact from "../Pages/Contact/Contact";
 import HomePage from "../Pages/HomePage";
 import WishList from "../Pages/WishList/WishList";
@@ -34,7 +35,9 @@ const EcomerseNavigator = ({
   removeToCartHandler,
   orderListHandler,
   orderLists,
-  dataToProfile
+  dataToProfile,
+ 
+  
 }) => {
   const isLogin = useSelector((state) => state.ui.isLogedIn);
   return (
@@ -53,10 +56,11 @@ const EcomerseNavigator = ({
                 orderListHandler={orderListHandler}
                 count={count}
                 dataToProfile={dataToProfile} 
+                
               />
             }
           />
-          <Route path="/home-kitchen" element={<HomeAndKitchen />} />
+           <Route path="/category-lists" element={<CategoryList />} /> 
           <Route path="/chare" element={<DetailPage />} />
           <Route path="/category" element={<Category />} />
          
@@ -87,6 +91,7 @@ const EcomerseNavigator = ({
           <Login
             isLogoutHandler={isLogoutHandler}
             setIsLogedIn={setIsLogedIn}
+           
           />
         }
       />
@@ -94,7 +99,7 @@ const EcomerseNavigator = ({
       <Route path="/reset" element={<ResetMessage />} />
       <Route path="/passwordReset" element={<ResetPassword />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
-      <Route path="/signup" element={<Signup dataToProfile={dataToProfile} />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

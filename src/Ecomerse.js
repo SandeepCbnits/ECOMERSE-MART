@@ -3,15 +3,16 @@ import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
 import { useSelector } from "react-redux";
 import data from "./Items";
+import DropDownSection from "./components/Header/DropDownSection";
 
 const Ecomerse = ({ title, quantity }) => {
- let {items}=data;
+  let { items } = data;
   const [products, setProducts] = useState([]);
   // const [isLogedIn, setIsLogedIn] = useState(false);
-  const [profile, setProfile]=useState([]);
+
   const [cartItems, setCartItems] = useState([]);
   const [wishLists, setWishLists] = useState([]);
-const [orderLists, setOrderLists]=useState([])
+  const [orderLists, setOrderLists] = useState([]);
 
   const addToCartHandler = async (product) => {
     // if all ready have item
@@ -39,7 +40,7 @@ const [orderLists, setOrderLists]=useState([])
   // };
 
   const addToWishListHandler = (product) => {
-    let findExisting = wishLists.find((item) => item.id === product.id );
+    let findExisting = wishLists.find((item) => item.id === product.id);
 
     if (findExisting) {
       setWishLists(
@@ -61,7 +62,7 @@ const [orderLists, setOrderLists]=useState([])
     const productsEx = cartItems.find((list) => list.id === product.id);
 
     if (productsEx.quantity === 1) {
-      setCartItems(cartItems.filter((item) => item.id !== product.id)); 
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
     } else {
       setCartItems(
         cartItems.map((item) =>
@@ -73,17 +74,16 @@ const [orderLists, setOrderLists]=useState([])
     }
   };
 
-
-  // Order Your data 
- const orderListHandler=(order)=>{
-setOrderLists([...orderLists, {...order, quentity:1}])
- }
+  // Order Your data
+  const orderListHandler = (order) => {
+    setOrderLists([...orderLists, { ...order, quentity: 1 }]);
+  };
   return (
     <Fragment>
-     
-      <Header cartItems={cartItems}  products={products}  />
-      
+      <Header cartItems={cartItems} products={products} />
+
       <main>
+
         <EcomerseNavigator
           cartItems={cartItems}
           addToCartHandler={addToCartHandler}
@@ -95,13 +95,12 @@ setOrderLists([...orderLists, {...order, quentity:1}])
           setProducts={setProducts}
           addToWishListHandler={addToWishListHandler}
           wishLists={wishLists}
-          profile={profile}
-          setProfile={setProfile}
+          
+          
           items={items}
-          removeToCartHandler ={removeToCartHandler }
+          removeToCartHandler={removeToCartHandler}
           orderLists={orderLists}
           orderListHandler={orderListHandler}
-          
         />
       </main>
     </Fragment>

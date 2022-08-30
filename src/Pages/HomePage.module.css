@@ -12,7 +12,9 @@
 
   }
 } */
-
+.container{
+  margin-top: 400px;
+}
 .chare_cart {
   z-index: 9;
   width: 20rem;

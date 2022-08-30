@@ -5,9 +5,10 @@ import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-Slice";
-const Login = ({ setIsLogedIn }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     value: email,
     nameIsInValid: invalidEmail,
@@ -16,7 +17,6 @@ const Login = ({ setIsLogedIn }) => {
     nameIsValid: validEmail,
     reset: resetHandler,
   } = UserInput((value) => value.includes("@"));
-
 
   const {
     value: password,
@@ -31,27 +31,27 @@ const Login = ({ setIsLogedIn }) => {
     if (!validEmail && !validPassword) {
       return;
     }
-   
-    let login = await fetch("http://localhost:9999/users/login", {
+
+    let login = await fetch(`http://localhost:9999/users/login?email=${email}&password=${password}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
-        email: email,       
-        password: password,
+         email,
+         password,
+       
       }),
     });
+ // 
     console.log(email, password);
-    
     let responseData = await login.json();
-    console.log(responseData);
+    console.log(responseData, "Respons Data is ");
+   
 
+   
     resetHandler();
-
-   resetPasswordrHandler()
-
+    resetPasswordrHandler();
     navigate("/home", { replace: true });
   };
   const logoutHandler = () => {
@@ -86,8 +86,6 @@ const Login = ({ setIsLogedIn }) => {
             value={password}
             onChange={onPasswordChangeHandler}
             onBlur={passwordBlurHandler}
-            minLength={7}
-            maxLength={14}
             required
           />
           {invalidPassword && (
@@ -103,7 +101,7 @@ const Login = ({ setIsLogedIn }) => {
       </form>
       <footer>
         <p>
-          New Customer ?<NavLink to="/signup"> Start Hear </NavLink> 
+          New Customer ?<NavLink to="/signup"> Start Hear </NavLink>
           <p>
             Forgot Password ? <NavLink to="/forgotPassword">Reset</NavLink>
           </p>

@@ -9,13 +9,13 @@
 
 .header_cart .logo {
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
  font-weight: bolder;
  font-size: larger;
   
 }
 .header input {
-  padding: 0.64rem 2rem;
+  padding: 0.64rem 1.5rem;
   border-radius: 5px 0 0 5px;
   border: none;
   

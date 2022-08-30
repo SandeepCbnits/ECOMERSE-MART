@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
-import { useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-Slice";
 
 const Header = ({ cartItems, products }) => {
-  const dispatch = useDispatch()
-  const [isOpen, setIsOpen] = useState(false);  
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const isLogedIn = useSelector((state) => state.ui.isLogedIn);
 
   const isOpenHandler = () => {
@@ -19,14 +19,16 @@ const Header = ({ cartItems, products }) => {
   //   setSearchValue(e.target.value);
   //   if (key !== "") {
   //     setSearchValue(products);
-  //   } 
+  //   }
   // };
-  const onLoginHandler=()=>{
-dispatch(uiActions.isLogoutHandler())
-  }
-  useEffect(()=>{
+ 
+  const onLoginHandler =() => {   
+    dispatch(uiActions.isLogoutHandler());
+  };
+  useEffect(() => {
     onLoginHandler()
-  },[])
+  }, []);
+
   return (
     <div>
       <div className={style.header}>
@@ -42,7 +44,11 @@ dispatch(uiActions.isLogoutHandler())
           <div className={style.header___login}>
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
             {isLogedIn && <NavLink to="/profile">Profile </NavLink>}
-            {isLogedIn && <NavLink to="/login" onClick={onLoginHandler}>Logout</NavLink>}
+            {isLogedIn && (
+              <NavLink to="/login" onClick={onLoginHandler}>
+                Logout
+              </NavLink>
+            )}
           </div>
 
           <NavLink to="/cart" className={style.header__cart}>

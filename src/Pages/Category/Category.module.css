@@ -1,9 +1,15 @@
 .container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ justify-content: space-between;
 }
+.category{
+  text-align: center;
+}
+.categoryActions{
+
+}
+
 h1 {
   text-align: center;
 }
@@ -12,8 +18,9 @@ button {
   text-align: center;
   padding: 0.6rem 2rem;
   cursor: pointer;
+ 
 }
 .Images {
-  width: 200px;
+  width: 250px;
   height: 200px;
 }

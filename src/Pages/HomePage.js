@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DropDownSection from "../components/Header/DropDownSection";
 
 import Product from "../components/Home/Product";
+import ImageSlider from "../components/Slider/ImageSlider";
 import style from "./HomePage.module.css";
 const HomePage = ({
   products,
@@ -9,7 +11,8 @@ const HomePage = ({
   addToCartHandler,
   addToWishListHandler,
   items,
-  orderListHandler
+  orderListHandler,
+  removeToCartHandler 
  
 }) => {
   let navigate = useNavigate();
@@ -40,7 +43,12 @@ const HomePage = ({
   }, []);
   return (
     <div >
+      <DropDownSection/>
+      <div>
+        <ImageSlider/>
+      </div>
       {/* <div  >
+      
 
       <img className={style.image} src="https://m.media-amazon.com/images/I/61tk4B-Bx+L._SX3000_.jpg" alt="" />
       </div> */}
@@ -56,7 +64,8 @@ const HomePage = ({
               description={product.description}
               addToCartHandler={() => addToCartHandler(product)}
               addToWishListHandler={() => addToWishListHandler(product)}  
-              orderListHandler={()=>orderListHandler(product)}        />
+              orderListHandler={()=>orderListHandler(product)}  
+              removeToCartHandler ={()=>removeToCartHandler(product)}     />
           
           );
         })}

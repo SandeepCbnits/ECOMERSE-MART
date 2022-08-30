@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./Cart.module.css";
 const Cart = ({ cartItems, removeToCartHandler  }) => {
+
+
   return (
     <div>
       <h3>Cart List</h3>
@@ -10,8 +12,8 @@ const Cart = ({ cartItems, removeToCartHandler  }) => {
           <span>{cart.description}</span>
           <span>{cart.name}</span>
           <span>{cart.price}</span>
-          <span className={style.delete} >
-            <i class="fa fa-trash-o" onClick={()=>removeToCartHandler(cart)}></i>
+          <span className={style.delete} onClick={()=>removeToCartHandler(cart)}>
+            <i class="fa fa-trash-o" ></i>
           </span>
         </div>
       ))}
