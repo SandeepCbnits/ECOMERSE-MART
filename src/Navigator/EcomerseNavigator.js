@@ -37,6 +37,7 @@ const EcomerseNavigator = ({
   orderLists,
   dataToProfile,
  
+ 
   
 }) => {
   const isLogin = useSelector((state) => state.ui.isLogedIn);
@@ -56,6 +57,8 @@ const EcomerseNavigator = ({
                 orderListHandler={orderListHandler}
                 count={count}
                 dataToProfile={dataToProfile} 
+                removeToCartHandler={removeToCartHandler}
+                
                 
               />
             }
@@ -76,7 +79,7 @@ const EcomerseNavigator = ({
             element={
               <Cart
                 cartItems={cartItems}
-                removeToCartHandler={removeToCartHandler}
+                removeToCartHandler ={removeToCartHandler }
               />
             }
           />

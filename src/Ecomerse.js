@@ -58,16 +58,19 @@ const Ecomerse = ({ title, quantity }) => {
       setWishLists([...wishLists, { ...product, quentety: 1 }]);
     }
   };
-  const removeToCartHandler = (product) => {
-    const productsEx = cartItems.find((list) => list.id === product.id);
 
-    if (productsEx.quantity === 1) {
-      setCartItems(cartItems.filter((item) => item.id !== product.id));
+
+  const removeToCartHandler = (cartList) => {
+   
+    const cartListsEx = cartItems.find((list) => list.id === cartList.id);
+
+    if (cartListsEx.quantity === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== cartList.id));
     } else {
       setCartItems(
         cartItems.map((item) =>
-          item.id === product.id
-            ? { ...productsEx, quantity: productsEx.quantity - 1 }
+          item.id === cartList.id
+            ? { ...cartListsEx, quantity: cartListsEx.quantity - 1 }
             : item
         )
       );

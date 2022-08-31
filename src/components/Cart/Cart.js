@@ -1,13 +1,13 @@
 import React from "react";
 import style from "./Cart.module.css";
-const Cart = ({ cartItems, removeToCartHandler  }) => {
+const Cart = ({ cartItems, removeToCartHandler   }) => {
 
 
   return (
     <div>
       <h3>Cart List</h3>
       {cartItems.map((cart) => (
-        <div className={style.container}>
+        <div className={style.container} key={cart.id}>
           <img src={cart.image} alt={cart.name} />
           <span>{cart.description}</span>
           <span>{cart.name}</span>

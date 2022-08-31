@@ -23,7 +23,7 @@ const Signup = () => {
     onErrorHandler: emailBlurHandler,
     nameIsValid: validEmail,
     reset: resetEmailHandler,
-  } = UserInput((value) => value.includes("@"));
+  } = UserInput((value) => value.includes("@") && value.includes(".com"));
 
   const {
     value: password,
@@ -69,15 +69,19 @@ const Signup = () => {
         <div className={style.inputFiled}>
           <label htmlFor="name">Your Name</label>
           <input
+          className={style.input}
             type="text"
             id="name"
             placeholder="First and Last Name EX. Sandeep Yadav"
             value={name}
             onChange={onNameChangeHandler}
             onBlur={nameBlurHandler}
-            required
+           
           />
-          {invalidName && <p className={style.error}>! Enter your name</p>}
+           {invalidName && <p className={style.error}>Please enter a name</p>}
+         
+
+        
         </div>
       
         <div className={style.inputFiled}>
@@ -89,9 +93,9 @@ const Signup = () => {
             value={email}
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
-            required
+        
           />
-          {invalidEmail && <p className={style.error}>! Enter your email </p>}
+          {invalidEmail && <p className={style.error}>Please enter an email address</p>}
         </div>
         <div className={style.inputFiled}>
           <label htmlFor="password">Password</label>
@@ -104,10 +108,10 @@ const Signup = () => {
             onBlur={passwordBlurHandler}
             minLength={7}
             maxLength={14}
-            required
+          
           />
           {invalidPassword && (
-            <p className={style.error}>! Enter your password</p>
+            <p className={style.error}>Please enter a password.</p>
           )}
         </div>
         <div className={style.actionButton}>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import DropDownSection from "../components/Header/DropDownSection";
 
 import Product from "../components/Home/Product";
@@ -55,17 +55,33 @@ const HomePage = ({
       <div className={style.container}>
         {items.map((product) => {
           return (            
-            <Product
-              title={product.name}
-              price={product.price}
-              key={product.id}
-              image={product.image}
-              rating={product.rating}
-              description={product.description}
-              addToCartHandler={() => addToCartHandler(product)}
-              addToWishListHandler={() => addToWishListHandler(product)}  
-              orderListHandler={()=>orderListHandler(product)}  
-              removeToCartHandler ={()=>removeToCartHandler(product)}     />
+          <div className={style.product}>
+            <img src={product.image} alt={product.title} />
+            <p>{product.description}</p>
+            <div className={style.product_rating}>
+            {Array(product.rating)
+              .fill()
+              .map((_) => (
+                <p>⭐</p>
+              ))}
+          </div>
+            <p>Rs. {product.price}</p>
+            <div className={style.product_actions}>
+            <button className={style.buy} onClick={()=>orderListHandler(product)}>
+              <NavLink to="/checkout">BUY </NavLink>
+            </button>
+            <button
+              title="Add To Cart"
+              className={style.add_cart}
+              onClick={()=>addToCartHandler(product)}
+            >
+              +
+            </button>
+            
+            <i class="fa fa-heart" title="Add To WisLists" onClick={()=>addToWishListHandler(product)}></i>
+         
+          </div>
+          </div>
           
           );
         })}
