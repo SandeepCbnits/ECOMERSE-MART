@@ -9,11 +9,8 @@
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.4);
   z-index: 10;
   overflow: hidden;
-  
 }
- .title {
-
- 
+.title {
 }
 .inputFiled label {
   display: block;
@@ -24,6 +21,7 @@
   width: 100%;
   padding: 0.6rem;
   margin: 10px auto;
+  margin-bottom: 0px;
 }
 .invalid input {
   border: 1px solid rgb(226, 105, 105);
@@ -34,13 +32,25 @@
   background-color: #fff;
 }
 .error {
+  text-align: start;
+  margin-top: 1px;
+  margin-bottom: 1px;
   color: rgb(240, 44, 44);
 }
 .actionButton {
   width: 100%;
 }
 .actionButton button {
+  margin-top: 20px;
   padding: 0.6rem 6rem;
+ 
+}
+.actionButton button:hover, button:active{
   cursor: pointer;
 }
-
+.actionButton button:disabled,
+button:active,
+button:hover {  
+  background-color: #ccc;
+  cursor: not-allowed;
+}

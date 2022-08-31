@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Login.module.css";
@@ -8,6 +8,7 @@ import { uiActions } from "../../store/ui-Slice";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [formIsValid, setFormIsValid] = useState(false);
 
   const {
     value: email,
@@ -16,7 +17,7 @@ const Login = () => {
     onErrorHandler: emailBlurHandler,
     nameIsValid: validEmail,
     reset: resetHandler,
-  } = UserInput((value) => value.includes("@"));
+  } = UserInput((value) => value.includes("@") && value.includes(".com"));
 
   const {
     value: password,
@@ -25,38 +26,47 @@ const Login = () => {
     onErrorHandler: passwordBlurHandler,
     nameIsValid: validPassword,
     reset: resetPasswordrHandler,
-  } = UserInput((value) => value.trim() !== "");
+  } = UserInput((value) => value.length >= 6);
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (!validEmail && !validPassword) {
       return;
     }
 
-    let login = await fetch(`http://localhost:9999/users/login?email=${email}&password=${password}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-         email,
-         password,
-       
-      }),
-    });
- // 
-    console.log(email, password);
-    let responseData = await login.json();
-    console.log(responseData, "Respons Data is ");
-   
+    // let login = await fetch("http://localhost:9090/users/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //      email,
+    //      password,
 
-   
+    //   }),
+    // });
+    //
+    // console.log(email, password);
+    // let responseData = await login.json();
+    // console.log(responseData, "Respons Data is ");
+
     resetHandler();
     resetPasswordrHandler();
     navigate("/home", { replace: true });
   };
   const logoutHandler = () => {
+    if (!validEmail && !validPassword) {
+      return;
+    }
     dispatch(uiActions.isLogoutHandler());
   };
+
+  useEffect(() => {
+    if (validEmail && validPassword) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [validEmail, validPassword]);
   //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
   return (
     <div className={style.loginContainer}>
@@ -71,7 +81,6 @@ const Login = () => {
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Email Ex. sandeep@cbnits.com"
-            required
           />
           {invalidEmail && (
             <p className={style.error}>Enter your email address</p>
@@ -86,15 +95,14 @@ const Login = () => {
             value={password}
             onChange={onPasswordChangeHandler}
             onBlur={passwordBlurHandler}
-            required
           />
           {invalidPassword && (
-            <p className={style.error}>! Enter your password</p>
+            <p className={style.error}>Enter your password</p>
           )}
         </div>
 
         <div className={style.actionButton}>
-          <button type="submit" onClick={logoutHandler}>
+          <button type="submit" onClick={logoutHandler} disabled={!formIsValid}>
             Login
           </button>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Cart.module.css";
-const Cart = ({ cartItems, removeToCartHandler   }) => {
+const Cart = ({ cartItems, removeToCartHandler , count ,addToCartHandler }) => {
 
 
   return (
@@ -11,10 +11,14 @@ const Cart = ({ cartItems, removeToCartHandler   }) => {
           <img src={cart.image} alt={cart.name} />
           <span>{cart.description}</span>
           <span>{cart.name}</span>
-          <span>{cart.price}</span>
-          <span className={style.delete} onClick={()=>removeToCartHandler(cart)}>
-            <i class="fa fa-trash-o" ></i>
+          <span>{cart.price * cart.quentety}</span>
+          <span className={style.delete} >
+            {/* <i class="fa fa-trash-o" ></i> */}
+           
           </span>
+          <button onClick={()=>removeToCartHandler(cart)}>-</button>
+          <span> {cart.quentety}</span>
+          <button onClick={()=>addToCartHandler(cart)}>+</button>
         </div>
       ))}
     </div>

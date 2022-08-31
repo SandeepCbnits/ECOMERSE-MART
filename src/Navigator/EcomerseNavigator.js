@@ -80,6 +80,8 @@ const EcomerseNavigator = ({
               <Cart
                 cartItems={cartItems}
                 removeToCartHandler ={removeToCartHandler }
+                count={count}
+                addToCartHandler={addToCartHandler}
               />
             }
           />

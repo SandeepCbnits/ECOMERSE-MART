@@ -37,6 +37,9 @@ display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.product_actions button {
+  cursor: pointer;
+}
 .product_actions i {
   color: green;
   font-size: x-large;

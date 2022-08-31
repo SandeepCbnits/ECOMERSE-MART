@@ -35,7 +35,15 @@
 }
 .actionButton button {
   margin-top: 20px;
-
   padding: 0.6rem 6rem;
+}
+.actionButton button:hover,
+button:active {
   cursor: pointer;
+}
+.actionButton button:disabled,
+button:active,
+button:hover {
+  cursor: not-allowed;
+  background-color: #ccc;
 }

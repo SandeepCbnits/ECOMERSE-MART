@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
-import { useSelector } from "react-redux";
-import data from "./Items";
-import DropDownSection from "./components/Header/DropDownSection";
 
-const Ecomerse = ({ title, quantity }) => {
+import data from "./Items";
+
+
+const Ecomerse = ({ title}) => {
   let { items } = data;
   const [products, setProducts] = useState([]);
   // const [isLogedIn, setIsLogedIn] = useState(false);
@@ -60,21 +60,24 @@ const Ecomerse = ({ title, quantity }) => {
   };
 
 
-  const removeToCartHandler = (cartList) => {
-   
-    const cartListsEx = cartItems.find((list) => list.id === cartList.id);
 
-    if (cartListsEx.quantity === 1) {
-      setCartItems(cartItems.filter((item) => item.id !== cartList.id));
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === cartList.id
-            ? { ...cartListsEx, quantity: cartListsEx.quantity - 1 }
-            : item
-        )
-      );
+  const removeToCartHandler = (product) => {
+    let findExistingItem = cartItems.find((item) => item.id === product.id);
+
+    if (findExistingItem.quantity === 1) {
+      setCartItems(cartItems.filter((cart)=>cart.id !== product.id))
+    }else{
+      setCartItems(cartItems.map((item) =>
+      item.id === product.id
+        ? {
+            ...findExistingItem,
+            quentety: findExistingItem.quentety - 1,
+            title: title,
+          }
+        : item
+    ))
     }
+  
   };
 
   // Order Your data
@@ -92,7 +95,7 @@ const Ecomerse = ({ title, quantity }) => {
           addToCartHandler={addToCartHandler}
           title={title}
           products={products}
-          count={orderLists.length}
+          count={cartItems.length}
           // isLogedIn={isLogedIn}
           // setIsLogedIn={isLogoutHandler}
           setProducts={setProducts}
