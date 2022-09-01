@@ -36,11 +36,12 @@ const EcomerseNavigator = ({
   orderListHandler,
   orderLists,
   dataToProfile,
- 
+  gettingToken
  
   
 }) => {
   const isLogin = useSelector((state) => state.ui.isLogedIn);
+  
   return (
     <Routes>
       {isLogin && (
@@ -85,7 +86,7 @@ const EcomerseNavigator = ({
               />
             }
           />
-          <Route path="/profile" element={<Profile    />} />
+          <Route path="/profile" element={<Profile  gettingToken={gettingToken}  />} />
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
         </>
       )}
@@ -96,7 +97,7 @@ const EcomerseNavigator = ({
           <Login
             isLogoutHandler={isLogoutHandler}
             setIsLogedIn={setIsLogedIn}
-           
+            gettingToken={gettingToken}
           />
         }
       />

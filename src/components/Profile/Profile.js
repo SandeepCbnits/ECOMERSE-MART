@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Profile.module.css";
-const Profile = () => {
+const Profile = ({gettingToken}) => {
+console.log(gettingToken)
   return (
     <div className={style.container}>
       <div className={style.profileContainer}>
@@ -12,7 +13,7 @@ const Profile = () => {
             />
             <div>
               <span>Hello</span> <br />
-              <span> Sandeep Yadav</span>
+              <span>{localStorage.getItem("USERNAME")}</span>
             </div>
           </div>
         </div>

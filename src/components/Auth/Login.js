@@ -5,7 +5,7 @@ import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-Slice";
-const Login = () => {
+const Login = ({gettingToken}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
@@ -58,13 +58,14 @@ const Login = () => {
         console.log({ username, password });
         // let responseData = await login.json();
         const response = await login.json();
-
         console.log(response, "Respons Data is ");
       }
     } catch (error) {
       console.log("Getting Request Error ", error);
     }
-
+    
+    console.log(username)
+    localStorage.setItem("USERNAME", username);
     resetUsernameHandler();
     resetPasswordrHandler();
     navigate("/home", { replace: true });
@@ -138,7 +139,7 @@ const Login = () => {
         </div>
       </form>
       <footer>
-        <p>
+        <p> 
           New Customer ?<NavLink to="/signup"> Start Hear </NavLink>
           <p>
             Forgot Password ? <NavLink to="/forgotPassword">Reset</NavLink>

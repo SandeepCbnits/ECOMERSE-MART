@@ -17,11 +17,11 @@ const HomePage = ({
 }) => {
   let navigate = useNavigate();
   let fetchProductData = async () => {
-    let product = await fetch("http://localhost:9090/products/");
+    // let product = await fetch("http://localhost:9090/products/");
 
-    let responserData = await product.json();
-    console.log(responserData);
-    setProducts(responserData);
+    // let responserData = await product.json();
+    // console.log(responserData);
+    // setProducts(responserData);
   };
 
   // const onChangeHadler = async (product) => {
@@ -43,6 +43,7 @@ const HomePage = ({
   }, []);
   return (
     <div >
+     
       <DropDownSection/>
       <div>
         <ImageSlider/>
