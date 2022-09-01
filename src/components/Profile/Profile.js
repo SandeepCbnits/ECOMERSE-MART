@@ -13,7 +13,9 @@ console.log(gettingToken)
             />
             <div>
               <span>Hello</span> <br />
-              <span>{localStorage.getItem("USERNAME")}</span>
+              <span> <strong>
+              {localStorage.getItem("USERNAME")}
+                </strong> </span>
             </div>
           </div>
         </div>
