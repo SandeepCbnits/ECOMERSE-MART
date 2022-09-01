@@ -4,14 +4,22 @@ import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
 const Signup = () => {
   const navigate = useNavigate();
-const[formIsValid, setFormIsValid]=useState(false)
+  const [formIsValid, setFormIsValid] = useState(false);
   const {
-    value: name,
-    nameIsInValid: invalidName,
-    onValueInputHandler: onNameChangeHandler,
-    onErrorHandler: nameBlurHandler,
-    nameIsValid: validName,
-    reset: resetNameHandler,
+    value: fname,
+    nameIsInValid: invalidFName,
+    onValueInputHandler: onFNameChangeHandler,
+    onErrorHandler: fnameBlurHandler,
+    nameIsValid: validFName,
+    reset: resetFNameHandler,
+  } = UserInput((value) => value.length > 0);
+  const {
+    value: lname,
+    nameIsInValid: invalidLName,
+    onValueInputHandler: onLNameChangeHandler,
+    onErrorHandler: lnameBlurHandler,
+    nameIsValid: validLName,
+    reset: resetLNameHandler,
   } = UserInput((value) => value.length > 0);
 
   const {
@@ -21,7 +29,7 @@ const[formIsValid, setFormIsValid]=useState(false)
     onErrorHandler: emailBlurHandler,
     nameIsValid: validEmail,
     reset: resetEmailHandler,
-  } = UserInput((value) => value.includes("@") && value.includes(".com"));
+  } = UserInput((value) => value.includes("@gmail.com"));
 
   const {
     value: password,
@@ -34,54 +42,83 @@ const[formIsValid, setFormIsValid]=useState(false)
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validName && validPassword) {
+    if (!validEmail && !validFName && validPassword && validLName) {
       return;
     }
-    let signup = await fetch("http://localhost:9090/users/", {
+
+try {
+  let signup = await fetch("http://localhost:9092/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
-        name,
-        password,
+        email:email,
+        fname:fname,
+        password:password,
+        lname:lname,
+        
       }),
     });
-    console.log(email);
 
-    let responseData = await signup.json();
-    console.log(responseData);
+    if (!signup.ok) {
+      throw new Error(`HTTP REQ ERROR ${signup.status}`)
+    }else{
+      let responseData = await signup.json();
+      console.log(responseData);
 
-    resetNameHandler();
+    }
+} catch (error) {
+  console.log("GETTING ERROR", error)
+}
+
+    
+    // console.log({password, email, fname,lname});
+
+
+    resetFNameHandler();
     resetEmailHandler();
-
+    resetLNameHandler();
     resetPasswordrHandler();
     navigate("/login", { replace: true });
   };
-useEffect(()=>{
-if (validEmail && validName && validPassword) {
-  setFormIsValid(true)
-}else{
-  setFormIsValid(false)
-}
-},[validEmail, validName, validPassword])
+
+  useEffect(() => {
+    if (validEmail && validFName && validPassword && validLName) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [validEmail, validFName, validPassword, validLName]);
   return (
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
       <form action="" onSubmit={submitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="name">Your Name</label>
+          <label htmlFor="fname">First Name</label>
           <input
             className={style.input}
             type="text"
-            id="name"
-            placeholder="First and Last Name EX. Sandeep Yadav"
-            value={name}
-            onChange={onNameChangeHandler}
-            onBlur={nameBlurHandler}
+            id="fname"
+            placeholder="First  Name EX. Sandeep,  Jagrati.."
+            value={fname}
+            onChange={onFNameChangeHandler}
+            onBlur={fnameBlurHandler}
           />
-          {invalidName && <p className={style.error}>Please enter a name</p>}
+          {invalidFName && <p className={style.error}>Please enter a Fname</p>}
+        </div>
+        <div className={style.inputFiled}>
+          <label htmlFor="lname">Last Name</label>
+          <input
+            className={style.input}
+            type="text"
+            id="lname"
+            placeholder="Last Name EX. khatri,  Yadav.."
+            value={lname}
+            onChange={onLNameChangeHandler}
+            onBlur={lnameBlurHandler}
+          />
+          {invalidLName && <p className={style.error}>Please enter a Lname</p>}
         </div>
 
         <div className={style.inputFiled}>
@@ -113,7 +150,9 @@ if (validEmail && validName && validPassword) {
           )}
         </div>
         <div className={style.actionButton}>
-          <button type="submit" disabled={!formIsValid}>Continue</button>
+          <button type="submit" disabled={!formIsValid}>
+            Continue
+          </button>
         </div>
       </form>
 

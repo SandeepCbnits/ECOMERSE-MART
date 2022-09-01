@@ -10,14 +10,19 @@ const Login = () => {
   const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  // const [formFields, setFormFields] = useState({
+  //   userName: "",
+  //   password: ""
+  // })
+
   const {
-    value: email,
-    nameIsInValid: invalidEmail,
-    onValueInputHandler: onEmailChangeHandler,
-    onErrorHandler: emailBlurHandler,
-    nameIsValid: validEmail,
-    reset: resetHandler,
-  } = UserInput((value) => value.includes("@") && value.includes(".com"));
+    value: username,
+    nameIsInValid: invalidUsername,
+    onValueInputHandler: onUsernameChangeHandler,
+    onErrorHandler: usernameBlurHandler,
+    nameIsValid: validUsername,
+    reset: resetUsernameHandler,
+  } = UserInput((value) => value.trim() !== " ");
 
   const {
     value: password,
@@ -27,67 +32,92 @@ const Login = () => {
     nameIsValid: validPassword,
     reset: resetPasswordrHandler,
   } = UserInput((value) => value.length >= 6);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validPassword) {
+    if (!validUsername && !validPassword) {
       return;
     }
 
-    // let login = await fetch("http://localhost:9090/users/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //      email,
-    //      password,
+    try {
+      let login = await fetch("http://localhost:9092/getToken", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
 
-    //   }),
-    // });
-    //
-    // console.log(email, password);
-    // let responseData = await login.json();
-    // console.log(responseData, "Respons Data is ");
+        },
+        body: JSON.stringify({
+          username:username,
+          password:password,
+        }),
+      });
 
-    resetHandler();
+      if (!login.ok) {
+        throw new Error(`HTTP REQ ERROR ${login.status}`);
+      } else {
+        console.log({ username, password });
+        // let responseData = await login.json();
+        const response = await login.json();
+
+        console.log(response, "Respons Data is ");
+      }
+    } catch (error) {
+      console.log("Getting Request Error ", error);
+    }
+
+    resetUsernameHandler();
     resetPasswordrHandler();
     navigate("/home", { replace: true });
   };
   const logoutHandler = () => {
-    if (!validEmail && !validPassword) {
+    if (!validUsername && !validPassword) {
       return;
     }
     dispatch(uiActions.isLogoutHandler());
   };
 
   useEffect(() => {
-    if (validEmail && validPassword) {
+    if (validUsername && validPassword) {
       setFormIsValid(true);
     } else {
       setFormIsValid(false);
     }
-  }, [validEmail, validPassword]);
+  }, [validUsername, validPassword]);
+
+  // const onInputChange = (attr, value) => {
+  //   const tempFormFields = {...formFields};
+  //   tempFormFields[attr] = value;
+  //   setFormFields(prev => prev = tempFormFields);
+  // }
   //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
   return (
     <div className={style.loginContainer}>
       <h3 className={style.title}>Sign-In</h3>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="email">Email </label>
+          <label htmlFor="username">F Name</label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={onEmailChangeHandler}
-            onBlur={emailBlurHandler}
+            type="text"
+            id="username"
+            value={username}
+            onChange={onUsernameChangeHandler}
+            onBlur={usernameBlurHandler}
             placeholder="Email Ex. sandeep@cbnits.com"
           />
-          {invalidEmail && (
+          {invalidUsername && (
             <p className={style.error}>Enter your email address</p>
           )}
         </div>
         <div className={style.inputFiled}>
           <label htmlFor="password">Password</label>
+          {/* <input
+            type="password"
+            id="password"
+            placeholder="At list 6 charector Ex 123456"
+            value={formFields.password}
+            onChange={(e) => onInputChange('password', e.target.value)}
+            onBlur={passwordBlurHandler}
+          /> */}
           <input
             type="password"
             id="password"

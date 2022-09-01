@@ -4,8 +4,7 @@ import Header from "./components/Header/Header";
 
 import data from "./Items";
 
-
-const Ecomerse = ({ title}) => {
+const Ecomerse = ({ title }) => {
   let { items } = data;
   const [products, setProducts] = useState([]);
   // const [isLogedIn, setIsLogedIn] = useState(false);
@@ -14,7 +13,7 @@ const Ecomerse = ({ title}) => {
   const [wishLists, setWishLists] = useState([]);
   const [orderLists, setOrderLists] = useState([]);
 
-  const addToCartHandler = async (product) => {
+  const addToCartHandler = (product) => {
     // if all ready have item
     let findExistingItem = cartItems.find((item) => item.id === product.id);
 
@@ -25,7 +24,6 @@ const Ecomerse = ({ title}) => {
             ? {
                 ...findExistingItem,
                 quentety: findExistingItem.quentety + 1,
-                title: title,
               }
             : item
         )
@@ -59,25 +57,23 @@ const Ecomerse = ({ title}) => {
     }
   };
 
-
-
   const removeToCartHandler = (product) => {
     let findExistingItem = cartItems.find((item) => item.id === product.id);
 
-    if (findExistingItem.quantity === 1) {
-      setCartItems(cartItems.filter((cart)=>cart.id !== product.id))
-    }else{
-      setCartItems(cartItems.map((item) =>
-      item.id === product.id
-        ? {
-            ...findExistingItem,
-            quentety: findExistingItem.quentety - 1,
-            title: title,
-          }
-        : item
-    ))
+    if (findExistingItem.quentety === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...findExistingItem,
+                quentety: findExistingItem.quentety - 1,
+              }
+            : item
+        )
+      );
     }
-  
   };
 
   // Order Your data
@@ -89,7 +85,6 @@ const Ecomerse = ({ title}) => {
       <Header cartItems={cartItems} products={products} />
 
       <main>
-
         <EcomerseNavigator
           cartItems={cartItems}
           addToCartHandler={addToCartHandler}
@@ -101,8 +96,6 @@ const Ecomerse = ({ title}) => {
           setProducts={setProducts}
           addToWishListHandler={addToWishListHandler}
           wishLists={wishLists}
-          
-          
           items={items}
           removeToCartHandler={removeToCartHandler}
           orderLists={orderLists}

@@ -18,7 +18,28 @@ const ForgotPassword = () => {
     if (!validEmail) {
       return;
     }
+    try {
+      let otpGenrate = await fetch(`http://localhost:9092/forgot?email=${email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
 
+        },
+        body: JSON.stringify({
+         email
+        }),
+      })
+      if (!otpGenrate.ok) {
+        throw new Error(`Http req are genration error ${otpGenrate.status}`)
+      }else{
+        let respoonse = await otpGenrate.json();
+        console.log(respoonse)
+      }
+    } catch (error) {
+      console.log("Bad Req ", error)
+    }
+    navigate("/reset", { replace: true })
+   
     resetHandler();
   };
 
@@ -35,7 +56,7 @@ const ForgotPassword = () => {
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Enter Email Ex. sandeep@cbnits.com"
-            required
+           
           />
           {invalidEmail && (
             <p className={style.error}>Enter your email address</p>
@@ -45,7 +66,7 @@ const ForgotPassword = () => {
         <div className={style.actionButton}>
           <button
             type="submit"
-            onClick={() => navigate("/reset", { replace: true })}
+            // onClick={() => navigate("/reset", { replace: true })}
           >
             Submit
           </button>
