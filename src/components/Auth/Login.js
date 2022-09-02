@@ -47,8 +47,10 @@ const Login = ({gettingToken}) => {
 
         },
         body: JSON.stringify({
-          username:username,
-          password:password,
+          // username:username,
+          // password:password,
+          username,
+          password
         }),
       });
 
@@ -59,13 +61,14 @@ const Login = ({gettingToken}) => {
         // let responseData = await login.json();
         const response = await login.json();
         console.log(response, "Respons Data is ");
+        console.log(username)
+        // localStorage.setItem("TOKEN", response.jwttoken);
       }
     } catch (error) {
       console.log("Getting Request Error ", error);
     }
-    
-    console.log(username)
     localStorage.setItem("USERNAME", username);
+    
     resetUsernameHandler();
     resetPasswordrHandler();
     navigate("/home", { replace: true });

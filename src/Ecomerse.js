@@ -1,10 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
 
 import data from "./Items";
+import DropDownSection from "./components/Header/DropDownSection";
+
+import { useNavigate } from "react-router-dom";
 
 const Ecomerse = ({ title }) => {
+  const navigate=useNavigate()
   let { items } = data;
   const [products, setProducts] = useState([]);
   // const [isLogedIn, setIsLogedIn] = useState(false);
@@ -80,10 +84,17 @@ const Ecomerse = ({ title }) => {
   const orderListHandler = (order) => {
     setOrderLists([...orderLists, { ...order, quentity: 1 }]);
   };
+
+  useEffect(()=>{
+    let token = localStorage.getItem("USERNAME");
+    if (!token) {
+      navigate('/signup', { replace:true})
+    }
+  },[])
   return (
     <Fragment>
       <Header cartItems={cartItems} products={products} />
-
+      
       <main>
         <EcomerseNavigator
           cartItems={cartItems}

@@ -34,11 +34,11 @@ const ForgotPassword = () => {
       }else{
         let respoonse = await otpGenrate.json();
         console.log(respoonse)
+        navigate("/reset", { replace: true })
       }
     } catch (error) {
       console.log("Bad Req ", error)
     }
-    navigate("/reset", { replace: true })
    
     resetHandler();
   };

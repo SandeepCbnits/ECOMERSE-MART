@@ -44,7 +44,7 @@ const HomePage = ({
   return (
     <div >
      
-      <DropDownSection/>
+     <DropDownSection/>
       <div>
         <ImageSlider/>
       </div>

@@ -12,7 +12,7 @@ const Category = () => {
 
   let categoryHandler = async () => {
     let category = await fetch(
-      "http://localhost:9999/categories/getAllCategories"
+      "http://localhost:9092/categories/getAllCategories"
     );
     const response = await category.json();
     if (response?.length) {
