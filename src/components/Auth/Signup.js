@@ -54,9 +54,10 @@ try {
       },
       body: JSON.stringify({
         email:email,
-        fname:fname,
+        username:fname,
         password:password,
         lname:lname,
+        fname:fname
         
       }),
     });
@@ -66,13 +67,13 @@ try {
     }else{
       let responseData = await signup.json();
       console.log(responseData);
+      navigate("/login", { replace: true });
 
     }
 } catch (error) {
-  console.log("GETTING ERROR", error)
+  alert("Somting Went Worng !!", error)
+  console.log("Somthing Went Worng !!", error)
 }
-
-    
     // console.log({password, email, fname,lname});
 
 
@@ -80,7 +81,6 @@ try {
     resetEmailHandler();
     resetLNameHandler();
     resetPasswordrHandler();
-    navigate("/login", { replace: true });
   };
 
   useEffect(() => {

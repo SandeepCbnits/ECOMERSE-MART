@@ -25,13 +25,10 @@ const Category = () => {
     categoryHandler();
   }, []);
 
+  const onClickHandler = (pro) => {
+    navigation("/category-lists", { replace: "true" });
+  };
 
-  const onClickHandler=(pro)=>{
-   
-    navigation("/category-lists", {replace:"true"})
-    
-  }
- 
   //Components, props
   return (
     <div>
@@ -39,36 +36,35 @@ const Category = () => {
       <div>
         {categorys?.map((el) => {
           return (
-            <div >
+            <div>
               <h1>{el.categoryName}</h1>
               <div className={style.container}>
+                {products.map((pro) => {
+                  return (
+                    <span>
+                      {pro.products.map((pro) => {
+                        return (
+                          <div
+                            className={style.category}
+                            onClick={() => onClickHandler(pro)}
+                          >
+                            <img
+                              className={style.Images}
+                              src={pro.imageName}
+                              alt=""
+                            />
+                            <h3>{pro.name}</h3>
 
-             
-              {products.map((pro) => {
-                return (
-                  <span>
-                    {pro.products.map((pro) => {
-                      return (
-                        <div className={style.category}>
-                          <img
-                            className={style.Images}
-                            src={pro.imageName}
-                            alt=""
-                          /> <br />
-                          <h3>{pro.name}</h3> 
-                          <span>{pro.description}</span> <br />
-                          <span>Rs. <strong> {pro.price}</strong> </span> <br />
-                          <div className={style.categoryActions}>
-                           <button onClick={()=>onClickHandler(pro)}>Category List</button> 
-                            
+                            <span>
+                              Rs. <strong> {pro.price}</strong>{" "}
+                            </span>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </span>
-                );
-              })}
-               </div>
+                        );
+                      })}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           );
         })}

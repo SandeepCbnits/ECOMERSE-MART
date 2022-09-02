@@ -1,7 +1,7 @@
 import React from "react";
-import UserInput from "./hooks/User-Input";
 import style from "./ForgotPassword.module.css";
 import { useNavigate } from "react-router-dom";
+import UserInput from "./hooks/User-Input";
 const ForgotPassword = () => {
   let navigate = useNavigate();
   const {
@@ -11,36 +11,40 @@ const ForgotPassword = () => {
     onErrorHandler: emailBlurHandler,
     nameIsValid: validEmail,
     reset: resetHandler,
-  } = UserInput((value) => value.includes("@"));
+  } = UserInput((value) => value.includes("@gmail.com"));
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     if (!validEmail) {
       return;
-    }
+     }
+    
+
     try {
-      let otpGenrate = await fetch(`http://localhost:9092/forgot?email=${email}`, {
+      let otpGenrate = await fetch("http://localhost:9092/forgot", {
         method: "POST",
         headers: {
+          'Accept': 'application/json, text/plain, */*',
           "Content-Type": "application/json",
-
+         
         },
-        body: JSON.stringify({
-         email
-        }),
-      })
+        body: JSON.stringify( email ),
+      });
       if (!otpGenrate.ok) {
-        throw new Error(`Http req are genration error ${otpGenrate.status}`)
-      }else{
+        throw new Error(` ${otpGenrate.status}`);
+      } else {
         let respoonse = await otpGenrate.json();
-        console.log(respoonse)
-        navigate("/reset", { replace: true })
+        console.log(respoonse);
+        navigate("/reset", { replace: true });
+        alert("OTP SENDING ON YOOR EMAIL")
       }
     } catch (error) {
-      console.log("Bad Req ", error)
+      alert(`Somthing Went Worng !! ${error}`);
+      console.log("Somthing Went Worng !!", error);
     }
-   
-    resetHandler();
+
+      resetHandler()
   };
 
   return (
@@ -56,7 +60,6 @@ const ForgotPassword = () => {
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Enter Email Ex. sandeep@cbnits.com"
-           
           />
           {invalidEmail && (
             <p className={style.error}>Enter your email address</p>
@@ -68,7 +71,7 @@ const ForgotPassword = () => {
             type="submit"
             // onClick={() => navigate("/reset", { replace: true })}
           >
-            Submit
+            OTP Send
           </button>
         </div>
       </form>
@@ -77,3 +80,25 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+// Jagrati Khatri4:49 PM
+// const options = {
+//   method: 'post',
+//   headers: {
+//     'Accept': 'application/json, text/plain, */*',
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(card_data)
+// }
+
+// fetch('http://localhost:3000/api/new-card', options)
+//   .then(response => {
+//      console.log(request)
+//      if (response.ok) {
+//          return response.json();
+//        } else {
+//           throw new Error('Something went wrong ...');
+//        }
+//   })
+//   .then(data => this.setState({ creditcards: data.creditcards }
+// fkz-eyhk-fyy

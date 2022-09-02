@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import UserInput from "./hooks/User-Input";
-import style from "./ResetPassword.module.css";
+import style from "./NewPassword.module.css";
 
 
-const ResetPassword = () => {
-
+const NewPassword = () => {
+  const navigate = useNavigate();
   const {
     value: password,
     nameIsInValid: invalidPassword,
@@ -31,7 +32,7 @@ const ResetPassword = () => {
     }
     
     resetHandler();
-
+navigate('/home', {replace:true})
     resetNewPasswordHandler()
 
    
@@ -51,9 +52,8 @@ const ResetPassword = () => {
             onChange={onPasswordChangeHandler}
             onBlur={passwordBlurHandler}
             placeholder="Enter new Password"
-            minLength={8}
-            maxLength={10}
-            required
+           
+           
           />
           {invalidPassword && (
             <p className={style.error}>Enter your new password</p>
@@ -67,10 +67,9 @@ const ResetPassword = () => {
             value={newPassword}
             onChange={onNewPasswordChangeHandler}
             onBlur={NewPasswordBlurHandler}
-            placeholder="Enter new Password "
-            minLength={8}
-            maxLength={10}
-            required
+            placeholder="Confirm Password "
+            
+          
           />
           {invalidNewPassword && (
             <p className={style.error}>Confirm your new password</p>
@@ -78,8 +77,8 @@ const ResetPassword = () => {
         </div>
 
         <div className={style.actionButton}>
-          <button type="submit" >
-            Submit
+          <button type="submit" className={style.submit}>
+           Submit
           </button>
         </div>
       </form>
@@ -88,4 +87,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default NewPassword;

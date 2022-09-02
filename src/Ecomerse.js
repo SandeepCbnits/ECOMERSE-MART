@@ -8,7 +8,7 @@ import DropDownSection from "./components/Header/DropDownSection";
 import { useNavigate } from "react-router-dom";
 
 const Ecomerse = ({ title }) => {
-  const navigate=useNavigate()
+  let navigate = useNavigate();
   let { items } = data;
   const [products, setProducts] = useState([]);
   // const [isLogedIn, setIsLogedIn] = useState(false);
@@ -16,6 +16,14 @@ const Ecomerse = ({ title }) => {
   const [cartItems, setCartItems] = useState([]);
   const [wishLists, setWishLists] = useState([]);
   const [orderLists, setOrderLists] = useState([]);
+
+  useEffect(()=>{
+    let token = localStorage.getItem("TOKEN");
+    if (!token) {
+      navigate("/", {replace:true})   
+    }
+
+  },[])
 
   const addToCartHandler = (product) => {
     // if all ready have item
@@ -85,12 +93,7 @@ const Ecomerse = ({ title }) => {
     setOrderLists([...orderLists, { ...order, quentity: 1 }]);
   };
 
-  useEffect(()=>{
-    let token = localStorage.getItem("USERNAME");
-    if (!token) {
-      navigate('/signup', { replace:true})
-    }
-  },[])
+ 
   return (
     <Fragment>
       <Header cartItems={cartItems} products={products} />

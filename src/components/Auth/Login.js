@@ -44,34 +44,34 @@ const Login = ({gettingToken}) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
         },
         body: JSON.stringify({
-          // username:username,
-          // password:password,
-          username,
-          password
+          username:username,
+          password:password,
         }),
       });
 
       if (!login.ok) {
         throw new Error(`HTTP REQ ERROR ${login.status}`);
       } else {
-        console.log({ username, password });
+       
         // let responseData = await login.json();
         const response = await login.json();
-        console.log(response, "Respons Data is ");
-        console.log(username)
-        // localStorage.setItem("TOKEN", response.jwttoken);
+       
+        localStorage.setItem("USERNAME", username);
+         localStorage.setItem("TOKEN", response.jwttoken);
+        console.log("Getting Token via login user", response.jwttoken)
+        navigate("/home", { replace: true });
+        
+        
       }
     } catch (error) {
+      alert("Somthing Went Worng !!")
       console.log("Getting Request Error ", error);
     }
-    localStorage.setItem("USERNAME", username);
     
     resetUsernameHandler();
     resetPasswordrHandler();
-    navigate("/home", { replace: true });
   };
   const logoutHandler = () => {
     if (!validUsername && !validPassword) {
@@ -99,14 +99,14 @@ const Login = ({gettingToken}) => {
       <h3 className={style.title}>Sign-In</h3>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="username">F Name</label>
+          <label htmlFor="username">First Name</label>
           <input
             type="text"
             id="username"
             value={username}
             onChange={onUsernameChangeHandler}
             onBlur={usernameBlurHandler}
-            placeholder="Email Ex. sandeep@cbnits.com"
+            placeholder="Name Ex. Sandeep, Jagriti"
           />
           {invalidUsername && (
             <p className={style.error}>Enter your email address</p>

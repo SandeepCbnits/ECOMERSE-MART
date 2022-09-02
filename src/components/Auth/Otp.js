@@ -1,8 +1,8 @@
 import React from "react";
 import UserInput from "./hooks/User-Input";
-import style from "./ForgotPassword.module.css";
+import style from "./Otp.module.css";
 import { useNavigate } from "react-router-dom";
-const ResetMessage = () => {
+const Otp = () => {
   let navigate = useNavigate();
   const {
     value: otp,
@@ -19,38 +19,41 @@ const ResetMessage = () => {
       return;
     }
     try {
-      let otps = await fetch(`http://localhost:9092/verifyOtp?otp=${otp}`, {
+      let otps = await fetch("http://localhost:9092/verifyOtp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
         },
         body: JSON.stringify({
-         otp
+          otp:otp,
         }),
-      })
-      if (!otps.ok) {
-        throw new Error(`Http req are genration error ${otps.status}`)
-      }else{
-        let respoonse = await otps.json();
-        console.log(respoonse)
-        navigate("/passwordReset", { replace: true })
+      });
+      if (!otps.ok) {        
+        throw new Error(`Http req are genration error ${otps.status}`);
         
+      } else {
+        let respoonse = await otps.json();
+        console.log(respoonse, "Getting Thinking OTP");
+        navigate("/passwordReset", { replace: true });
       }
     } catch (error) {
-      console.log("Bad Req ", error)
+      alert("Somthing Went Worng !!")
+      console.log("Bad Req ", error);
     }
-   
-   
+
+
     resetHandler();
   };
 
   return (
     <div className={style.loginContainer}>
-      <h2>Enter OTP</h2>
+      <h2>We sent a code to your email</h2>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="otp">Enter your OTP </label>
+          <label htmlFor="otp">
+            Enter the 4-digit verification code sent to{" "}
+          </label>
+            <span>*****@gmail.com</span>
           <input
             type="text"
             id="otp"
@@ -58,11 +61,8 @@ const ResetMessage = () => {
             onChange={onOtpChangeHandler}
             onBlur={otpBlurHandler}
             placeholder="Enter OTP Ex. 3021"
-           
           />
-          {invalidOtp && (
-            <p className={style.error}>Enter your email address</p>
-          )}
+          {invalidOtp && <p className={style.error}>Enter your otp</p>}
         </div>
 
         <div className={style.actionButton}>
@@ -78,4 +78,4 @@ const ResetMessage = () => {
   );
 };
 
-export default ResetMessage;
+export default Otp;

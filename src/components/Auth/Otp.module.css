@@ -1,10 +1,11 @@
-.loginContainer {
+
+  .loginContainer {
     margin: 4rem auto;
     text-align: center;
     width: 25rem;
     max-width: 90%;
     background-color: white;
-    height: 65vh;
+    height: 50vh;
     padding: 1rem;
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.4);
     z-index: 10;
@@ -27,19 +28,26 @@
     border: 1px solid rgb(226, 105, 105);
     background-color: #fff;
   }
-  .invalid input:focus {
-    border-color: yellow;
-    background-color: #fff;
-  }
+  
   .error {
     color: rgb(240, 44, 44);
   }
   .actionButton {
     width: 100%;
+   
   }
   .actionButton button {
     padding: 0.6rem 6rem;
     cursor: pointer;
+  }
+  .actionButton button:hover, button:active{
+    cursor: pointer;
+  }
+  .actionButton button:disabled,
+  button:active,
+  button:hover {  
+    background-color: #ccc;
+    cursor: not-allowed;
   }
   
   
