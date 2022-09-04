@@ -2,26 +2,28 @@
 
 }
 .image{
-  height: 430px;
+  height: 280px;
   width: 100%;
   position: absolute;
+  z-index: -10;
+  
 }
- .actions {
+.actions {
 display: flex;
 justify-content: space-between;
 position: relative;
 }
 .actions button{
-  padding: 4rem 0.8rem;
-  margin: 9rem 0 0 0;
+  padding: 2rem 0.8rem;
+  margin: 3rem 0 0 0;
   cursor: pointer;
   background-color: transparent;
   border: none;
-  background-color: transparent;
+  
   
 }
 .actions button:active{ 
-  border: 2px solid gray;
+  border: 2px solid white;
   border-radius: 5px;
 }
 

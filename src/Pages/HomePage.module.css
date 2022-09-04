@@ -44,10 +44,16 @@ text-align: center;
 }
 .product_actions button {
   cursor: pointer;
+  padding: 0.3rem 2rem;
+  border: none;
 }
+ 
 .product_actions i {
   color: green;
   font-size: x-large;
+ 
+}
+.add_cart{
   cursor: pointer;
 }
 .chare_cart {

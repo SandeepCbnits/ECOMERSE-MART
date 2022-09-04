@@ -44,6 +44,6 @@ button:active {
 .actionButton button:disabled,
 button:active,
 button:hover {
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   background-color: #ccc;
 }

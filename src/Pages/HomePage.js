@@ -43,11 +43,10 @@ const HomePage = ({
   }, []);
   return (
     <div >
-     
-     <DropDownSection/>
-      <div>
         <ImageSlider/>
-      </div>
+     
+     
+     
       {/* <div  >
       
 

@@ -47,7 +47,7 @@
   button:active,
   button:hover {  
     background-color: #ccc;
-    cursor: not-allowed;
+    /* cursor: not-allowed; */
   }
   
   

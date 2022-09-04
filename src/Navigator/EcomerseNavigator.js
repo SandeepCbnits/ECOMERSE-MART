@@ -3,13 +3,12 @@ import { useSelector } from "react-redux";
 import { Route, Routes, Navigate } from "react-router-dom";
 import ForgotPassword from "../components/Auth/ForgotPassword";
 import Login from "../components/Auth/Login";
-import ResetMessage from "../components/Auth/Otp";
-import ResetPassword from "../components/Auth/NewPassword";
+
 import Signup from "../components/Auth/Signup";
 import Cart from "../components/Cart/Cart";
 import CheckOut from "../components/CheckOut/CheckOut";
 import DetailPage from "../components/DetailPage/DetailPage";
-import HomeAndKitchen from "../components/Home/HomeAndKitchen/HomeAndKitchen";
+
 import Profile from "../components/Profile/Profile";
 import About from "../Pages/About/About";
 import Category from "../Pages/Category/Category";
@@ -17,6 +16,8 @@ import CategoryList from "../Pages/Category/CategoryList";
 import Contact from "../Pages/Contact/Contact";
 import HomePage from "../Pages/HomePage";
 import WishList from "../Pages/WishList/WishList";
+import Otp from "../components/Auth/Otp";
+import NewPassword from "../components/Auth/NewPassword";
 
 const EcomerseNavigator = ({
   count,
@@ -102,8 +103,8 @@ const EcomerseNavigator = ({
         }
       />
 
-      <Route path="/reset" element={<ResetMessage />} />
-      <Route path="/passwordReset" element={<ResetPassword />} />
+      <Route path="/otp" element={<Otp />} />
+      <Route path="/passwordReset" element={<NewPassword/>} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<Navigate to="/" replace />} />

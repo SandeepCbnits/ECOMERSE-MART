@@ -18,30 +18,27 @@ const Otp = () => {
     if (!validOtp) {
       return;
     }
+
+    // let formData = new FormData();
+    // formData.append("email", email);
     try {
-      let otps = await fetch("http://localhost:9092/verifyOtp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      let otpSends= await fetch(`http://localhost:9092/verifyOtp?otp=${console.log(isNaN(otp)) }`,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
         },
-        body: JSON.stringify({
-          otp:otp,
-        }),
-      });
-      if (!otps.ok) {        
-        throw new Error(`Http req are genration error ${otps.status}`);
-        
+        // body: otp
+      })
+      if (!otpSends.ok) {
+        throw new Error(`Somthing Went Worng`)
       } else {
-        let respoonse = await otps.json();
-        console.log(respoonse, "Getting Thinking OTP");
-        navigate("/passwordReset", { replace: true });
+        let response = await otpSends.json();
+        console.log(response)
+        navigate("/passwordReset", {replace: true} )
       }
     } catch (error) {
-      alert("Somthing Went Worng !!")
-      console.log("Bad Req ", error);
+      alert(error)
     }
-
-
     resetHandler();
   };
 

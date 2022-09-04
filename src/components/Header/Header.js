@@ -43,7 +43,7 @@ const Header = ({ cartItems, products }) => {
         <div className={style.header__signup}>
           <div className={style.header___login}>
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
-            {isLogedIn && <NavLink to="/profile">{localStorage.getItem("USERNAME")}<i class="fa fa-user"></i> </NavLink>}
+            {isLogedIn && <NavLink to="/profile" title="PROFILE">{localStorage.getItem("USERNAME")}<i class="fa fa-user"></i> </NavLink>}
             {isLogedIn && (
               <NavLink to="/login" onClick={onLoginHandler}>
                 Logout

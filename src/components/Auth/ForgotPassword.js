@@ -18,33 +18,32 @@ const ForgotPassword = () => {
 
     if (!validEmail) {
       return;
-     }
-    
-
+    }
+    // let formData = new FormData();
+    // formData.append("email", email);
     try {
-      let otpGenrate = await fetch("http://localhost:9092/forgot", {
+      let forgot = await fetch(`http://localhost:9092/forgot?email=${email}`, {
         method: "POST",
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          "Content-Type": "application/json",
-         
-        },
-        body: JSON.stringify( email ),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        // body: formData,
+        // body: email
       });
-      if (!otpGenrate.ok) {
-        throw new Error(` ${otpGenrate.status}`);
+      
+      if (!forgot.ok) {
+        throw new Error(`${forgot.status}`);
       } else {
-        let respoonse = await otpGenrate.json();
-        console.log(respoonse);
-        navigate("/reset", { replace: true });
-        alert("OTP SENDING ON YOOR EMAIL")
+        let response = await forgot.json();
+        console.log(response);
+        
       }
     } catch (error) {
-      alert(`Somthing Went Worng !! ${error}`);
-      console.log("Somthing Went Worng !!", error);
+     
+      console.log(error);
     }
-
-      resetHandler()
+    navigate("/otp", { replace: true });
+    resetHandler();
   };
 
   return (
