@@ -21,12 +21,13 @@ const Otp = () => {
 
     // let formData = new FormData();
     // formData.append("email", email);
+    // console.log(isNaN(otp))
     try {
-      let otpSends= await fetch(`http://localhost:9092/verifyOtp?otp=${console.log(isNaN(otp)) }`,{
+      let otpSends= await fetch(`http://localhost:9092/verifyOtp?otp=${otp}`,{
         method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
+        // headers:{
+        //   "Content-Type":"application/json"
+        // },
         // body: otp
       })
       if (!otpSends.ok) {
@@ -37,7 +38,7 @@ const Otp = () => {
         navigate("/passwordReset", {replace: true} )
       }
     } catch (error) {
-      alert(error)
+      // alert(error)
     }
     resetHandler();
   };
@@ -65,7 +66,7 @@ const Otp = () => {
         <div className={style.actionButton}>
           <button
             type="submit"
-            // onClick={() => navigate("/reset", { replace: true })}
+            
           >
             Submit
           </button>

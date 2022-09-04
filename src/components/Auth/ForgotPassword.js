@@ -39,7 +39,7 @@ const ForgotPassword = () => {
         
       }
     } catch (error) {
-     
+      
       console.log(error);
     }
     navigate("/otp", { replace: true });
