@@ -1,0 +1,25 @@
+.container {
+display: flex;
+justify-content: space-between;
+margin: 10px;
+
+}
+.category{
+  text-align: center;
+  cursor: pointer;
+
+}
+.categoryActions{
+
+}
+
+h1 {
+  text-align: center;
+  
+}
+
+.Images {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}

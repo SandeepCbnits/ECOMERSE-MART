@@ -1,0 +1,31 @@
+nav {
+  background-color:  #0F1111;
+  margin: 10;
+  width: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0.9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  position: fixed;
+}
+.opneSidebar {
+  transition: 0.7s;
+  width: 230px;
+}
+.close {
+  font-size: 3rem;
+  position: absolute;
+  
+  top: -2rem;
+  right: 0;
+  border-radius: 4px;
+}
+ul,
+li {
+  list-style: none;
+  padding: 1rem;
+  margin-left: 10px;
+  
+}

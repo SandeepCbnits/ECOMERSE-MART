@@ -1,0 +1,100 @@
+/* .container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.profileContainer{
+  padding-top: 20px;
+  margin-top: 40px;
+  margin-right: 0px;
+  margin-left: 10px;
+    
+}
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+
+  
+} */
+.card{
+  margin: 20px;
+  padding:10px;
+ 
+  
+}
+h5{
+text-align: left;    
+font-size: 18px;
+font-weight: 500;
+font-family: Roboto,Arial,sans-serif;
+}
+p{
+  text-align: left;
+  font-size: 12px;
+}
+a{
+  font-size: 16px;
+  margin-left: 40px;
+  text-decoration: none;
+}a:link { text-decoration: none; }
+.info{
+  margin:30px;    
+}
+.input{
+  background-color: #fafafa;
+  cursor: not-allowed;
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid rgb(237, 228, 228);
+  outline: none;
+  border-radius: 2px;
+  padding: 20px 16px 0 13px;
+  box-shadow: none;
+  height: 50px;
+  padding: 16px;
+  color: #878787;
+}
+.name{
+ 
+  font-size: 16px;
+  font-weight: 500;
+}
+.tab{
+  text-align: center;
+  font-size: 14px;
+  padding: 12px ;
+  cursor: pointer;
+}
+.tab:hover{
+ 
+      color: #2874f0;
+      background-color: #f5faff;
+
+}
+
+.profile img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+}
+
+.input {
+  display: flex;
+}
+.input input {
+  padding: 9px 10px;
+  margin: 2px;
+}
+.email {
+  text-align: center;
+}
+.email input {
+  padding: 9px 2rem;
+}
+.mobile {
+  text-align: center;
+}
+.mobile input {
+  padding: 9px 2rem;
+}

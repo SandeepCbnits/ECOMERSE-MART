@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  
+}
+.leftSideitems {
+
+  margin: auto ;
+  text-align: center;
+}
+.leftRideitems {
+}
+.leftSideitems img {
+  height: 200px;
+  width: 200px;
+}
+.items {
+}
+.checkoutLeft {
+  background-color: whitesmoke;
+  margin-left: 10px;
+}
+.checkoutRight {
+  padding: 5rem 5rem;
+}

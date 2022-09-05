@@ -1,0 +1,28 @@
+.imageSlider{
+
+}
+.image{
+  height: 430px;
+  width: 100%;
+  position: absolute;
+}
+ .actions {
+display: flex;
+justify-content: space-between;
+position: relative;
+}
+.actions button{
+  padding: 4rem 0.8rem;
+  margin: 9rem 0 0 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  background-color: transparent;
+  
+}
+.actions button:active{ 
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+   

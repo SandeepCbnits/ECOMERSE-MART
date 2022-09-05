@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar {
+  background-color: #232f3e;
+  padding: 1rem 4rem;
+  height: 80vh;
+  color: white;
+}
+.detail_fan{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+    border: 1px solid salmon;
+    width: 30rem;
+    max-width: 80%;
+    margin: 1px auto;
+}
+.detail_fan img {
+    height: 200px;
+    width: 200px;
+  }
