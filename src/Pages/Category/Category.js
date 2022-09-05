@@ -5,6 +5,7 @@ import cat1 from "../../assests/cat1.jpg";
 import cat2 from "../../assests/cat2.jpeg";
 import cat3 from "../../assests/cat3.jpg";
 import cat4 from "../../assests/cat4.jpg";
+
 const Category = () => {
   const [categorys, setCategorys] = useState([]);
   const [products, setProducts] = useState([]);
@@ -32,9 +33,10 @@ const Category = () => {
   //Components, props
   return (
     <div>
+      
       <h1>Shop By Category</h1>
-      <div>
-        {categorys?.map((el) => {
+       <div> 
+         {categorys?.map((el) => {
           return (
             <div>
               <h1>{el.categoryName}</h1>
@@ -57,19 +59,24 @@ const Category = () => {
 
                             <span>
                               Rs. <strong> {pro.price}</strong>{" "}
-                            </span>
+                            </span> <br />
+                            <div className={style.shopButton}>
+                            <button >Shop By Category</button>
+
+                            </div>
                           </div>
                         );
                       })}
+                            
                     </span>
                   );
                 })}
-              </div>
-            </div>
+              </div> 
+             </div>
           );
-        })}
-      </div>
-      {/* <div className={style.container}>
+        })} 
+       </div> 
+       <div className={style.container}>
         <div className={style.categoryList}>
         <img className={style.Images} src={cat1} alt="loading..." />
         <br />
@@ -94,7 +101,7 @@ const Category = () => {
         <button className={style.buttons} onClick={()=>{ navigation("/home-kitchen", {replace: true} )}}>Bags, Wallets & Luggage</button>
      
         </div>
-       </div> */}
+       </div> 
     </div>
   );
 };
