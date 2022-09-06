@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
-import { useSelector, useDispatch } from "react-redux";
-import { uiActions } from "../../store/ui-Slice";
 
-const Header = ({ cartItems, products }) => {
-  const dispatch = useDispatch();
+
+const Header = ({ cartItems }) => {
+ const navigate= useNavigate()  
   const [isOpen, setIsOpen] = useState(false);
-  const isLogedIn = useSelector((state) => state.ui.isLogedIn);
+  const isLogedIn = localStorage.getItem("TOKEN") ? true : false;
 
   const isOpenHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  // const onChangeHadler =  (e) => {
-  //   let key = e.target.value;
-  //   setSearchValue(e.target.value);
-  //   if (key !== "") {
-  //     setSearchValue(products);
-  //   }
-  // };
  
-  const onLoginHandler =() => {   
-    dispatch(uiActions.isLogoutHandler());
+  const onLogoutHandler =() => {   
+    console.log("logedOut");
+    localStorage.removeItem("USERNAME");
+    localStorage.removeItem("TOKEN");
+    navigate("/login", {replace: true})
+    
   };
-  useEffect(() => {
-    onLoginHandler()
-  }, []);
+
 
   return (
     <div>
@@ -38,19 +32,17 @@ const Header = ({ cartItems, products }) => {
           <span className={style.search_icon}>
             <i class="fa fa-search"></i>
           </span>
-        </div>
-        {/* Condition for login logoout and profile setup */}
+        </div>       
         <div className={style.header__signup}>
           <div className={style.header___login}>
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
             {isLogedIn && <NavLink to="/profile" title="PROFILE">{localStorage.getItem("USERNAME")}<i class="fa fa-user"></i> </NavLink>}
             {isLogedIn && (
-              <NavLink to="/login" onClick={onLoginHandler}>
+              <NavLink to="/login" onClick={onLogoutHandler}>
                 Logout
               </NavLink>
             )}
           </div>
-
           <NavLink to="/cart" className={style.header__cart}>
             <i class="fa fa-shopping-cart">
               {cartItems.length === 0 ? "" : cartItems.length}

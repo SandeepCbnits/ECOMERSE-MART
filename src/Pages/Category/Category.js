@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import style from "./Category.module.css";
-import cat1 from "../../assests/cat1.jpg";
-import cat2 from "../../assests/cat2.jpeg";
-import cat3 from "../../assests/cat3.jpg";
-import cat4 from "../../assests/cat4.jpg";
 
 const Category = () => {
   const [categorys, setCategorys] = useState([]);
-  const [products, setProducts] = useState([]);
   const navigation = useNavigate();
 
   let categoryHandler = async () => {
@@ -18,90 +16,58 @@ const Category = () => {
     const response = await category.json();
     if (response?.length) {
       setCategorys(response);
-      setProducts(response);
     }
-    console.log(response);
   };
+
   useEffect(() => {
     categoryHandler();
   }, []);
 
-  const onClickHandler = (pro) => {
-    navigation("/category-lists", { replace: "true" });
+  const onClickHandler = (cid) => {
+    navigation(`/category-lists?cid=${cid}`, { replace: "true" });
   };
 
-  //Components, props
   return (
     <div>
-      
       <h1>Shop By Category</h1>
-       <div> 
-         {categorys?.map((el) => {
+      <div>
+        {categorys?.map((category) => {
           return (
             <div>
-              <h1>{el.categoryName}</h1>
+              <h2>{category.categoryName}</h2>
               <div className={style.container}>
-                {products.map((pro) => {
+                {category.products.map((product) => {
                   return (
-                    <span>
-                      {pro.products.map((pro) => {
-                        return (
-                          <div
-                            className={style.category}
-                            onClick={() => onClickHandler(pro)}
-                          >
-                            <img
-                              className={style.Images}
-                              src={pro.imageName}
-                              alt=""
-                            />
-                            <h3>{pro.name}</h3>
-
-                            <span>
-                              Rs. <strong> {pro.price}</strong>{" "}
-                            </span> <br />
-                            <div className={style.shopButton}>
-                            <button >Shop By Category</button>
-
-                            </div>
-                          </div>
-                        );
-                      })}
-                            
-                    </span>
+                      <Slider autoplay autoplaySpeed={2000} infinite>
+                    <div className={style.category}>
+                        <img
+                          className={style.Images}
+                          src={product.imageName}
+                          alt={product.name}
+                        />
+                        <h3 className={style.title}>{product.name}</h3>
+                        <span>
+                          Rs.{" "}
+                          <strong className={style.price}>
+                            {" "}
+                            {product.price}
+                          </strong>{" "}
+                        </span>{" "}
+                        <br />
+                        <div className={style.ShopButton}>
+                          <button onClick={() => onClickHandler(category.cid)}>
+                            Shop By Category
+                          </button>
+                        </div>
+                    </div>
+                      </Slider>
                   );
                 })}
-              </div> 
-             </div>
+              </div>
+            </div>
           );
-        })} 
-       </div> 
-       <div className={style.container}>
-        <div className={style.categoryList}>
-        <img className={style.Images} src={cat1} alt="loading..." />
-        <br />
-        <button className={style.buttons} onClick={()=>{ navigation("/home-kitchen", {replace: true} )}}>Home & Kitchen</button>
-     
-        </div>
-        <div className={style.categoryList}>
-        <img className={style.Images} src={cat2} alt="loading..." />
-        <br />
-        <button className={style.buttons} onClick={()=>{ navigation("/home-kitchen", {replace: true} )}}>Furniture</button>
-     
-        </div>
-        <div className={style.categoryList}>
-        <img className={style.Images} src={cat3} alt="loading..." />
-        <br />
-        <button className={style.buttons} onClick={()=>{ navigation("/home-kitchen", {replace: true} )}}>Sports & Fitness</button>
-     
-        </div>
-        <div className={style.categoryList}>
-        <img className={style.Images} src={cat4} alt="loading..." />
-        <br />
-        <button className={style.buttons} onClick={()=>{ navigation("/home-kitchen", {replace: true} )}}>Bags, Wallets & Luggage</button>
-     
-        </div>
-       </div> 
+        })}
+      </div>
     </div>
   );
 };

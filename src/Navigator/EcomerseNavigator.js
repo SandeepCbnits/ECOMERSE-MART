@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+
 import { Route, Routes, Navigate } from "react-router-dom";
 import ForgotPassword from "../components/Auth/ForgotPassword";
 import Login from "../components/Auth/Login";
@@ -27,21 +27,18 @@ const EcomerseNavigator = ({
   products,
   isLogoutHandler,
   setProducts,
-  addToWishListHandler,
-  setSearchValue,
-  setIsLogedIn,
-  profile,
-  setProfile,
+  addToWishListHandler,  
+  setIsLogedIn, 
   items,
   removeToCartHandler,
   orderListHandler,
   orderLists,
   dataToProfile,
-  gettingToken
- 
-  
+  gettingToken,
+  shopByCategory  
 }) => {
-  const isLogin = useSelector((state) => state.ui.isLogedIn);
+  
+  const isLogin = localStorage.getItem("TOKEN") ? true : false;
   
   return (
     <Routes>
@@ -60,21 +57,17 @@ const EcomerseNavigator = ({
                 count={count}
                 dataToProfile={dataToProfile} 
                 removeToCartHandler={removeToCartHandler}
-                
-                
               />
             }
           />
-           <Route path="/category-lists" element={<CategoryList />} /> 
+           <Route path="/category-lists" element={<CategoryList shopByCategory={shopByCategory}/>} /> 
           <Route path="/chare" element={<DetailPage />} />
-          <Route path="/category" element={<Category />} />
-         
+          <Route path="/category" element={<Category shopByCategory={shopByCategory}/>} />         
           <Route
             path="/wishlist"
             element={<WishList wishLists={wishLists} />}
           />
           <Route path="/about" element={<About />} />
-
           <Route path="/contact" element={<Contact />} />
           <Route
             path="/cart"
@@ -91,7 +84,6 @@ const EcomerseNavigator = ({
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
         </>
       )}
-
       <Route
         path="/"
         element={
@@ -102,7 +94,6 @@ const EcomerseNavigator = ({
           />
         }
       />
-
       <Route path="/otp" element={<Otp />} />
       <Route path="/passwordReset" element={<NewPassword/>} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />

@@ -19,9 +19,6 @@ const Otp = () => {
       return;
     }
 
-    // let formData = new FormData();
-    // formData.append("email", email);
-    // console.log(isNaN(otp))
     try {
       let otpSends= await fetch("http://localhost:9092/verifyOtp?otp="+otp,{
         method:"POST",

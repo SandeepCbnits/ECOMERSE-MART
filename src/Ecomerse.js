@@ -1,18 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
-
 import data from "./Items";
-import DropDownSection from "./components/Header/DropDownSection";
-
 import { useNavigate } from "react-router-dom";
 
-const Ecomerse = ({ title }) => {
+const Ecomerse = ({ title,shopByCategory }) => {
   let navigate = useNavigate();
   let { items } = data;
   const [products, setProducts] = useState([]);
-  // const [isLogedIn, setIsLogedIn] = useState(false);
-
   const [cartItems, setCartItems] = useState([]);
   const [wishLists, setWishLists] = useState([]);
   const [orderLists, setOrderLists] = useState([]);
@@ -22,13 +17,10 @@ const Ecomerse = ({ title }) => {
     if (!token) {
       navigate("/", {replace:true})   
     }
-
   },[])
 
-  const addToCartHandler = (product) => {
-    // if all ready have item
+  const addToCartHandler = (product) => {   
     let findExistingItem = cartItems.find((item) => item.id === product.id);
-
     if (findExistingItem) {
       setCartItems(
         cartItems.map((item) =>
@@ -45,13 +37,8 @@ const Ecomerse = ({ title }) => {
     }
   };
 
-  // const isLogoutHandler = () => {
-  //   setIsLogedIn(true);
-  // };
-
   const addToWishListHandler = (product) => {
     let findExisting = wishLists.find((item) => item.id === product.id);
-
     if (findExisting) {
       setWishLists(
         wishLists.map((item) =>
@@ -71,7 +58,6 @@ const Ecomerse = ({ title }) => {
 
   const removeToCartHandler = (product) => {
     let findExistingItem = cartItems.find((item) => item.id === product.id);
-
     if (findExistingItem.quentety === 1) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
     } else {
@@ -87,26 +73,21 @@ const Ecomerse = ({ title }) => {
       );
     }
   };
-
-  // Order Your data
+ 
   const orderListHandler = (order) => {
     setOrderLists([...orderLists, { ...order, quentity: 1 }]);
   };
-
  
   return (
     <Fragment>
-      <Header cartItems={cartItems} products={products} />
-      
+      <Header cartItems={cartItems} products={products} />      
       <main>
         <EcomerseNavigator
           cartItems={cartItems}
           addToCartHandler={addToCartHandler}
           title={title}
           products={products}
-          count={cartItems.length}
-          // isLogedIn={isLogedIn}
-          // setIsLogedIn={isLogoutHandler}
+          count={cartItems.length}         
           setProducts={setProducts}
           addToWishListHandler={addToWishListHandler}
           wishLists={wishLists}
@@ -114,6 +95,7 @@ const Ecomerse = ({ title }) => {
           removeToCartHandler={removeToCartHandler}
           orderLists={orderLists}
           orderListHandler={orderListHandler}
+          shopByCategory={shopByCategory}
         />
       </main>
     </Fragment>

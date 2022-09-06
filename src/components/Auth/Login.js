@@ -3,10 +3,8 @@ import { NavLink } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { uiActions } from "../../store/ui-Slice";
-const Login = ({gettingToken}) => {
-  const dispatch = useDispatch();
+
+const Login = () => { 
   const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -60,7 +58,7 @@ const Login = ({gettingToken}) => {
        
         localStorage.setItem("USERNAME", username);
          localStorage.setItem("TOKEN", response.jwttoken);
-        console.log("Getting Token via login user", response.jwttoken)
+       
         navigate("/home", { replace: true });
         
         
@@ -73,11 +71,14 @@ const Login = ({gettingToken}) => {
     resetUsernameHandler();
     resetPasswordrHandler();
   };
+
   const logoutHandler = () => {
     if (!validUsername && !validPassword) {
       return;
     }
-    dispatch(uiActions.isLogoutHandler());
+    localStorage.setItem("USERNAME", null);
+    localStorage.setItem("TOKEN", null);
+   
   };
 
   useEffect(() => {
@@ -148,7 +149,7 @@ const Login = ({gettingToken}) => {
             Forgot Password ? <NavLink to="/forgotPassword">Reset</NavLink>
           </p>
         </p>
-        {/* <NavLink to="/">Back To Home</NavLink> */}
+    
       </footer>
     </div>
   );

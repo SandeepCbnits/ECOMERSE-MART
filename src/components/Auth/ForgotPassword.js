@@ -79,25 +79,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-
-// Jagrati Khatri4:49 PM
-// const options = {
-//   method: 'post',
-//   headers: {
-//     'Accept': 'application/json, text/plain, */*',
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify(card_data)
-// }
-
-// fetch('http://localhost:3000/api/new-card', options)
-//   .then(response => {
-//      console.log(request)
-//      if (response.ok) {
-//          return response.json();
-//        } else {
-//           throw new Error('Something went wrong ...');
-//        }
-//   })
-//   .then(data => this.setState({ creditcards: data.creditcards }
-// fkz-eyhk-fyy

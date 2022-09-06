@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
-const CategoryList = (props) => {
-  const [getLists, setGetLists] = useState([]);
-
-  let getCategory = async () => {
-    let fetchData = await fetch("http://localhost:9999/categories/getAllCategories");
-    let respnseData = await fetchData.json();
-    console.log(respnseData);
-    setGetLists(respnseData);
+const CategoryList = () => {
+  const [products, setProducts] = useState([]);
+  const [category, setCategory]=useState("")
+  const [searchParams, setSearchParams] = useSearchParams();
+ 
+  let categoryHandler = async (cid) => {
+    let category = await fetch(
+      `http://localhost:9092/categories/getByCid?cid=${cid}`
+    );
+    const response = await category.json();
+   
+    setProducts(response.products)
+    setCategory(response.categoryName)
   };
+
   useEffect(() => {
-    getCategory();
+    categoryHandler(searchParams.get("cid"))    
   }, []);
+
 
   return (
     <div>
-      {getLists.map((list) => (
+      {products.map((product) => (
         <div>
-          <span>{list.name}</span>
+          <img src={product.imageName} alt="" />
+          <span>{product.name}</span>
         </div>
       ))}
     </div>
