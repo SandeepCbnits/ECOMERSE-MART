@@ -1,0 +1,21 @@
+.categoryList{
+min-width: 45rem;
+max-width: 90%;
+margin: 0 auto;
+padding: 10px;
+
+
+}
+.category {
+    display: flex;
+}
+.categoryImage img{
+    height: 250px;
+    width: 200px;
+}
+.category_rightList{
+padding-left: 2em;
+}
+.category_rightRating{
+    display: flex;
+}

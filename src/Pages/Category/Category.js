@@ -38,29 +38,26 @@ const Category = () => {
               <div className={style.container}>
                 {category.products.map((product) => {
                   return (
-                      <Slider autoplay autoplaySpeed={2000} infinite>
                     <div className={style.category}>
-                        <img
-                          className={style.Images}
-                          src={product.imageName}
-                          alt={product.name}
-                        />
-                        <h3 className={style.title}>{product.name}</h3>
-                        <span>
-                          Rs.{" "}
-                          <strong className={style.price}>
-                            {" "}
-                            {product.price}
-                          </strong>{" "}
-                        </span>{" "}
-                        <br />
-                        <div className={style.ShopButton}>
-                          <button onClick={() => onClickHandler(category.cid)}>
-                            Shop By Category
-                          </button>
-                        </div>
+                      <img
+                        className={style.Images}
+                        src={product.imageName}
+                        alt={product.name}
+                      />
+                      <div className={style.titleList}>
+                      <h3 className={style.title}>{product.name}</h3>
+                      <h4 className={style.price}>
+                        <strong className={style.rs}>
+                          Rs.   </strong>{product.price}
+                      </h4>{" "}
+
+                      </div>
+                      <div className={style.shopButton}>
+                        <button onClick={() => onClickHandler(category.cid)}>
+                          Shop By Category
+                        </button>
+                      </div>
                     </div>
-                      </Slider>
                   );
                 })}
               </div>
