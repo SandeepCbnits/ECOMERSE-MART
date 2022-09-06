@@ -139,7 +139,14 @@ const Profile = () => {
               <div className="card shadow p-3 border-0 rounded-0">
                 <div className='info'>
                   <h5>Manage Address </h5>
+
+              
                   <div className='row'>
+                  <div className='btnn'>
+                  <p className="buttonn">Add Address</p>
+                  <br></br>
+                    </div>
+                  
                     <div className='col-md-6'>
                       <input type="text" className='input' name="firstName" required="" autocomplete="name" tabindex="1" value="Jagrati" disabled="" />
 

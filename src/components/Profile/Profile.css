@@ -98,3 +98,18 @@ a{
 .mobile input {
   padding: 9px 2rem;
 }
+.btnn{
+  border: 1px solid #e0e0e0;
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    
+}
+.buttonn{
+  font-size: 14px;
+    color: #2874f0;
+    font-weight: 500;
+   
+    padding: 10px;
+    cursor: pointer;
+}

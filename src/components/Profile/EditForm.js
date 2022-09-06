@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useState } from "react"
+
 import "./editform.css"
+import { useNavigate } from "react-router-dom";
 const EditForm = () => {
 const [profile ,setProfile]=useState({
     fname:"",
@@ -8,12 +10,12 @@ const [profile ,setProfile]=useState({
     email:"",
     phoneNumber:""
 })
-
+const navigate=useNavigate()
 
     const onChangeHandler=(e)=>{
       const value=  e.target.value
       console.log({[e.target.name]:value})
-      setProfile({[e.target.name]:value, ...profile})
+      setProfile({...profile,[e.target.name]:value })
 
     }
   
@@ -21,10 +23,10 @@ const [profile ,setProfile]=useState({
         e.preventDefault();
         const token= localStorage.getItem("TOKEN")
         axios.put(`http://localhost:9092/updateProfile/${token}`,profile).then(res=>{
-     
+
         console.log(res.data)  
         console.log(profile+"jagrati")
-
+        navigate("/profile", { replace: true });
             
         }).catch(err=>{
             console.log(err)
