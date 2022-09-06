@@ -37,7 +37,8 @@
 }
 .shopButton button:hover {
   background-color: black;
-  color: goldenrod;
+  /* color: goldenrod; */
+  color: hsl(30, 100%, 50%);
 }
 .categoryActions {
 }
@@ -70,7 +71,8 @@ h3 {
 }
 .price {
   text-align: justify;
-  color: rgb(240, 161, 15);
+  /* color: rgb(240, 161, 15); */
+  color: hsl(30, 100%, 50%);
   margin-bottom: 0.4em;
   margin-top: -1em;
 }

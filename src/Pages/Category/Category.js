@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import style from "./Category.module.css";
 
 const Category = () => {
@@ -50,7 +47,6 @@ const Category = () => {
                         <strong className={style.rs}>
                           Rs.   </strong>{product.price}
                       </h4>{" "}
-
                       </div>
                       <div className={style.shopButton}>
                         <button onClick={() => onClickHandler(category.cid)}>

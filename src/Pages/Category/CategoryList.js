@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import style from './CategoryList.module.css'
+import style from "./CategoryList.module.css";
+
 const CategoryList = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("");
@@ -11,7 +12,7 @@ const CategoryList = () => {
       `http://localhost:9092/categories/getByCid?cid=${cid}`
     );
     const response = await category.json();
-console.log(response)
+    console.log(response);
     setProducts(response.products);
     setCategory(response.categoryName);
   };
@@ -25,21 +26,26 @@ console.log(response)
       {products.map((product) => (
         <div className={style.category}>
           <div className={style.categoryImage}>
-            <img src={product.imageName} alt={product.name} />
-            <button></button>
+            <img src={product.imageName} alt={product.name} /> <br />
+            <span className={style.category_cart}>
+              <button>Buy Cart</button>
+              <button>Add To Cart</button>
+            </span>
           </div>
           <div className={style.category_rightList}>
-            <span>{product.description}</span> <br/>
-            <span>Number of user rating</span>
+            <span>{product.description}</span> <br />
             <div className={style.category_rightRating}>
-            {Array(product.noOfUserRated)
-              .fill()
-              .map((_) => (
-                <p>⭐</p>
-              ))}
+              <span className={style.category_rating}>
+                Number of user rating
+              </span>
+              {Array(product.noOfUserRated)
+                .fill()
+                .map((_) => (
+                  <p>⭐</p>
+                ))}
             </div>
-            <span>Rs. {product.price}</span> <br/>
-        
+            <span>Rs. <strong className={style.category_price}>{product.price}</strong></span>{" "}
+            <br /> <br/>
             <span>{product.name}</span>
           </div>
         </div>
