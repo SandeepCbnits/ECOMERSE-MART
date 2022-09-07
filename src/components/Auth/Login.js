@@ -54,11 +54,9 @@ const Login = () => {
       } else {
        
         // let responseData = await login.json();
-        const response = await login.json();
-       
+        const response = await login.json();       
         localStorage.setItem("USERNAME", username);
-         localStorage.setItem("TOKEN", response.jwttoken);
-       
+         localStorage.setItem("TOKEN", response.jwttoken);       
         navigate("/home", { replace: true });
         
         

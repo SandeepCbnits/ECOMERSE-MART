@@ -1,60 +1,53 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import ImageSlider from "../components/Slider/ImageSlider";
 import style from "./HomePage.module.css";
 
-const HomePage = ({
-  addToCartHandler,
-  addToWishListHandler,
-  items,
-  orderListHandler,
-}) => {
-  let fetchProductData = async () => {};
+const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  let fetchProduct = async () => {
+    let product = await fetch("http://localhost:9092/products");
+    let response = await product.json();
+    setProducts(response);
+  };
 
   useEffect(() => {
-    fetchProductData();
+    fetchProduct();
   }, []);
 
+  const addToCart=async (product)=>{
+//   let addInCart = await fetch(`http://localhost:9092/cart/addToCart/${product}`,{
+//   method:"POST",
+//   headers:{
+//     "Content-Type":"application/json"
+//   },
+//   body: JSON.stringify({
+    
+//   })
+// })
+// let cart = await addInCart.json()
+console.log(product)
+  }
   return (
     <div>
       <ImageSlider />
-      <div className={style.productContainer}>
-        {items.map((product) => {
-          return (
-            <div className={style.productList}>
-              <img src={product.image} alt={product.title} />
-              <p>{product.description}</p>
-              <div className={style.rating}>
-                {Array(product.rating)
-                  .fill()
-                  .map((_) => (
-                    <p>⭐</p>
-                  ))}
-              </div>
-              <p>Rs. {product.price}</p>
-              <div className={style.actions}>
-                <button
-                  className={style.buy}
-                  onClick={() => orderListHandler(product)}
-                >
-                  <NavLink to="/checkout">BUY </NavLink>
-                </button>
-                <button
-                  title="Add To Cart"
-                  className={style.cart}
-                  onClick={() => addToCartHandler(product)}
-                >
-                  +
-                </button>
-                <i
-                  class="fa fa-heart"
-                  title="Add To WisLists"
-                  onClick={() => addToWishListHandler(product)}
-                ></i>
-              </div>
+      <div className={style.product_container}>
+        {products.map((product) => (
+          <div className={style.container}>
+            <img
+              className={style.image}
+              src={product.imageName}
+              alt={product.name}
+            />
+            <div className={style.product_bottom}>
+              <span className={style.product_name}>{product.name}</span> <br />
+              <span className={style.product_price}>Rs. {product.price}</span>
             </div>
-          );
-        })}
+            <div className={style.product_actions}>
+              <button className={style.product_buy}>Buy</button>
+              <button className={style.product_addtocart} onClick={()=>addToCart(product)}>Add To Cart</button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

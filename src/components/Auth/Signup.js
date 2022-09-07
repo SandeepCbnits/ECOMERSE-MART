@@ -57,26 +57,19 @@ try {
         username:fname,
         password:password,
         lname:lname,
-        fname:fname
-        
+        fname:fname        
       }),
     });
-
     if (!signup.ok) {
       throw new Error(`HTTP REQ ERROR ${signup.status}`)
     }else{
-      let responseData = await signup.json();
-      console.log(responseData);
+      let responseData = await signup.json();      
       navigate("/login", { replace: true });
-
     }
 } catch (error) {
-  alert("Somting Went Worng !!", error)
-  console.log("Somthing Went Worng !!", error)
+  alert("Somting Went Worng !!", error)  
 }
     // console.log({password, email, fname,lname});
-
-
     resetFNameHandler();
     resetEmailHandler();
     resetLNameHandler();
@@ -120,7 +113,6 @@ try {
           />
           {invalidLName && <p className={style.error}>Please enter a Lname</p>}
         </div>
-
         <div className={style.inputFiled}>
           <label htmlFor="email">Email </label>
           <input
@@ -155,7 +147,6 @@ try {
           </button>
         </div>
       </form>
-
       <footer>
         <p>
           Already have an account ?<NavLink to="/login">Sigin In</NavLink>{" "}
