@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import ImageSlider from "../components/Slider/ImageSlider";
 import style from "./HomePage.module.css";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   let fetchProduct = async () => {
     let product = await fetch("http://localhost:9092/products");
@@ -14,25 +16,36 @@ const HomePage = () => {
     fetchProduct();
   }, []);
 
-  const addToCart=async (product)=>{
-//   let addInCart = await fetch(`http://localhost:9092/cart/addToCart/${product}`,{
-//   method:"POST",
-//   headers:{
-//     "Content-Type":"application/json"
-//   },
-//   body: JSON.stringify({
-    
-//   })
-// })
-// let cart = await addInCart.json()
-console.log(product)
-  }
+  // const addToCart=async (product)=>{
+  //   console.log(product.pid)
+  // //   let token = localStorage.getItem("TOKEN")
+  // //   let addToCart = await fetch(`http://localhost:9092/cart/addToCart/${token}`,{
+  // //     method:"POST",
+  // //     headers:{
+  // //       "Content-Type":"application/json",
+  // //       // 'Accept': 'application/json'
+  // //     },
+  // //      body: JSON.stringify({
+  // //       productId:2,
+  // //       quantity:2
+  // //     })
+  // //   })
+  // // let response = await addToCart.json();
+  // // console.log(response)
+  // }
+
+  const addToProduct = (productId) => {    
+    navigate(`/cart?productId=${productId}`);
+  };
   return (
     <div>
       <ImageSlider />
       <div className={style.product_container}>
         {products.map((product) => (
-          <div className={style.container}>
+          <div
+            onClick={() => addToProduct(product.pid)}
+            className={style.container}
+          >
             <img
               className={style.image}
               src={product.imageName}
@@ -40,11 +53,10 @@ console.log(product)
             />
             <div className={style.product_bottom}>
               <span className={style.product_name}>{product.name}</span> <br />
-              <span className={style.product_price}>Rs. {product.price}</span>
-            </div>
-            <div className={style.product_actions}>
-              <button className={style.product_buy}>Buy</button>
-              <button className={style.product_addtocart} onClick={()=>addToCart(product)}>Add To Cart</button>
+              <span>
+                Rs.{" "}
+                <stron className={style.product_price}>{product.price}</stron>
+              </span>
             </div>
           </div>
         ))}

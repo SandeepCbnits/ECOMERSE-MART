@@ -62,8 +62,7 @@ const Login = () => {
         
       }
     } catch (error) {
-      alert("Somthing Went Worng !!")
-      console.log("Getting Request Error ", error);
+      alert("Somthing Went Worng !!")     
     }
     
     resetUsernameHandler();

@@ -7,10 +7,19 @@
 .container {
   margin: 10px;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.3);  
+  cursor: pointer;
 }
 .image{
   height: 150px;
   width: 200px;
+}
+.product_bottom {
+  color: #000;
+  font-size: large;
+  font-weight: bold;
+}
+.product_price{
+  color: hsl(30, 100%, 50%);
 }
 .product_actions {
   display: flex;

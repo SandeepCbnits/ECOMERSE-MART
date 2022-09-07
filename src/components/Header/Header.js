@@ -13,16 +13,12 @@ const Header = ({ cartItems }) => {
     setIsOpen(!isOpen);
   };
 
- 
-  const onLogoutHandler =() => {   
-    console.log("logedOut");
+  const onLogoutHandler =() => {     
     localStorage.removeItem("USERNAME");
     localStorage.removeItem("TOKEN");
-    navigate("/login", {replace: true})
-    
+    navigate("/login", {replace: true})    
   };
-
-
+  
   return (
     <div>
       <div className={style.header}>
