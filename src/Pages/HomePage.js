@@ -34,8 +34,9 @@ const HomePage = () => {
   // // console.log(response)
   // }
 
-  const addToProduct = (productId) => {    
-    navigate(`/cart?productId=${productId}`);
+  const addToProduct = (product) => {    
+    
+    navigate(`/cart?product=${product}`, {replace:true});
   };
   return (
     <div>
