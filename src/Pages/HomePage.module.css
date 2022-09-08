@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: center;  
 }
 .container {
   margin: 10px;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.3);  
-  cursor: pointer;
+  cursor: pointer;  
 }
 .image{
   height: 150px;
@@ -23,8 +23,7 @@
 }
 .product_actions {
   display: flex;
-  justify-content: space-around;
-  
+  justify-content: space-around;  
 }
 .product_actions button{
   padding: 0.3rem 0.8rem;

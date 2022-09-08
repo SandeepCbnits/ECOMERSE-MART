@@ -3,7 +3,6 @@ import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 
-
 const Header = ({ cartItems }) => {
  const navigate= useNavigate()  
   const [isOpen, setIsOpen] = useState(false);

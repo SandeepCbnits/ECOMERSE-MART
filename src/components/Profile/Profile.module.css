@@ -13,9 +13,7 @@
 .profile {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-
-  
+  align-items: center;   
 }
 
 .profile img {
@@ -23,11 +21,7 @@
   width: 100px;
   border-radius: 100px;
 }
-.order{
 
- 
- 
-}
 .input {
   display: flex;
 }

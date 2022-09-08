@@ -6,8 +6,7 @@ const About = () => {
     <div className={style.aboutContainer}>
       <h1>About US</h1>
       <div className={style.shopingMart}>
-        <h1>About Shoping Mart</h1>
-        
+        <h1>About Shoping Mart</h1>        
         <p>
           Online Shopping Mart is a E commerce Site. Here Shopping is made
           easier and convenient for the customer through the internet. Online

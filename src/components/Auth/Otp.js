@@ -2,6 +2,7 @@ import React from "react";
 import UserInput from "./hooks/User-Input";
 import style from "./Otp.module.css";
 import { useNavigate } from "react-router-dom";
+
 const Otp = () => {
   let navigate = useNavigate();
   const {
@@ -18,7 +19,6 @@ const Otp = () => {
     if (!validOtp) {
       return;
     }
-
     try {
       let otpSends= await fetch("http://localhost:9092/verifyOtp?otp="+otp,{
         method:"POST",

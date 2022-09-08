@@ -1,22 +1,103 @@
-.container {
+.container{
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+text-align: center;
+width: 57rem;
+max-width: 90%;
+margin: 0 auto;
+}
+.cart_container{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 45rem;
-  max-width: 95%;
-  margin: 10px auto;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+  margin:2rem auto; 
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2); 
 }
-.container button{
+.cart_leftContainer  img{
+  width: 140px;
+  height: 150px;
+  padding: 10px;
+}
+.cart_actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;  
+}
+.cart_actions button{ 
   cursor: pointer;
+  color: #fff; 
 }
-.container img {
-  height: 200px;
-  width: 200px;
-  margin-right: 2rem;
+.cart_actions a:hover{
+  color: rgb(214, 122, 127);
 }
-.delete{
-  font-size: x-large;
- 
-  color: red;
+.description{
+  margin: 1px ;  
+}
+.cart_description {  
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+}
+.cart_rightContainer{
+  margin: 10px;  
+}
+.cart_name{
+color: #000;
+font-size: larger;
+font-weight: bold;
+}
+.cart_rating{
+  display: flex;
+ justify-content: space-between;
+ align-items: center;  
+}
+.cart_ratingIcon{
+  background-color: green;
+  border-radius: 2px;
+}
+.cart_price{
+  color: rgb(214, 122, 127);
+  font-size: large;
+  font-weight: bold;
+}
+.cart_actionsButton {
+  display: flex;
+  margin: 1em;
+  font-size: large;  
+}
+.cart_actionsButton button{
+  padding: 0.4rem 0.6rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: large;
+  font-weight: bold;
+}
+.cart_actionsButton button:hover {
+background-color: goldenrod;
+color: white;
+}
+.cart_right {  
+  padding: 1rem 2rem;
+  box-shadow: 1px 2px 2px 2px  rgba(0,0,0,0.3);
+  margin: 0 auto;
+}
+.totla_cast{
+  display: flex;
+  justify-content: space-between;
+}
+.buy_button{
+  padding: 0.4rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  columns: #000;
+  font-weight: bold;
+  font-size: medium;
+}
+.buy_button:hover{
+  color: rgb(214, 122, 127);  
 }

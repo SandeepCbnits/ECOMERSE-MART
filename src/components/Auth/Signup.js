@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
 import style from "./Signup.module.css";
+
 const Signup = () => {
   const navigate = useNavigate();
   const [formIsValid, setFormIsValid] = useState(false);
@@ -13,6 +14,7 @@ const Signup = () => {
     nameIsValid: validFName,
     reset: resetFNameHandler,
   } = UserInput((value) => value.length > 0);
+
   const {
     value: lname,
     nameIsInValid: invalidLName,
@@ -68,8 +70,7 @@ try {
     }
 } catch (error) {
   alert("Somting Went Worng !!", error)  
-}
-    // console.log({password, email, fname,lname});
+}   
     resetFNameHandler();
     resetEmailHandler();
     resetLNameHandler();
@@ -83,10 +84,11 @@ try {
       setFormIsValid(false);
     }
   }, [validEmail, validFName, validPassword, validLName]);
+
   return (
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
-      <form action="" onSubmit={submitHandler}>
+      <form  onSubmit={submitHandler}>
         <div className={style.inputFiled}>
           <label htmlFor="fname">First Name</label>
           <input
@@ -101,12 +103,12 @@ try {
           {invalidFName && <p className={style.error}>Please enter a Fname</p>}
         </div>
         <div className={style.inputFiled}>
-          <label htmlFor="lname">Last Name</label>
+          <label htmlFor="surname">Surname Name</label>
           <input
             className={style.input}
             type="text"
-            id="lname"
-            placeholder="Last Name EX. khatri,  Yadav.."
+            id="surname"
+            placeholder="Surname Name EX. khatri,  Yadav.."
             value={lname}
             onChange={onLNameChangeHandler}
             onBlur={lnameBlurHandler}

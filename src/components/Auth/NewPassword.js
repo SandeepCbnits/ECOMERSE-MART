@@ -8,12 +8,12 @@ const NewPassword = () => {
     password: "",
     newPassword: "",
   });
+
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
   let validPassword = resetPassword.password !== "";
   let invalidPassword = !validPassword && isTouch;
-
   let validNewPassword = resetPassword.newPassword !== "";
   let invalidNewPassword = !validNewPassword && isTouch;
 
@@ -25,6 +25,7 @@ const NewPassword = () => {
     setPasswordIsValid()
     navigate("/home", { replace: true });
   };
+
   useEffect(() => {
     if (validPassword && validNewPassword) {
       setPasswordIsValid(true)
@@ -32,7 +33,7 @@ const NewPassword = () => {
       setPasswordIsValid(false)
     }
   }, [validPassword, validNewPassword]);
-  //const formControlClass = invalidEmail ? "inputFiled invalid" : "inputFiled"
+  
   return (
     <div className={style.loginContainer}>
       <h2>Password Reset</h2>

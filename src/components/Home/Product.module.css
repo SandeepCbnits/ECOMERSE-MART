@@ -1,8 +1,6 @@
-.container{
-  
+.container{  
   margin: 12rem;
-  overflow: hidden;
- 
+  overflow: hidden; 
 }
 .container img {
   width: 225px;

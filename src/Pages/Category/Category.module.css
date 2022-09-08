@@ -16,10 +16,6 @@
 
   margin-right: -2em;
 }
-/* .category:hover,
-.category:active {
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.6);
-} */
 .shopButton {
   text-align: left;
   padding-left: 1em;
@@ -37,18 +33,13 @@
 }
 .shopButton button:hover {
   background-color: black;
-  /* color: goldenrod; */
   color: hsl(30, 100%, 50%);
 }
-.categoryActions {
-}
-
 h1,
 h2 {
   text-align: center;
   color: gray;
 }
-
 .Images {
   width: 250px;
   height: 160px;
@@ -64,14 +55,12 @@ h3 {
   color: black;
   text-align: justify;
 }
-.priceList {
-}
+
 .rs {
   color: #000;
 }
 .price {
-  text-align: justify;
-  /* color: rgb(240, 161, 15); */
+  text-align: justify; 
   color: hsl(30, 100%, 50%);
   margin-bottom: 0.4em;
   margin-top: -1em;

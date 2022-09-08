@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import ImageSlider from "../components/Slider/ImageSlider";
 import style from "./HomePage.module.css";
 
@@ -35,8 +35,9 @@ const HomePage = () => {
   // }
 
   const addToProduct = (product) => {    
-    
-    navigate(`/cart?product=${product}`, {replace:true});
+    // /productDetail
+   //navigate(`/cart?product=${product}`, {replace:true});
+    navigate(`/productDetail?product=${product}`, {replace:true});
   };
   return (
     <div>

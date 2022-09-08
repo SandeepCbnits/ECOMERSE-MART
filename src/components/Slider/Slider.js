@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./Slider.module.css";
 const Slider = ({ image, slidePrev, slideNext }) => {
+
   return (
     <div>
-      <img className={style.image} src={image.image} alt="image-Slider" />
+      <img className={style.image} src={image.image} alt="image_Slider" />
       <div className={style.imageSlider}>
         <div className={style.actions}>
           <button title="Previs Slides" className={style.actions1} onClick={slidePrev}>

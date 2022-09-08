@@ -1,0 +1,17 @@
+.productDetail_container {
+  display: flex;
+  justify-content: space-around;  
+  margin: 0 auto;
+  width: 45rem;
+  max-width: 90%;
+}
+.product_imageContainer,
+img {
+  width: 240px;
+  height: 350px;
+  padding: 10px;
+}
+.product_rightContainer{
+  padding: 1em 2em;
+ 
+}

@@ -1,14 +1,11 @@
-import React from "react";
-
+import React, { Fragment } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import ForgotPassword from "../components/Auth/ForgotPassword";
 import Login from "../components/Auth/Login";
-
 import Signup from "../components/Auth/Signup";
 import Cart from "../components/Cart/Cart";
 import CheckOut from "../components/CheckOut/CheckOut";
 import DetailPage from "../components/DetailPage/DetailPage";
-
 import Profile from "../components/Profile/Profile";
 import About from "../Pages/About/About";
 import Category from "../Pages/Category/Category";
@@ -19,6 +16,7 @@ import WishList from "../Pages/WishList/WishList";
 import Otp from "../components/Auth/Otp";
 import NewPassword from "../components/Auth/NewPassword";
 import AddToCart from "../components/Cart/AddToCart";
+import ProductDetailPage from "../components/Cart/ProductDetailPage";
 
 const EcomerseNavigator = ({
   count,
@@ -37,14 +35,13 @@ const EcomerseNavigator = ({
   dataToProfile,
   gettingToken,
   shopByCategory  
-}) => {
-  
+}) => {  
   const isLogin = localStorage.getItem("TOKEN") ? true : false;
   
   return (
     <Routes>
       {isLogin && (
-        <>
+        <Fragment>
           <Route
             path="/home"
             element={
@@ -81,10 +78,11 @@ const EcomerseNavigator = ({
               />
             }
           />
+          <Route path="/productDetail" element={<ProductDetailPage/>} />
           <Route path="/addToCart" element={<AddToCart/> }/>
           <Route path="/profile" element={<Profile  gettingToken={gettingToken}  />} />
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
-        </>
+        </Fragment>
       )}
       <Route
         path="/"

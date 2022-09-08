@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import CheckOut from "../CheckOut/CheckOut";
+import { NavLink} from "react-router-dom";
+
 import style from "./Product.module.css";
 const Product = ({
   addToCartHandler,
@@ -13,7 +13,7 @@ const Product = ({
   addToWishListHandler,
   orderListHandler,
 }) => {
-  let navigate = useNavigate();
+ 
   return (
     <div className={style.container}>
       <div className={style.product}>
@@ -30,7 +30,6 @@ const Product = ({
           </div>
           <p className={style.price}>Rs. {price}</p>
         </div>
-
         <div>
           <div className={style.wishList} title="add To Wish Lists">
             <i class="fa fa-heart" onClick={addToWishListHandler}></i>

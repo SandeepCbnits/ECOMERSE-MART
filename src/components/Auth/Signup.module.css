@@ -12,8 +12,6 @@
 .loginContainer h1 {
   margin-bottom: 0.1vh;
 }
-.inputFiled label {
-}
 .inputFiled input {
   display: block;
   width: 100%;
@@ -21,9 +19,6 @@
   margin: 10px auto;
   margin-bottom: 0px;
 }
-.inputFiled .input {
-}
-
 .error {
   text-align: start;
   margin-top: 1px;
@@ -43,7 +38,6 @@ button:active {
 }
 .actionButton button:disabled,
 button:active,
-button:hover {
-  /* cursor: not-allowed; */
+button:hover { 
   background-color: #ccc;
 }

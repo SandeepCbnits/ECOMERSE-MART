@@ -34,19 +34,16 @@ const CategoryList = () => {
           </div>
           <div className={style.category_rightList}>
             <span>{product.description}</span> <br />
-            <div className={style.category_rightRating}>
-              <span className={style.category_rating}>
-                Number of user rating
-              </span>
-              {Array(product.noOfUserRated)
+            <div className={style.category_rightRating}>              
+              <span>{product.name}</span>
+              {Array(1)
                 .fill()
                 .map((_) => (
-                  <p>⭐</p>
+                  <p title="Rating of product!" className={style.category_rating}>⭐{product.rating}</p>
                 ))}
             </div>
             <span>Rs. <strong className={style.category_price}>{product.price}</strong></span>{" "}
             <br /> <br/>
-            <span>{product.name}</span>
           </div>
         </div>
       ))}

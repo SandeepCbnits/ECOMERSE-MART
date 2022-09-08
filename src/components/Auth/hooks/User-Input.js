@@ -3,7 +3,6 @@ import { useState } from "react";
 const UserInput = (validValue) => {
   const [valueInput, setValueInput] = useState("");
   const [isError, setIsError] = useState(false);
-
   const nameIsValid = validValue(valueInput);
   const nameIsInValid = !nameIsValid && isError;
 
@@ -14,10 +13,12 @@ const UserInput = (validValue) => {
   const onErrorHandler = () => {
     setIsError(true);
   };
+  
   const reset = () => {
     setValueInput("");
     setIsError(false);
   };
+  
   return {
     value: valueInput,
     nameIsValid,
