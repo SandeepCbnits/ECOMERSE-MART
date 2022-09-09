@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import SideBar from "../SideBar/SideBar";
+
+
 
 const Header = ({ cartItems }) => {
  const navigate= useNavigate()  
+
+
   const [isOpen, setIsOpen] = useState(false);
   const isLogedIn = localStorage.getItem("TOKEN") ? true : false;
 
-  const isOpenHandler = () => {
-    setIsOpen(!isOpen);
-  };
+  
 
   const onLogoutHandler =() => {     
     localStorage.removeItem("USERNAME");
     localStorage.removeItem("TOKEN");
     navigate("/login", {replace: true})    
   };
-  
+  const showNavBar =()=>{
+    setIsOpen(!isOpen);
+   }
+   const closeHandler =()=>{
+    setIsOpen(isOpen);
+   }
   return (
     <div>
       <div className={style.header}>
@@ -45,24 +51,18 @@ const Header = ({ cartItems }) => {
           </NavLink>
         </div>
       </div>
-      <header className={style.second_header}>
-        <div className={style.header__nav}>
-          <div className={style.side_menu}>
-            <aside className={isOpen ? "to-right" : ""}>
-              {/* <NavLink to="/" onClick={isOpenHandler}>
-                <i class="fa fa-bars"></i>
-              </NavLink> */}
-            </aside>
-            {isOpen && (
-              <SideBar openClass="open" onCloseHandler={isOpenHandler} />
-            )}
-          </div>
+      <header  className={style.second_header}>
+        {isOpen && <div   className={style.header__nav}>        
           <NavLink to="/home">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/category">Category</NavLink>
           <NavLink to="/wishlist">WishList</NavLink>
           <NavLink to="/contact">Contact Us</NavLink>
-        </div>
+          <button  className={style.nav_btn} onClick={closeHandler}>X</button>
+        
+        </div> }
+       
+         <button className={style.nav_btn} onClick={showNavBar}>=</button>
       </header>
     </div>
   );
