@@ -31,7 +31,7 @@ margin: 0 auto;
   color: #fff; 
 }
 .cart_actions a:hover{
-  color: rgb(214, 122, 127);
+  color: hsl(30, 98%, 31%);
 }
 .description{
   margin: 1px ;  

@@ -108,7 +108,7 @@ try {
             className={style.input}
             type="text"
             id="surname"
-            placeholder="Surname Name EX. khatri,  Yadav.."
+            placeholder="SurName EX. khatri,  Yadav.."
             value={lname}
             onChange={onLNameChangeHandler}
             onBlur={lnameBlurHandler}

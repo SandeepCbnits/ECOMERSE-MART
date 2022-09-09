@@ -2,28 +2,25 @@ import React, { useState } from "react";
 import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
-
 const Header = ({ cartItems }) => {
- const navigate= useNavigate()  
-
-
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const isLogedIn = localStorage.getItem("TOKEN") ? true : false;
 
-  
-
-  const onLogoutHandler =() => {     
+  const onLogoutHandler = () => {
     localStorage.removeItem("USERNAME");
     localStorage.removeItem("TOKEN");
-    navigate("/login", {replace: true})    
+    navigate("/login", { replace: true });
   };
-  const showNavBar =()=>{
+
+  const showNavBar = () => {
     setIsOpen(!isOpen);
-   }
-   const closeHandler =()=>{
-    setIsOpen(isOpen);
-   }
+  };
+
+  const closeHandler = () => {
+    setIsOpen(isOpen);    
+  };
+
   return (
     <div>
       <div className={style.header}>
@@ -33,11 +30,16 @@ const Header = ({ cartItems }) => {
           <span className={style.search_icon}>
             <i class="fa fa-search"></i>
           </span>
-        </div>       
+        </div>
         <div className={style.header__signup}>
           <div className={style.header___login}>
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
-            {isLogedIn && <NavLink to="/profile" title="PROFILE">{localStorage.getItem("USERNAME")}<i class="fa fa-user"></i> </NavLink>}
+            {isLogedIn && (
+              <NavLink to="/profile" title="PROFILE">
+                {localStorage.getItem("USERNAME")}
+                <i class="fa fa-user"></i>{" "}
+              </NavLink>
+            )}
             {isLogedIn && (
               <NavLink to="/login" onClick={onLogoutHandler}>
                 Logout
@@ -51,19 +53,27 @@ const Header = ({ cartItems }) => {
           </NavLink>
         </div>
       </div>
-      <header  className={style.second_header}>
-        {isOpen && <div   className={style.header__nav}>        
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/category">Category</NavLink>
-          <NavLink to="/wishlist">WishList</NavLink>
-          <NavLink to="/contact">Contact Us</NavLink>
-          <button  className={style.nav_btn} onClick={closeHandler}>X</button>
-        
-        </div> }
-       
-         <button className={style.nav_btn} onClick={showNavBar}>=</button>
-      </header>
+      <div className={style.footer}>
+        <header className={style.second_header}>
+          <div  className={style.header__nav}>
+            <div showNavBar={showNavBar} className={style.close_btn}>
+            <button onClick={closeHandler}
+             className={isOpen ? style.nav__close_btn : style.nav_btn}>
+              <i class="fa fa-remove"></i>
+            </button>
+            </div>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/category">Category</NavLink>
+            <NavLink to="/wishlist">WishList</NavLink>
+            <NavLink to="/contact">Contact Us</NavLink>
+          </div>
+          <button className={style.nav_btn} onClick={showNavBar}>
+            {" "}
+            &#9776;
+          </button>
+        </header>
+      </div>
     </div>
   );
 };

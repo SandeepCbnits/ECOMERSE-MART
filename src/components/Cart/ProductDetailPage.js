@@ -63,26 +63,45 @@ const ProductDetailPage = () => {
             {cartDetailProduct.name}
           </span>{" "}
           <br />
-          <span className={style.cartDetail_price}>
-            Rs. {cartDetailProduct.price}
+          <span className={style.cartDetail_rs}>
+            Rs. 
+            <strong className={style.cartDetail_price}>
+            {cartDetailProduct.price}
+            </strong>
+          
           </span>{" "}
           <br />
           <span className={style.cartDetail_rating}>
             {Array(4)
               .fill()
-              .map((_) => (
+              .map((_) => (                
                 <span title="Rating of Products"> ⭐ </span>
               ))}
+              <p>Rating of Products </p>
           </span>{" "}
           <br />
           <span className={style.cartDetail_desctiption}>
             {cartDetailProduct.description}
           </span>{" "}
           <br />
-          <p> </p>
-          <span>
+          <div className={style.cartDetail_button}>
+          <span >
             <button onClick={() => addToProduct(cartDetailProduct.pid)}>ADD TO CART</button>
           </span>
+          <span >
+            <button >Buy Now</button>
+          </span>
+          </div>
+          <div className={style.cartDetail_specification}>
+            <h2 className={style.cartDetail_specifi} >SPECIFICATIONS</h2> <br/>
+            <span className={style.cartDetail_general}>General</span> <br/>
+           <div className={style.genral}>
+            <span>Modal Name : 66E9KAC4IN </span> <br/>
+            <span>Color : Raven Black</span> <br/>
+            <span>Display : 49.53 cm 19.5 Inch LCD Display</span> <br/>
+            <span>Series :D-Series</span>
+           </div>
+          </div>
         </div>
       </div>
     </div>
