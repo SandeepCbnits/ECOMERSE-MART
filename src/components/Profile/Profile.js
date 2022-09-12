@@ -51,10 +51,9 @@ const navigate=useNavigate()
   useEffect(() => {
     axios.get(`http://localhost:9092/getUserByToken/${token}`).then((response) => {
       console.log(response.data.image)
-      
      setUser(response.data)
     });
-  }, []);
+  }, [user]);
   const onChangeHandler=(e)=>{
     const value=  e.target.value
     console.log({[e.target.name]:value})

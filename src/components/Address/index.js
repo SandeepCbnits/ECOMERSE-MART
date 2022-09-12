@@ -33,7 +33,7 @@ const Address = () => {
           console.log(addresses+"ghghjghjg")
         //  setUser(response.data)
         });
-      }, []);
+      }, [address]);
 const saveAddress =(e)=>{
     e.preventDefault();
 
