@@ -21,6 +21,14 @@ const Signup = () => {
     nameIsValid: validLName,
     reset: resetLNameHandler,
   } = UserInput((value) => value.length > 0);
+  const {
+    value: username,
+    nameIsInValid: invalidUserName,
+    onValueInputHandler: onUsernameChangeHandler,
+    onErrorHandler: userNameBlurHandler,
+    nameIsValid: validUserame,
+    reset: resetUserNameHandler,
+  } = UserInput((value) => value.length > 0);
 
   const {
     value: email,
@@ -42,7 +50,7 @@ const Signup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!validEmail && !validFName && validPassword && validLName) {
+    if (!validEmail && !validFName && validPassword && validLName && validEmail) {
       return;
     }
 
@@ -54,7 +62,8 @@ try {
       },
       body: JSON.stringify({
         email:email,
-        username:fname,
+        fname:fname,
+        username:username,
         password:password,
         lname:lname,
         fname:fname
@@ -80,6 +89,7 @@ try {
     resetFNameHandler();
     resetEmailHandler();
     resetLNameHandler();
+    resetUserNameHandler();
     resetPasswordrHandler();
   };
 
@@ -100,7 +110,7 @@ try {
             className={style.input}
             type="text"
             id="fname"
-            placeholder="First  Name EX. Sandeep,  Jagrati.."
+            placeholder="Enter the First Name"
             value={fname}
             onChange={onFNameChangeHandler}
             onBlur={fnameBlurHandler}
@@ -113,14 +123,27 @@ try {
             className={style.input}
             type="text"
             id="lname"
-            placeholder="Last Name EX. khatri,  Yadav.."
+            placeholder="Enter the Last Name"
             value={lname}
             onChange={onLNameChangeHandler}
             onBlur={lnameBlurHandler}
           />
           {invalidLName && <p className={style.error}>Please enter a Lname</p>}
         </div>
-
+        <div className={style.inputFiled}>
+          <label htmlFor="username">User Name</label>
+          <input
+            className={style.input}
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter the unique Username "
+            value={username}
+            onChange={onUsernameChangeHandler}
+            onBlur={userNameBlurHandler}
+          />
+          {invalidUserName && <p className={style.error}>Please enter a Username</p>}
+        </div>
         <div className={style.inputFiled}>
           <label htmlFor="email">Email </label>
           <input

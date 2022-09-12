@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-Slice";
-
+import Login from '../Auth/Login';
 const Header = ({ cartItems, products }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +42,10 @@ const Header = ({ cartItems, products }) => {
         {/* Condition for login logoout and profile setup */}
         <div className={style.header__signup}>
           <div className={style.header___login}>
-            {!isLogedIn && <NavLink to="/">Login</NavLink>}
-            {isLogedIn && <NavLink to="/profile">{localStorage.getItem("USERNAME")}<i class="fa fa-user"></i> </NavLink>}
+            {!isLogedIn && <NavLink to="/"><button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Login
+</button></NavLink>}
+            {isLogedIn && <NavLink to="/profile">PROFILE <i class="fa fa-user"></i> </NavLink>}
             {isLogedIn && (
               <NavLink to="/login" onClick={onLoginHandler}>
                 Logout
@@ -76,7 +78,25 @@ const Header = ({ cartItems, products }) => {
           <NavLink to="/wishlist">WishList</NavLink>
           <NavLink to="/contact">Contact Us</NavLink>
         </div>
+        {/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <Login/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div> */}
       </header>
+      
     </div>
   );
 };

@@ -100,14 +100,14 @@ const Login = ({gettingToken}) => {
       <h3 className={style.title}>Sign-In</h3>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
-          <label htmlFor="username">First Name</label>
+          <label htmlFor="username">User Name</label>
           <input
             type="text"
             id="username"
             value={username}
             onChange={onUsernameChangeHandler}
             onBlur={usernameBlurHandler}
-            placeholder="Name Ex. Sandeep, Jagriti"
+            placeholder="Enter the unique username"
           />
           {invalidUsername && (
             <p className={style.error}>Enter your email address</p>
