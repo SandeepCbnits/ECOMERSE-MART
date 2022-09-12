@@ -1,0 +1,79 @@
+.contact-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.contact{
+    text-align: center;
+}
+.right_container{
+
+}
+.contact-form{
+width: 45rem;
+margin:  auto;
+max-width: 95%;
+
+padding: 4rem;
+overflow: hidden;
+
+
+}
+.name-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.form-first-name input{
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+}
+.form-first-last input{
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+}
+
+.email-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+.form-first-contact input{
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+}
+.form-first-email input{
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+}
+.message-container{
+    margin-left: 10px;
+}
+.form-action{
+    text-align: center;
+}
+.form-action button{
+    padding: 0.2rem 1rem;
+    font-size: x-large;
+    border: none;
+    background-color: green;
+    border-radius: 4px;
+    color: white;
+    transition: 3s;
+    cursor: pointer;
+    
+}
+.form-action button:hover{
+    color: hsl(30, 100%, 50%);
+    background-color: green;
+}
+.message-container{
+    padding-left: 2px;
+}

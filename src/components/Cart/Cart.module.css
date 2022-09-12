@@ -1,22 +1,22 @@
-.container{
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-text-align: center;
-width: 57rem;
-max-width: 90%;
-margin: 0 auto;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 57rem;
+  max-width: 90%;
+  margin: 0 auto;
 }
-.cart_container{
+.cart_container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin:2rem auto; 
-  box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2); 
+  margin: 2rem auto;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-.cart_leftContainer  img{
+.cart_leftContainer img {
   width: 140px;
   height: 150px;
   padding: 10px;
@@ -24,41 +24,41 @@ margin: 0 auto;
 .cart_actions {
   display: flex;
   justify-content: space-around;
-  align-items: center;  
+  align-items: center;
 }
-.cart_actions button{ 
+.cart_actions button {
   cursor: pointer;
-  color: #fff; 
+  color: #fff;
 }
-.cart_actions a:hover{
+.cart_actions a:hover {
   color: hsl(30, 98%, 31%);
 }
-.description{
-  margin: 1px ;  
+.description {
+  margin: 1px;
 }
-.cart_description {  
+.cart_description {
   text-align: justify;
   display: flex;
   flex-direction: column;
 }
-.cart_rightContainer{
-  margin: 10px;  
+.cart_rightContainer {
+  margin: 10px;
 }
-.cart_name{
-color: #000;
-font-size: larger;
-font-weight: bold;
+.cart_name {
+  color: #000;
+  font-size: larger;
+  font-weight: bold;
 }
-.cart_rating{
+.cart_rating {
   display: flex;
- justify-content: space-between;
- align-items: center;  
+  justify-content: space-between;
+  align-items: center;
 }
-.cart_ratingIcon{
+.cart_ratingIcon {
   background-color: green;
   border-radius: 2px;
 }
-.cart_price{
+.cart_price {
   color: rgb(214, 122, 127);
   font-size: large;
   font-weight: bold;
@@ -66,30 +66,31 @@ font-weight: bold;
 .cart_actionsButton {
   display: flex;
   margin: 1em;
-  font-size: large;  
+  font-size: large;
 }
-.cart_actionsButton button{
-  padding: 0.4rem 0.6rem;
+.cart_actionsButton button {
+  padding: 0.4rem 1rem;
   border: none;
   cursor: pointer;
   border-radius: 4px;
   font-size: large;
   font-weight: bold;
+  transition: 2s;
 }
 .cart_actionsButton button:hover {
-background-color: goldenrod;
-color: white;
+  color: white;
+  background-color: hsl(30, 100%, 50%);
 }
-.cart_right {  
+.cart_right {
   padding: 1rem 2rem;
-  box-shadow: 1px 2px 2px 2px  rgba(0,0,0,0.3);
+  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
 }
-.totla_cast{
+.totla_cast {
   display: flex;
   justify-content: space-between;
 }
-.buy_button{
+.buy_button {
   padding: 0.4rem 1.5rem;
   border: none;
   cursor: pointer;
@@ -97,7 +98,8 @@ color: white;
   columns: #000;
   font-weight: bold;
   font-size: medium;
+  transition: 2s;
 }
-.buy_button:hover{
-  color: rgb(214, 122, 127);  
+.buy_button:hover {
+  color: hsl(30, 100%, 50%);
 }

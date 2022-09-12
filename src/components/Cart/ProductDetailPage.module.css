@@ -45,6 +45,7 @@ word-wrap: unset;
   cursor: pointer;
   border-radius: 3px;
   margin: 3px;
+  transition: 2s;
 }
 .cartDetail_button button:hover{
   background-color: #000;

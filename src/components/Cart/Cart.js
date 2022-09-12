@@ -65,12 +65,12 @@ const Cart = () => {
               </span>
               <div className={style.cart_actionsButton}>
                 <button>-</button>
-                <span>0</span>
+                <span>{cartProduct.quantity}</span>
                 <button>+</button>
               </div>
               <span>
                 Total Price <br />
-                <strong className={style.cart_price}>0</strong>
+                <strong className={style.cart_price}>{cartProduct.price}</strong>
               </span>
             </div>
           </div>
@@ -79,9 +79,9 @@ const Cart = () => {
           <h4>ORDER SUMMERY</h4>          
           <div className={style.totla_cast}>
           <span>TOTAL CAST</span>
-          <span>0</span> 
+          <span>{cartProduct.price}</span> 
           </div>
-          <button className={style.buy_button}>BUY NOW</button>
+          <button className={style.buy_button}>PROCEED TO CHECKOUT</button>
         </div>
       </div>
       <div className={style.cart_actions}>

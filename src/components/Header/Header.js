@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./Header.module.css";
+import "./Header.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = ({ cartItems }) => {
@@ -17,22 +17,22 @@ const Header = ({ cartItems }) => {
     setIsOpen(!isOpen);
   };
 
-  const closeHandler = () => {
-    setIsOpen(isOpen);    
+  const closeNavBar = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <div>
-      <div className={style.header}>
-        <div className={style.header_cart}>
-          <span className={style.logo}>Shoping Mart</span>
+      <div className="header">
+        <div className="header_cart">
+          <span className="logo">Shoping Mart</span>
           <input type="text" name="search" />
-          <span className={style.search_icon}>
+          <span className="search_icon">
             <i class="fa fa-search"></i>
           </span>
         </div>
-        <div className={style.header__signup}>
-          <div className={style.header___login}>
+        <div className="header__signup">
+          <div className="header___login">
             {!isLogedIn && <NavLink to="/">Login</NavLink>}
             {isLogedIn && (
               <NavLink to="/profile" title="PROFILE">
@@ -46,33 +46,48 @@ const Header = ({ cartItems }) => {
               </NavLink>
             )}
           </div>
-          <NavLink to="/addToCart" className={style.header__cart}>
+          <NavLink to="/cart" className="header__cart">
             <i class="fa fa-shopping-cart">
               {cartItems.length === 0 ? "" : cartItems.length}
             </i>
           </NavLink>
         </div>
       </div>
-      <div className={style.footer}>
-        <header className={style.second_header}>
-          <div  className={style.header__nav}>
-            <div showNavBar={showNavBar} className={style.close_btn}>
-            <button onClick={closeHandler}
-             className={isOpen ? style.nav__close_btn : style.nav_btn}>
-              <i class="fa fa-remove"></i>
-            </button>
+      {/*------------------------ NavBar--------------------- */}
+      <div>
+        <div className="second_header">
+          <nav className="main_nav">
+            <div
+              showNavBar={showNavBar}
+              className={isOpen ? "menu_link mobile_menu_link" : "menu_link"}
+            >
+              <div className="close">
+                <button className="close_button" onClick={closeNavBar}>
+                  close
+                </button>
+              </div>
+              <NavLink onClick={closeNavBar} to="/home">
+                Home
+              </NavLink>
+              <NavLink onClick={closeNavBar} to="/about">
+                About
+              </NavLink>
+              <NavLink onClick={closeNavBar} to="/category">
+                Category
+              </NavLink>
+              <NavLink onClick={closeNavBar} to="/wishlist">
+                WishList
+              </NavLink>
+              <NavLink onClick={closeNavBar} to="/contact">
+                Contact Us
+              </NavLink>
             </div>
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/category">Category</NavLink>
-            <NavLink to="/wishlist">WishList</NavLink>
-            <NavLink to="/contact">Contact Us</NavLink>
-          </div>
-          <button className={style.nav_btn} onClick={showNavBar}>
+          </nav>
+          <button className="hamburger_menu" onClick={showNavBar}>
             {" "}
             &#9776;
           </button>
-        </header>
+        </div>
       </div>
     </div>
   );

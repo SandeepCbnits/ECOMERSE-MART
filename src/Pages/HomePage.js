@@ -6,6 +6,7 @@ import style from "./HomePage.module.css";
 const HomePage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  
   let fetchProduct = async () => {
     let product = await fetch("http://localhost:9092/products");
     let response = await product.json();
@@ -40,7 +41,7 @@ const HomePage = () => {
     navigate(`/productDetail?product=${product}`, {replace:true});
   };
   return (
-    <div>
+    <div> 
       <ImageSlider />
       <div className={style.product_container}>
         {products.map((product) => (

@@ -19,33 +19,33 @@ const ProductDetailPage = () => {
     products(searchParams.get("product"));
   }, []);
 
-  const addToCart = async () => {
-    let token = localStorage.getItem("TOKEN");
-    try {
-      let addToCart = await fetch(
-        `http://localhost:9092/cart/addToCart/${token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            productId: 2,
-            quantity: 2,
-          }),
-        }
-      );
-      if (!addToCart.ok) {
-        console.log("Somthing Went Worng!!");
-      } else {
-        navigate("/addToCart", { replace: true });
-        let response = await addToCart.json();
-        console.log(response);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const addToCart = async () => {
+  //   let token = localStorage.getItem("TOKEN");
+  //   try {
+  //     let addToCart = await fetch(
+  //       `http://localhost:9092/cart/addToCart/${token}`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           productId: 2,
+  //           quantity: 2,
+  //         }),
+  //       }
+  //     );
+  //     if (!addToCart.ok) {
+  //       console.log("Somthing Went Worng!!");
+  //     } else {
+  //       navigate("/addToCart", { replace: true });
+  //       let response = await addToCart.json();
+  //       console.log(response);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const addToProduct = (product) => {    
     // /productDetail
    navigate(`/cart?product=${product}`, {replace:true});
@@ -75,7 +75,7 @@ const ProductDetailPage = () => {
             {Array(4)
               .fill()
               .map((_) => (                
-                <span title="Rating of Products"> ⭐ </span>
+                <span title="Rating of Products">⭐</span>
               ))}
               <p>Rating of Products </p>
           </span>{" "}

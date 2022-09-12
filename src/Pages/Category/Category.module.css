@@ -1,3 +1,4 @@
+/*<--------------------- Category Container Section --------------------------->*/
 .container {
   display: flex;
   justify-content: space-around;
@@ -8,6 +9,7 @@
   max-width: 90%;
 }
 
+/*<--------------------- Category Lists Section --------------------------->*/
 .category {
   border-radius: 4px;
   text-align: center;
