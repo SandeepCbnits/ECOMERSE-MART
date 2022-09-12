@@ -18,6 +18,7 @@ import Contact from "../Pages/Contact/Contact";
 import HomePage from "../Pages/HomePage";
 import WishList from "../Pages/WishList/WishList";
 import EditForm from "../components/Profile/EditForm";
+import ImageForm from "../components/Profile/ImageForm";
 
 const EcomerseNavigator = ({
   count,
@@ -90,6 +91,7 @@ const EcomerseNavigator = ({
           <Route path="/profile"  element={<Profile  gettingToken={gettingToken}  />} >
           </Route>
           <Route path="/editform" element={<EditForm/>} />
+          <Route path="/image" element={<ImageForm/>} />
           
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
         </>

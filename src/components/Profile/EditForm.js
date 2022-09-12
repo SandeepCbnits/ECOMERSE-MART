@@ -4,6 +4,7 @@ import { useState } from "react"
 import "./editform.css"
 import { useNavigate } from "react-router-dom";
 const EditForm = () => {
+const [image ,setImage]=useState("")
 const [profile ,setProfile]=useState({
     fname:"",
     lname:"",
@@ -21,11 +22,19 @@ const navigate=useNavigate()
   
     const handleOnClick=(e)=>{
         e.preventDefault();
+        const formdata=new FormData()
+        formdata.append("file",image)
+       formdata.append("fname",profile.fname)
+       formdata.append("lname",profile.lname)
+       formdata.append("email",profile.email)
+       formdata.append("phoneNumber",profile.phoneNumber)
         const token= localStorage.getItem("TOKEN")
-        axios.put(`http://localhost:9092/updateProfile/${token}`,profile).then(res=>{
+        axios.put(`http://localhost:9092/updateProfileWithImage/${token}`,formdata,{
+        
+        }).then(res=>{
 
         console.log(res.data)  
-        console.log(profile+"jagrati")
+        // console.log(profile+"jagrati")
         navigate("/profile", { replace: true });
             
         }).catch(err=>{
@@ -37,7 +46,15 @@ const navigate=useNavigate()
         <div className="card">
             <form >
                 <div className="row">
-                   
+                <div class="mb-3">
+    
+    <input type="file" className="form-control"
+  
+     onChange={e=>setImage(e.target.files[0])}
+    
+    />
+
+  </div>
                     {/* <div className="col-md-6"><div className="form-group  col-md-6">
                         <label for="exampleFormControlFile1">Choose Profile Photo</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1"  name="imagePath" value={profile.imagePath}  onChange={onChangeHandler}/>

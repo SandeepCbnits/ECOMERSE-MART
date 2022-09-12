@@ -17,6 +17,13 @@
 
   
 } */
+
+#cardMenu{
+  margin-top: 2rem;
+}
+.container{
+  margin-top: 2rem;
+}
 .card{
   margin: 20px;
   padding:10px;
@@ -112,4 +119,13 @@ a{
    
     padding: 10px;
     cursor: pointer;
+}
+.image{
+  border-radius: 50%;
+}
+
+
+
+#openPopup:focus {
+    outline: none;
 }

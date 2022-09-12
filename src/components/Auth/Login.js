@@ -59,6 +59,7 @@ const Login = ({gettingToken}) => {
         const response = await login.json();
        
         localStorage.setItem("USERNAME", username);
+        
         // localStorage.setItem("UserId", uid);
          localStorage.setItem("TOKEN", response.jwttoken);
         console.log("Getting Token via login user", response.jwttoken)
