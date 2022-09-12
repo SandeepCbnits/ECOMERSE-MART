@@ -19,6 +19,7 @@ const About = () => {
           of 2022, customers can shop online using a range of different
           computers and devices, including desktop computers, laptops, tablet
           computers and smartphones.
+          
         </p>
         <h2>Advantages of Online Plateform</h2>
       </div>

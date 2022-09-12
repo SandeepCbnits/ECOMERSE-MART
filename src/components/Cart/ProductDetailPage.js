@@ -10,8 +10,7 @@ const ProductDetailPage = () => {
     let fetchProduct = await fetch(
       `http://localhost:9092/products/getByProductId?pid=${product}`
     );
-    let response = await fetchProduct.json();
-    console.log(response);
+    let response = await fetchProduct.json();   
     setcartDetailProduct(response);
   };
 
@@ -52,7 +51,7 @@ const ProductDetailPage = () => {
     //navigate(`/productDetail?product=${product}`, {replace:true});
   };
   return (
-    <div>
+    <div key={cartDetailProduct.pid}>
       <h3>Shopping Detail </h3>
       <div className={style.productDetail_container}>
         <div className={style.product_imageContainer}>

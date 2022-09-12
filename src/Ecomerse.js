@@ -1,15 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import EcomerseNavigator from "./Navigator/EcomerseNavigator";
 import Header from "./components/Header/Header";
-import data from "./Items";
 import { useNavigate } from "react-router-dom";
 
 const Ecomerse = ({ title,shopByCategory }) => {
   let navigate = useNavigate();
-  let { items } = data;
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [wishLists, setWishLists] = useState([]);
+ 
   const [orderLists, setOrderLists] = useState([]);
 
   useEffect(()=>{
@@ -34,25 +32,6 @@ const Ecomerse = ({ title,shopByCategory }) => {
       );
     } else {
       setCartItems([...cartItems, { ...product, quentety: 1 }]);
-    }
-  };
-
-  const addToWishListHandler = (product) => {
-    let findExisting = wishLists.find((item) => item.id === product.id);
-    if (findExisting) {
-      setWishLists(
-        wishLists.map((item) =>
-          item.id === product.id
-            ? {
-                ...findExisting,
-                quentety: findExisting.quentety + 1,
-                title: title,
-              }
-            : item
-        )
-      );
-    } else {
-      setWishLists([...wishLists, { ...product, quentety: 1 }]);
     }
   };
 
@@ -88,10 +67,8 @@ const Ecomerse = ({ title,shopByCategory }) => {
           title={title}
           products={products}
           count={cartItems.length}         
-          setProducts={setProducts}
-          addToWishListHandler={addToWishListHandler}
-          wishLists={wishLists}
-          items={items}
+          setProducts={setProducts}          
+       
           removeToCartHandler={removeToCartHandler}
           orderLists={orderLists}
           orderListHandler={orderListHandler}

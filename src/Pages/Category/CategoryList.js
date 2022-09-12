@@ -4,15 +4,14 @@ import style from "./CategoryList.module.css";
 
 const CategoryList = () => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [ category,setCategory] = useState("");
+  const [searchParams] = useSearchParams();
 
   let categoryHandler = async (cid) => {
     let category = await fetch(
       `http://localhost:9092/categories/getByCid?cid=${cid}`
     );
-    const response = await category.json();
-    console.log(response);
+    const response = await category.json();   
     setProducts(response.products);
     setCategory(response.categoryName);
   };

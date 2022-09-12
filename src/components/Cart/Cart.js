@@ -10,8 +10,7 @@ const Cart = () => {
     let fetchProduct = await fetch(
       `http://localhost:9092/products/getByProductId?pid=${product}`
     );
-    let response = await fetchProduct.json();
-    console.log(response)
+    let response = await fetchProduct.json();   
     setCartProduct(response);
   };
 
@@ -61,7 +60,7 @@ const Cart = () => {
             <div className={style.cart_rating}>
               <span>
                 Rs. <br />
-                <stron className={style.cart_price}>{cartProduct.price}</stron>
+                <strong className={style.cart_price}>{cartProduct.price}</strong>
               </span>
               <div className={style.cart_actionsButton}>
                 <button>-</button>

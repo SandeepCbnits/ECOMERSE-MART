@@ -45,7 +45,7 @@ const HomePage = () => {
       <ImageSlider />
       <div className={style.product_container}>
         {products.map((product) => (
-          <div
+          <div key={product.pid}
             onClick={() => addToProduct(product.pid)}
             className={style.container}
           >
@@ -58,7 +58,7 @@ const HomePage = () => {
               <span className={style.product_name}>{product.name}</span> <br />
               <span>
                 Rs.{" "}
-                <stron className={style.product_price}>{product.price}</stron>
+                <strong className={style.product_price}>{product.price}</strong>
               </span>
             </div>
           </div>
