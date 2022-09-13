@@ -1,70 +1,82 @@
-.contact-container {
+.profile-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
+.profile img{
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+.profile-name-edits h2{
+  border: none;
+}
 .contact {
   text-align: center;
 }
-.contact-form {
+.profile-form {
   width: 45rem;
   margin: auto;
   max-width: 95%;
   padding: 4rem;
   overflow: hidden;
+  
 }
-.name-container {
+.name-profile {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 30px;
 }
-.form-first-name input {
+
+.profile-first-name input {
   display: block;
   padding: 0.5rem 2rem;
   width: 100%;
 }
-.form-first-last input {
+
+.profile-last-name input {
   display: block;
   padding: 0.5rem 2rem;
   width: 100%;
 }
-.email-container {
+.email-profile {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.form-first-contact input {
+.profile-first-contact input {
   display: block;
   padding: 0.5rem 2rem;
   width: 100%;
 }
-.form-first-email input {
+.profile-first-email input {
   display: block;
   padding: 0.5rem 2rem;
   width: 100%;
 }
-.message-container {
+.message-profile {
   margin-left: 10px;
 }
-.form-action {
+.profile-action {
   text-align: center;
 }
-.form-action button {
+.profile-action button {
   padding: 0.2rem 1rem;
   font-size: x-large;
   border: none;
-  background-color: green;
+  background-color: gray;
   border-radius: 4px;
-  color: white;
+  color: black;
   transition: 3s;
   cursor: pointer;
 }
-.form-action button:hover {
+.profile-action button:hover {
   color: hsl(30, 100%, 50%);
   background-color: green;
 }
-.message-container {
+.message-profile {
   padding-left: 2px;
 }

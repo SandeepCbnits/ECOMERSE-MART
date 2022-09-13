@@ -2,6 +2,7 @@ import React from "react";
 import style from "./ForgotPassword.module.css";
 import { useNavigate } from "react-router-dom";
 import UserInput from "./hooks/User-Input";
+import axios from "axios";
 const ForgotPassword = () => {
   let navigate = useNavigate();
   const {
@@ -12,37 +13,18 @@ const ForgotPassword = () => {
     nameIsValid: validEmail,
     reset: resetHandler,
   } = UserInput((value) => value.includes("@gmail.com"));
-
+// <--------------------Submit Forgot Password ------------------------------------>
   const onSubmitHandler = async (e) => {
-    e.preventDefault();
-
+     e.preventDefault();
     if (!validEmail) {
       return;
-    }
-    // let formData = new FormData();
-    // formData.append("email", email);
-    try {
-      let forgot = await fetch(`http://localhost:9092/forgot?email=${email}`, {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        // body: formData,
-        // body: email
-      });
-      
-      if (!forgot.ok) {
-        throw new Error(`${forgot.status}`);
-      } else {
-        let response = await forgot.json();
-        console.log(response);
-        
-      }
-    } catch (error) {
-      
-      console.log(error);
-    }
-    navigate("/otp", { replace: true });
+    }      
+    axios.post("http://localhost:9092/forgot/", { email:email}).then((response)=>{
+      console.log(response.data)
+      navigate("/otp", { replace: true });
+    }).catch((err)=>{
+      console.log(err.data)
+    })
     resetHandler();
   };
 
@@ -55,7 +37,7 @@ const ForgotPassword = () => {
           <input
             type="email"
             id="email"
-            value={email}
+            value={email}           
             onChange={onEmailChangeHandler}
             onBlur={emailBlurHandler}
             placeholder="Enter Email Ex. sandeep@cbnits.com"
@@ -64,7 +46,6 @@ const ForgotPassword = () => {
             <p className={style.error}>Enter your email address</p>
           )}
         </div>
-
         <div className={style.actionButton}>
           <button
             type="submit"

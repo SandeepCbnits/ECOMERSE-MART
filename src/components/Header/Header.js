@@ -26,10 +26,10 @@ const Header = ({ cartItems }) => {
       <div className="header">
         <div className="header_cart">
           <span className="logo">Shoping Mart</span>
-          <input type="text" name="search" />
-          <span className="search_icon">
+          <input type="text" name="search" placeholder="Search Products"/>
+          {/* <span className="search_icon">
             <i class="fa fa-search"></i>
-          </span>
+          </span> */}
         </div>
         <div className="header__signup">
           <div className="header___login">

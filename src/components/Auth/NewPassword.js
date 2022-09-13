@@ -1,38 +1,55 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserInput from "./hooks/User-Input";
 import style from "./NewPassword.module.css";
+
 
 const NewPassword = () => {
   const navigate = useNavigate();
-  const [resetPassword, setResetPassword] = useState({
-    password: "",
-    newPassword: "",
-  });
+   const [passwordIsValid, setPasswordIsValid] = useState(false);  
 
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
+  const {
+    value: confirmPassword,
+    nameIsInValid: invalidConfirmPassword,
+    onValueInputHandler: confirmPasswordChange,
+    onErrorHandler: confirmPasswordBlur,
+    nameIsValid: validConfirmPassword,
+    reset: resetConfirmPassword,
+  } = UserInput((value) => value.length > 0);
 
-  let validPassword = resetPassword.password !== "";
-  let invalidPassword = !validPassword && isTouch;
-  let validNewPassword = resetPassword.newPassword !== "";
-  let invalidNewPassword = !validNewPassword && isTouch;
-
+  const {
+    value: newPassword,
+    nameIsInValid: invalidNewPassword,
+    onValueInputHandler: newPasswordChange,
+    onErrorHandler: newPasswordBlur,
+    nameIsValid: validNewPassword,
+    reset: resetNewPassword,
+  } = UserInput((value) => value.length > 0);
+// <--------------------Submit New Password ------------------------------------>
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (!validPassword && !validNewPassword) {
+    if (!validConfirmPassword && !validNewPassword) {
       return;
     }
-    setPasswordIsValid()
-    navigate("/home", { replace: true });
+    let sendPassword ={newPassword:newPassword, confirmPassword:confirmPassword}
+    console.log(sendPassword)
+    axios.post("http://localhost:9092/changepassword/", sendPassword).then((res)=>{     
+      navigate("/", { replace: true });
+    }).catch((err)=>{
+      console.log(err.data)
+    })
+    resetConfirmPassword()
+    resetNewPassword()
   };
 
   useEffect(() => {
-    if (validPassword && validNewPassword) {
+    if (confirmPassword && validNewPassword) {
       setPasswordIsValid(true)
     } else {
       setPasswordIsValid(false)
     }
-  }, [validPassword, validNewPassword]);
+  }, [confirmPassword, validNewPassword]);
   
   return (
     <div className={style.loginContainer}>
@@ -41,32 +58,29 @@ const NewPassword = () => {
         <div className={style.inputFiled}>
           New Password
           <input
-            type="password"
+            type="password"           
             placeholder="Enter new Password"
-            value={resetPassword.newPassword}
-            onChange={(e) => setResetPassword(e.target.value)}
-            onBlur={() => setIsTouch(true)}
-            minLength={4}
+            value={confirmPassword}
+            onChange={confirmPasswordChange}
+            onBlur={confirmPasswordBlur}          
           />
-          {invalidPassword && (
+          {invalidConfirmPassword && (
             <p className={style.error}>Enter your new password</p>
           )}
         </div>
         <div className={style.inputFiled}>
           Confirm New Password
           <input
-            type="password"
+            type="password"            
             placeholder="Confirm Password "
-            value={resetPassword.newPassword}
-            onChange={(e) => setResetPassword(e.target.value)}
-            onBlur={() => setResetPassword(true)}
-            minLength={4}
+            value={newPassword}
+            onChange={newPasswordChange}
+            onBlur={newPasswordBlur}            
           />
           {invalidNewPassword && (
             <p className={style.error}>Confirm your new password</p>
           )}
         </div>
-
         <div className={style.actionButton}>
           <button type="submit" disabled={!passwordIsValid} className={style.submit}>
             Submit

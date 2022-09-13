@@ -6,10 +6,11 @@ const Contact = () => {
       {/* <----------------------Left Container---------------> */}
       <div className="contact-container">
         <div className="contact">
-          <h1>OFFICEADDRESS:</h1>
+          <h1>OFFICE ADDRESS:</h1>
           <h3>Office</h3>
           <h3>Connect with Gmail</h3>
-          <span>sandeep@cbnits.com</span>
+          <span>sandeep@cbnits.com</span> <br/>
+          <span>jagrati@cbnits.com</span>
           <h3>Mobile No.</h3>
           <span>+91 8400420939</span>
         </div>

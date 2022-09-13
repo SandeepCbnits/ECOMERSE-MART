@@ -2,6 +2,7 @@ import React from "react";
 import UserInput from "./hooks/User-Input";
 import style from "./Otp.module.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Otp = () => {
   let navigate = useNavigate();
@@ -13,30 +14,18 @@ const Otp = () => {
     nameIsValid: validOtp,
     reset: resetHandler,
   } = UserInput((value) => value.trim() !== "");
-
+// <--------------------Submit OTP------------------------------------>
   const onSubmitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     if (!validOtp) {
       return;
     }
-    try {
-      let otpSends= await fetch("http://localhost:9092/verifyOtp?otp="+otp,{
-        method:"POST",
-        // headers:{
-        //   "Content-Type":"application/json"
-        // },
-        // body: otp
-      })
-      if (!otpSends.ok) {
-        throw new Error(`Somthing Went Worng`)
-      } else {
-        let response = await otpSends.json();
-        console.log(response)
-        navigate("/passwordReset", {replace: true} )
-      }
-    } catch (error) {
-      // alert(error)
-    }
+   axios.post("http://localhost:9092/verifyOtp/",{otp:otp}).then((res)=>{
+    console.log(res.data)
+    navigate("/passwordReset",{ replace: true})
+   }).catch((err)=>{
+    console.log(err)
+   })   
     resetHandler();
   };
 
@@ -62,8 +51,7 @@ const Otp = () => {
 
         <div className={style.actionButton}>
           <button
-            type="submit"
-            
+            type="submit"            
           >
             Submit
           </button>

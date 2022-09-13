@@ -48,26 +48,26 @@ const Signup = () => {
       return;
     }
 
-try {
-  let signup = await fetch("http://localhost:9092/users/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email:email,
-        username:fname,
-        password:password,
-        lname:lname,
-        fname:fname        
-      }),
-    });
-    if (!signup.ok) {
-      throw new Error(`HTTP REQ ERROR ${signup.status}`)
-    }else{
-      let responseData = await signup.json();      
-      navigate("/login", { replace: true });
-    }
+    try {
+      let signup = await fetch("http://localhost:9092/users/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email:email,
+            username:fname,
+            password:password,
+            lname:lname,
+            fname:fname        
+          }),
+        });
+        if (!signup.ok) {
+          throw new Error(`HTTP REQ ERROR ${signup.status}`)
+        }else{
+          let responseData = await signup.json();      
+          navigate("/login", { replace: true });
+  }
 } catch (error) {
   alert("Somting Went Worng !!", error)  
 }   
