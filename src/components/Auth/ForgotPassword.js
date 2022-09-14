@@ -29,7 +29,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className={style.loginContainer}>
+    <div className={style.forgotContainer}>
       <h2>Password Reset</h2>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
             <p className={style.error}>Enter your email address</p>
           )}
         </div>
-        <div className={style.actionButton}>
+        <div className={style.forgotActionButton}>
           <button
             type="submit"
             // onClick={() => navigate("/reset", { replace: true })}

@@ -12,7 +12,7 @@
 .loginContainer h1 {
   margin-bottom: 0.1vh;
 }
-.inputFiled input {
+.inputSignupFiled input {
   display: block;
   width: 100%;
   padding: 0.6rem;
@@ -25,19 +25,22 @@
   margin-bottom: 1px;
   color: rgb(240, 44, 44);
 }
-.actionButton {
+.signupActionButton {
   width: 100%;
+  
 }
-.actionButton button {
+.signupActionButton button {
   margin-top: 20px;
   padding: 0.6rem 6rem;
+  color: black;
 }
-.actionButton button:hover,
+.signupActionButton button:hover,
 button:active {
   cursor: pointer;
 }
-.actionButton button:disabled,
+.signupActionButton button:disabled,
 button:active,
 button:hover { 
-  background-color: #ccc;
+  background-color: white;
+  color: black;
 }

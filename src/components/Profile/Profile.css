@@ -15,6 +15,7 @@
 .contact {
   text-align: center;
 }
+/* <------------------Right Side Container ---------------------> */
 .profile-form {
   width: 45rem;
   margin: auto;
@@ -60,17 +61,14 @@
 .message-profile {
   margin-left: 10px;
 }
-.profile-action {
-  text-align: center;
-}
-.profile-action button {
-  padding: 0.2rem 1rem;
-  font-size: x-large;
+ .profile-action button {
+  padding: 0.1rem 1rem;
+  font-size: large;
   border: none;
-  background-color: gray;
+  background-color: #232f3e;
   border-radius: 4px;
-  color: black;
-  transition: 3s;
+  color: white;
+  transition: 2s;
   cursor: pointer;
 }
 .profile-action button:hover {

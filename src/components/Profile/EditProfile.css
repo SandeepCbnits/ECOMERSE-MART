@@ -1,0 +1,86 @@
+  .edit-form {
+    width: 45rem;
+    margin: auto;
+    max-width: 95%;
+    padding: 4rem;
+    overflow: hidden;
+    
+  }
+  .name-edit {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+  }
+  
+  .edit-first-name input {
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+  }
+  
+  .edit-last-name input {
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+  }
+  .email-edit {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .edit-first-contact input {
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+  }
+  .edit-first-email input {
+    display: block;
+    padding: 0.5rem 2rem;
+    width: 100%;
+  }
+  /* <------------------Submit Button ---------------------> */
+  .message-edit {
+    margin-left: 10px;
+  }
+  .edit-action {
+    margin-top: 10px;
+    text-align: center;
+  }
+   .edit-action button {
+    padding: 0.25rem 1rem;
+    font-size: large;
+    border: none;
+    background-color: #232f3e;
+    border-radius: 4px;
+    color: white;
+    transition: 2s;
+    cursor: pointer;
+  }
+  .edit-action button:hover {
+    color: hsl(30, 100%, 50%);
+    background-color: green;
+  }
+  .edit-action button:hover, button:active{
+    cursor: pointer;
+  }
+  .edit-action button:disabled,
+  button:active,
+  button:hover {  
+    background-color: #ccc;
+    /* cursor: not-allowed; */
+    color: black;
+  }
+  .message-edit {
+    padding-left: 2px;
+  }
+  .error{
+    color: red;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: rgb(240, 44, 44);
+  
+    
+  }
+  

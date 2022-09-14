@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Header = ({ cartItems }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
   const isLogedIn = localStorage.getItem("TOKEN") ? true : false;
 
   const onLogoutHandler = () => {
@@ -58,7 +59,7 @@ const Header = ({ cartItems }) => {
         <div className="second_header">
           <nav className="main_nav">
             <div
-              showNavBar={showNavBar}
+              // showNavBar={showNavBar}
               className={isOpen ? "menu_link mobile_menu_link" : "menu_link"}
             >
               <div className="close">
@@ -83,10 +84,13 @@ const Header = ({ cartItems }) => {
               </NavLink>
             </div>
           </nav>
-          <button className="hamburger_menu" onClick={showNavBar}>
+          <div >
+          <button  className="hamburger_menu" onClick={showNavBar}>
             {" "}
             &#9776;
           </button>
+
+          </div>
         </div>
       </div>
     </div>

@@ -74,9 +74,14 @@
   transition: 0.5s;
   color: #fcbb6a;
 }
+button{
+  background-color: transparent;
+  color: white;
+}
 .hamburger_menu {
   display: none;
   margin-top: -30px;
+  
 }
 @media (max-width: 1080px) {
   .main_nav {
@@ -119,6 +124,7 @@
     font-size: 1.5rem;
     padding: 1px 10px;
     border-radius: 4px;
+   
   }
   .close_button {
     border: none;
@@ -144,6 +150,7 @@
     display: block;
     border: none;
     font-size: 1.5rem;
+   
   }
   .close {
     display: block;
@@ -157,6 +164,7 @@
   }
   .hamburger_menu {
     display: block;
+    
     border: none;
     font-size: 1.5rem;
   }

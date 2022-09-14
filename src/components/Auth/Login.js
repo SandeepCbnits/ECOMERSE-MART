@@ -133,7 +133,7 @@ const Login = () => {
           )}
         </div>
 
-        <div className={style.actionButton}>
+        <div className={style.loginActionButton}>
           <button type="submit" onClick={logoutHandler} disabled={!formIsValid}>
             Login
           </button>

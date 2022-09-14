@@ -7,6 +7,7 @@ const CategoryList = () => {
   const [ category,setCategory] = useState("");
   const [searchParams] = useSearchParams();
 
+  
   let categoryHandler = async (cid) => {
     let category = await fetch(
       `http://localhost:9092/categories/getByCid?cid=${cid}`

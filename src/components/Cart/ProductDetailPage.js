@@ -45,7 +45,7 @@ const ProductDetailPage = () => {
   //     console.log(error);
   //   }
   // };
-  const addToProduct = (product) => {    
+  const addToCart = (product) => {   
     // /productDetail
    navigate(`/cart?product=${product}`, {replace:true});
     //navigate(`/productDetail?product=${product}`, {replace:true});
@@ -85,7 +85,7 @@ const ProductDetailPage = () => {
           <br />
           <div className={style.cartDetail_button}>
           <span >
-            <button onClick={() => addToProduct(cartDetailProduct.pid)}>ADD TO CART</button>
+            <button onClick={() =>addToCart(cartDetailProduct.pid)}>ADD TO CART</button>
           </span>
           <span >
             <button >Buy Now</button>

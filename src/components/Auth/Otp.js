@@ -30,7 +30,7 @@ const Otp = () => {
   };
 
   return (
-    <div className={style.loginContainer}>
+    <div className={style.otpContainer}>
       <h2>We sent a code to your email</h2>
       <form action="" onSubmit={onSubmitHandler}>
         <div className={style.inputFiled}>
@@ -49,7 +49,7 @@ const Otp = () => {
           {invalidOtp && <p className={style.error}>Enter your otp</p>}
         </div>
 
-        <div className={style.actionButton}>
+        <div className={style.otpActionButton}>
           <button
             type="submit"            
           >

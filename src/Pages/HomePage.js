@@ -19,20 +19,20 @@ const HomePage = () => {
 
   // const addToCart=async (product)=>{
   //   console.log(product.pid)
-  // //   let token = localStorage.getItem("TOKEN")
-  // //   let addToCart = await fetch(`http://localhost:9092/cart/addToCart/${token}`,{
-  // //     method:"POST",
-  // //     headers:{
-  // //       "Content-Type":"application/json",
-  // //       // 'Accept': 'application/json'
-  // //     },
-  // //      body: JSON.stringify({
-  // //       productId:2,
-  // //       quantity:2
-  // //     })
-  // //   })
-  // // let response = await addToCart.json();
-  // // console.log(response)
+  //   let token = localStorage.getItem("TOKEN")
+  //   let addToCart = await fetch(`http://localhost:9092/cart/addToCart/${token}`,{
+  //     method:"POST",
+  //     headers:{
+  //       "Content-Type":"application/json",
+  //       // 'Accept': 'application/json'
+  //     },
+  //      body: JSON.stringify({
+  //       productId:2,
+  //       quantity:2
+  //     })
+  //   })
+  // let response = await addToCart.json();
+  // console.log(response)
   // }
 
   const addToProduct = (product) => {    

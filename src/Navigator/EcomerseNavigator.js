@@ -17,6 +17,7 @@ import Otp from "../components/Auth/Otp";
 import NewPassword from "../components/Auth/NewPassword";
 import AddToCart from "../components/Cart/AddToCart";
 import ProductDetailPage from "../components/Cart/ProductDetailPage";
+import EditProfile from "../components/Profile/EditProfile";
 
 const EcomerseNavigator = ({
   count,
@@ -81,6 +82,7 @@ const EcomerseNavigator = ({
           <Route path="/productDetail" element={<ProductDetailPage/>} />
           <Route path="/addToCart" element={<AddToCart/> }/>
           <Route path="/profile" element={<Profile  gettingToken={gettingToken}  />} />
+          <Route path="/edits" element={<EditProfile />} />
           <Route path="/checkout" element={<CheckOut   orderLists={orderLists} />} />
         </Fragment>
       )}

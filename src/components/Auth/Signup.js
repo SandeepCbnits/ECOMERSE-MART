@@ -89,10 +89,10 @@ const Signup = () => {
     <div className={style.signupContainer}>
       <h3>Create Account</h3>
       <form  onSubmit={submitHandler}>
-        <div className={style.inputFiled}>
+        <div className={style.inputSignupFiled}>
           <label htmlFor="fname">First Name</label>
           <input
-            className={style.input}
+            className={style.inputSignupFiled}
             type="text"
             id="fname"
             placeholder="First  Name EX. Sandeep,  Jagrati.."
@@ -102,7 +102,7 @@ const Signup = () => {
           />
           {invalidFName && <p className={style.error}>Please enter a Fname</p>}
         </div>
-        <div className={style.inputFiled}>
+        <div className={style.inputSignupFiled}>
           <label htmlFor="surname">Surname Name</label>
           <input
             className={style.input}
@@ -115,7 +115,7 @@ const Signup = () => {
           />
           {invalidLName && <p className={style.error}>Please enter a Lname</p>}
         </div>
-        <div className={style.inputFiled}>
+        <div className={style.inputSignupFiled}>
           <label htmlFor="email">Email </label>
           <input
             type="text"
@@ -129,7 +129,7 @@ const Signup = () => {
             <p className={style.error}>Please enter an email address</p>
           )}
         </div>
-        <div className={style.inputFiled}>
+        <div className={style.inputSignupFiled}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -143,7 +143,7 @@ const Signup = () => {
             <p className={style.error}>Please enter a password.</p>
           )}
         </div>
-        <div className={style.actionButton}>
+        <div className={style.signupActionButton}>
           <button type="submit" disabled={!formIsValid}>
             Continue
           </button>

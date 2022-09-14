@@ -37,20 +37,22 @@
   margin-bottom: 1px;
   color: rgb(240, 44, 44);
 }
-.actionButton {
+.loginActionButton {
   width: 100%;
+  color: black;
 }
-.actionButton button {
+.loginActionButton button {
   margin-top: 20px;
   padding: 0.6rem 6rem;
  
 }
-.actionButton button:hover, button:active{
+.loginActionButton button:hover, button:active{
   cursor: pointer;
 }
-.actionButton button:disabled,
+.loginActionButton button:disabled,
 button:active,
 button:hover {  
   background-color: #ccc;
   /* cursor: not-allowed; */
+  color: black;
 }
