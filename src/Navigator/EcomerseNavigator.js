@@ -64,7 +64,7 @@ const EcomerseNavigator = ({
           <Route path="/category" element={<Category shopByCategory={shopByCategory}/>} />         
           <Route
             path="/wishlist"
-            element={<WishList wishLists={wishLists} />}
+            element={<WishList />}
           />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

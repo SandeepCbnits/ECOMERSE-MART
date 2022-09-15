@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./WishList.module.css";
-const WishList = ({ wishLists }) => {
+const WishList = () => {
   return (
     <div>
       <h3>Cart List</h3>
-      {wishLists.map((cart) => (
+      {/* {wishLists.map((cart) => (
         <div className={style.container}>
           <img src={cart.image} alt={cart.name} />          
           <span>{cart.name}</span>
@@ -13,7 +13,7 @@ const WishList = ({ wishLists }) => {
             <i class="fa fa-trash-o"></i>
           </span>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };

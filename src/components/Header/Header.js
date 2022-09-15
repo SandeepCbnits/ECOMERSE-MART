@@ -5,7 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Header = ({ cartItems }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
+let quentity =localStorage.getItem("QUENTITY")
+console.log(quentity.length)
   const isLogedIn = localStorage.getItem("TOKEN") ? true : false;
 
   const onLogoutHandler = () => {
@@ -48,8 +49,8 @@ const Header = ({ cartItems }) => {
             )}
           </div>
           <NavLink to="/cart" className="header__cart">
-            <i class="fa fa-shopping-cart">
-              {cartItems.length === 0 ? "" : cartItems.length}
+              {quentity.length === 0 ? "" : quentity.length}
+            <i class="fa fa-shopping-cart">0
             </i>
           </NavLink>
         </div>

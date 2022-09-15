@@ -1,55 +1,41 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {  useNavigate, useSearchParams } from "react-router-dom";
 import style from "./ProductDetailPage.module.css";
 const ProductDetailPage = () => {
   const navigate = useNavigate();
-  const [cartDetailProduct, setcartDetailProduct] = useState([]);
+  const [cartDetailProduct, setcartDetailProduct] = useState({
+    productId:2,
+    quantity:1
+  });
   const [searchParams, setSearchParams] = useSearchParams();
 
   const products = async (product) => {
     let fetchProduct = await fetch(
       `http://localhost:9092/products/getByProductId?pid=${product}`
     );
-    let response = await fetchProduct.json();   
+    let response = await fetchProduct.json();  
+    console.log(response) 
     setcartDetailProduct(response);
   };
 
   useEffect(() => {
     products(searchParams.get("product"));
+   
   }, []);
 
-  // const addToCart = async () => {
-  //   let token = localStorage.getItem("TOKEN");
-  //   try {
-  //     let addToCart = await fetch(
-  //       `http://localhost:9092/cart/addToCart/${token}`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           productId: 2,
-  //           quantity: 2,
-  //         }),
-  //       }
-  //     );
-  //     if (!addToCart.ok) {
-  //       console.log("Somthing Went Worng!!");
-  //     } else {
-  //       navigate("/addToCart", { replace: true });
-  //       let response = await addToCart.json();
-  //       console.log(response);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  const addToCart = (product) => {   
-    // /productDetail
-   navigate(`/cart?product=${product}`, {replace:true});
-    //navigate(`/productDetail?product=${product}`, {replace:true});
+  const addToCart = async (product) => {
+    let token = localStorage.getItem("TOKEN");
+    axios.post(`http://localhost:9092/cart/addToCart/${token}`,{ productId: product, quantity: 1}).then((res)=>{
+      console.log(res.data)
+      navigate(`/addToCart?cart=${product}`, { replace: true });
+    }).catch((err)=>console.log(err) )   
   };
+  // const addToCart = (product) => {   
+  // // /productDetail
+  // navigate(`/cart?product=${product}`, {replace:true});
+  //   //navigate(`/productDetail?product=${product}`, {replace:true});
+  // };
   return (
     <div key={cartDetailProduct.pid}>
       <h3>Shopping Detail </h3>
